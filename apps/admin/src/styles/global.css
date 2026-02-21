@@ -1,0 +1,498 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   SUVIDHA Admin Portal – Government of India Design System
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --gov-navy: #003366;
+    --gov-navy-d: #00244d;
+    --gov-navy-l: #1a4d85;
+    --gov-saffron: #FF6600;
+    --gov-saffron-l: #ff8533;
+    --gov-green: #138808;
+    --gov-white: #FFFFFF;
+    --gov-body-bg: #f0f4f8;
+    --gov-border: #d0d7de;
+    --gov-text: #1a1a1a;
+    --gov-muted: #555555;
+    --gov-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    --gov-radius: 4px;
+    --gov-font: 'Noto Sans', Arial, sans-serif;
+    --sidebar-w: 230px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+#root {
+    font-family: var(--gov-font);
+    background: var(--gov-body-bg);
+    color: var(--gov-text);
+    font-size: 14px;
+}
+
+/* ── Utility bar ──────────────────────────────── */
+.admin-utility-bar {
+    background: #4a4a4a;
+    color: #e0e0e0;
+    font-size: 11.5px;
+    padding: 3px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ── Admin Header ─────────────────────────────── */
+.admin-header {
+    background: var(--gov-white);
+    border-bottom: 4px solid var(--gov-saffron);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: var(--gov-shadow);
+}
+
+.admin-header__emblem {
+    height: 56px;
+}
+
+.admin-header__title {
+    flex: 1;
+}
+
+.admin-header__title h1 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gov-navy);
+    margin: 0;
+}
+
+.admin-header__title span {
+    font-size: 11.5px;
+    color: var(--gov-muted);
+}
+
+.admin-header__badge {
+    background: var(--gov-saffron);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: var(--gov-radius);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* ── Layout ───────────────────────────────────── */
+.admin-layout {
+    display: flex;
+    min-height: calc(100vh - 96px);
+}
+
+/* ── Sidebar ──────────────────────────────────── */
+.admin-sidebar {
+    width: var(--sidebar-w);
+    background: var(--gov-navy);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 100%;
+}
+
+.admin-sidebar__title {
+    padding: 14px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar__nav {
+    flex: 1;
+}
+
+.admin-sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 16px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.18s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-family: var(--gov-font);
+}
+
+.admin-sidebar__link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.admin-sidebar__link--active {
+    background: rgba(255, 102, 0, .18);
+    border-left: 3px solid var(--gov-saffron);
+    color: #fff;
+    font-weight: 700;
+}
+
+.admin-sidebar__icon {
+    font-size: 1.1rem;
+    width: 22px;
+    text-align: center;
+}
+
+.admin-sidebar__footer {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, .5);
+}
+
+/* ── Main content ─────────────────────────────── */
+.admin-main {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+}
+
+.admin-page-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gov-navy);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    border-bottom: 3px solid var(--gov-saffron);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ── Stat Cards ───────────────────────────────── */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.admin-stat {
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-top: 4px solid var(--gov-navy);
+    border-radius: var(--gov-radius);
+    padding: 16px;
+    box-shadow: var(--gov-shadow);
+}
+
+.admin-stat--saffron {
+    border-top-color: var(--gov-saffron);
+}
+
+.admin-stat--green {
+    border-top-color: var(--gov-green);
+}
+
+.admin-stat--red {
+    border-top-color: #c0392b;
+}
+
+.admin-stat__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gov-navy);
+    line-height: 1;
+}
+
+.admin-stat__label {
+    font-size: 12px;
+    color: var(--gov-muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+/* ── Card ─────────────────────────────────────── */
+.admin-card {
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-radius: var(--gov-radius);
+    box-shadow: var(--gov-shadow);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.admin-card__header {
+    background: var(--gov-navy);
+    color: #fff;
+    padding: 9px 14px;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    border-left: 4px solid var(--gov-saffron);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-card__body {
+    padding: 16px;
+}
+
+/* ── Table ────────────────────────────────────── */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.admin-table th {
+    background: var(--gov-navy);
+    color: #fff;
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 600;
+}
+
+.admin-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gov-border);
+}
+
+.admin-table tr:nth-child(even) td {
+    background: #f4f7fb;
+}
+
+.admin-table tr:hover td {
+    background: #eaf0f8;
+}
+
+/* ── Badges ───────────────────────────────────── */
+.badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.badge-pending {
+    background: #fff3cd;
+    color: #6c4a00;
+    border: 1px solid #ffe08a;
+}
+
+.badge-in_progress {
+    background: #d6eaf8;
+    color: #154360;
+    border: 1px solid #a9cce3;
+}
+
+.badge-resolved {
+    background: #d5f5e3;
+    color: #1a5632;
+    border: 1px solid #82e0aa;
+}
+
+.badge-escalated {
+    background: #fadbd8;
+    color: #6e2517;
+    border: 1px solid #f1948a;
+}
+
+.badge-closed {
+    background: #f2f3f4;
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+/* ── Buttons ──────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 16px;
+    border-radius: var(--gov-radius);
+    cursor: pointer;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1.5px solid transparent;
+    font-family: var(--gov-font);
+    transition: all .18s;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.btn-primary {
+    background: var(--gov-navy);
+    color: #fff;
+    border-color: var(--gov-navy);
+}
+
+.btn-primary:hover {
+    background: var(--gov-navy-d);
+}
+
+.btn-saffron {
+    background: var(--gov-saffron);
+    color: #fff;
+    border-color: var(--gov-saffron);
+}
+
+.btn-saffron:hover {
+    background: var(--gov-saffron-l);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--gov-navy);
+    border-color: var(--gov-navy);
+}
+
+.btn-outline:hover {
+    background: var(--gov-navy);
+    color: #fff;
+}
+
+.btn-danger {
+    background: #c0392b;
+    color: #fff;
+    border-color: #c0392b;
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 11.5px;
+}
+
+.btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* ── Form ─────────────────────────────────────── */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 7px 10px;
+    border: 1.5px solid var(--gov-border);
+    border-radius: var(--gov-radius);
+    font-size: 13px;
+    font-family: var(--gov-font);
+    background: #fff;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--gov-navy);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* ── Filter bar ───────────────────────────────── */
+.admin-filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    padding: 12px 16px;
+    background: #f4f7fb;
+    border-bottom: 1px solid var(--gov-border);
+}
+
+/* ── Pagination ───────────────────────────────── */
+.admin-pagination {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 12px;
+    justify-content: flex-end;
+}
+
+.admin-pagination button {
+    padding: 5px 11px;
+    border: 1.5px solid var(--gov-border);
+    background: #fff;
+    border-radius: var(--gov-radius);
+    cursor: pointer;
+    font-size: 12.5px;
+    font-family: var(--gov-font);
+}
+
+.admin-pagination button.active,
+.admin-pagination button:hover {
+    background: var(--gov-navy);
+    color: #fff;
+    border-color: var(--gov-navy);
+}
+
+/* ── Alert ────────────────────────────────────── */
+.admin-alert {
+    padding: 9px 14px;
+    border-radius: var(--gov-radius);
+    font-size: 13px;
+    border-left: 4px solid;
+    margin-bottom: 12px;
+}
+
+.admin-alert-error {
+    background: #fdf0ef;
+    border-color: #c0392b;
+    color: #7b241c;
+}
+
+.admin-alert-success {
+    background: #eaf7ea;
+    border-color: var(--gov-green);
+    color: #155724;
+}
+
+/* ── Admin Footer ─────────────────────────────── */
+.admin-footer {
+    background: var(--gov-navy);
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    font-size: 11.5px;
+    padding: 10px;
+    border-top: 3px solid var(--gov-saffron);
+}

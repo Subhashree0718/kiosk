@@ -1,0 +1,61 @@
+{
+    "common": {
+        "select_language": "Select Language",
+        "continue": "Continue",
+        "back": "Back",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "loading": "Loading...",
+        "logout": "Logout",
+        "home": "Home"
+    },
+    "auth": {
+        "title": "Citizen Login",
+        "mobile_label": "Enter Mobile Number",
+        "otp_label": "Enter OTP",
+        "send_otp": "Send OTP",
+        "verify_otp": "Verify OTP",
+        "otp_sent": "OTP sent to your mobile number",
+        "resend_otp": "Resend OTP"
+    },
+    "dashboard": {
+        "welcome": "Welcome, Citizen",
+        "select_service": "Select a Service",
+        "departments": "Departments"
+    },
+    "services": {
+        "bill_payment": "Bill Payment",
+        "service_request": "Service Request",
+        "complaint": "Register Complaint",
+        "status": "Track Status"
+    },
+    "complaint": {
+        "title": "Register Complaint",
+        "department": "Select Department",
+        "description": "Describe the issue",
+        "location": "Location",
+        "attach": "Attach Photo (optional)",
+        "success": "Complaint registered successfully",
+        "ticket_id": "Your Ticket ID"
+    },
+    "payment": {
+        "title": "Bill Payment",
+        "consumer_no": "Consumer Number",
+        "fetch_bill": "Fetch Bill",
+        "amount_due": "Amount Due",
+        "pay_now": "Pay Now",
+        "success": "Payment successful",
+        "receipt": "Download Receipt"
+    },
+    "status": {
+        "title": "Track Your Request",
+        "enter_ticket": "Enter Ticket ID",
+        "search": "Search",
+        "status_label": "Status",
+        "last_update": "Last Updated"
+    },
+    "session": {
+        "timeout_warning": "Your session will expire in 60 seconds",
+        "timeout_message": "Session expired. Please login again."
+    }
+}

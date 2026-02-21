@@ -1,0 +1,26 @@
+{
+  "name": "suvidha",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SUVIDHA – Smart Urban Virtual Interactive Digital Helpdesk Assistant",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "dev:kiosk": "npm run dev --workspace=apps/kiosk",
+    "dev:admin": "npm run dev --workspace=apps/admin",
+    "dev:backend": "npm run dev --workspace=apps/backend"
+  },
+  "devDependencies": {
+    "turbo": "^1.13.4",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

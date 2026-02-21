@@ -1,0 +1,61 @@
+{
+    "common": {
+        "select_language": "भाषा चुनें",
+        "continue": "जारी रखें",
+        "back": "वापस",
+        "submit": "जमा करें",
+        "cancel": "रद्द करें",
+        "loading": "लोड हो रहा है...",
+        "logout": "लॉग आउट",
+        "home": "होम"
+    },
+    "auth": {
+        "title": "नागरिक लॉगिन",
+        "mobile_label": "मोबाइल नंबर दर्ज करें",
+        "otp_label": "OTP दर्ज करें",
+        "send_otp": "OTP भेजें",
+        "verify_otp": "OTP सत्यापित करें",
+        "otp_sent": "आपके मोबाइल पर OTP भेजा गया",
+        "resend_otp": "OTP पुनः भेजें"
+    },
+    "dashboard": {
+        "welcome": "स्वागत है, नागरिक",
+        "select_service": "सेवा चुनें",
+        "departments": "विभाग"
+    },
+    "services": {
+        "bill_payment": "बिल भुगतान",
+        "service_request": "सेवा अनुरोध",
+        "complaint": "शिकायत दर्ज करें",
+        "status": "स्थिति ट्रैक करें"
+    },
+    "complaint": {
+        "title": "शिकायत दर्ज करें",
+        "department": "विभाग चुनें",
+        "description": "समस्या विवरण",
+        "location": "स्थान",
+        "attach": "फ़ोटो संलग्न करें (वैकल्पिक)",
+        "success": "शिकायत सफलतापूर्वक दर्ज की गई",
+        "ticket_id": "आपका टिकट ID"
+    },
+    "payment": {
+        "title": "बिल भुगतान",
+        "consumer_no": "उपभोक्ता संख्या",
+        "fetch_bill": "बिल प्राप्त करें",
+        "amount_due": "देय राशि",
+        "pay_now": "अभी भुगतान करें",
+        "success": "भुगतान सफल",
+        "receipt": "रसीद डाउनलोड करें"
+    },
+    "status": {
+        "title": "अपना अनुरोध ट्रैक करें",
+        "enter_ticket": "टिकट ID दर्ज करें",
+        "search": "खोजें",
+        "status_label": "स्थिति",
+        "last_update": "अंतिम अपडेट"
+    },
+    "session": {
+        "timeout_warning": "आपका सत्र 60 सेकंड में समाप्त हो जाएगा",
+        "timeout_message": "सत्र समाप्त। कृपया पुनः लॉगिन करें।"
+    }
+}

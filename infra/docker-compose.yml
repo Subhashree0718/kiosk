@@ -1,0 +1,88 @@
+version: '3.9'
+
+services:
+  # ── PostgreSQL Database ───────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: suvidha_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: suvidha
+      POSTGRES_PASSWORD: suvidha_password
+      POSTGRES_DB: suvidha_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U suvidha"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Backend API ───────────────────────────────────
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: ../../infra/docker/Dockerfile.backend
+    container_name: suvidha_backend
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://suvidha:suvidha_password@postgres:5432/suvidha_db
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: 1h
+      SMS_GATEWAY_URL: ${SMS_GATEWAY_URL}
+      SMS_API_KEY: ${SMS_API_KEY}
+      PAYMENT_GATEWAY_URL: ${PAYMENT_GATEWAY_URL}
+      PAYMENT_API_KEY: ${PAYMENT_API_KEY}
+    ports:
+      - "4000:4000"
+    volumes:
+      - backend_logs:/app/logs
+
+  # ── Kiosk Frontend ────────────────────────────────
+  kiosk:
+    build:
+      context: ./apps/kiosk
+      dockerfile: ../../infra/docker/Dockerfile.kiosk
+    container_name: suvidha_kiosk
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  # ── Admin Frontend ────────────────────────────────
+  admin:
+    build:
+      context: ./apps/admin
+      dockerfile: ../../infra/docker/Dockerfile.admin
+    container_name: suvidha_admin
+    restart: always
+    ports:
+      - "5174:80"
+    depends_on:
+      - backend
+
+  # ── Nginx Reverse Proxy ───────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: suvidha_nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - kiosk
+      - admin
+
+volumes:
+  postgres_data:
+  backend_logs:

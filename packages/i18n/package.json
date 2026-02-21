@@ -1,0 +1,12 @@
+{
+    "name": "@suvidha/i18n",
+    "version": "1.0.0",
+    "private": true,
+    "main": "src/index.js",
+    "dependencies": {
+        "i18next": "^23.11.5"
+    },
+    "scripts": {
+        "lint": "echo OK"
+    }
+}
