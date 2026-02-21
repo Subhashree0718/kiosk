@@ -1,0 +1,120 @@
+################################################################################
+# SUVIDHA – Smart Urban Virtual Interactive Digital Helpdesk Assistant
+# Project Requirements
+# Node.js Monorepo — managed with npm Workspaces + Turborepo
+################################################################################
+
+# ── System Requirements ──────────────────────────────────────────────────────
+Node.js       >= 18.0.0   (LTS recommended)
+npm           >= 9.0.0
+PostgreSQL    >= 14.0
+Git           >= 2.38.0
+
+
+# ── Monorepo Tooling ─────────────────────────────────────────────────────────
+turbo         ^1.13.4     # High-performance build system for monorepos
+typescript    ^5.4.5      # TypeScript support (shared tsconfig)
+
+
+# ── apps/kiosk  (Citizen-facing kiosk frontend, Vite + React) ────────────────
+react                   ^18.3.1    # UI framework
+react-dom               ^18.3.1    # React DOM renderer
+react-router-dom        ^6.23.1    # Client-side routing
+axios                   ^1.6.8     # HTTP client for API calls
+zustand                 ^4.5.2     # Lightweight state management
+
+# DevDependencies (kiosk)
+vite                    ^5.2.11    # Build tool / dev server (port 5173)
+@vitejs/plugin-react    ^4.3.0    # Vite React plugin (Babel/SWC)
+
+
+# ── apps/admin  (Admin dashboard frontend, Vite + React) ────────────────────
+react                   ^18.3.1
+react-dom               ^18.3.1
+react-router-dom        ^6.23.1
+axios                   ^1.6.8
+zustand                 ^4.5.2
+leaflet                 ^1.9.4     # Interactive maps
+react-leaflet           ^4.2.1    # React wrapper for Leaflet
+
+# DevDependencies (admin)
+vite                    ^5.2.11    # Build tool / dev server (port 5174)
+@vitejs/plugin-react    ^4.3.0
+
+
+# ── apps/backend  (Express REST API + Prisma ORM) ────────────────────────────
+express                 ^4.19.2    # Web framework
+@prisma/client          ^5.13.0    # Prisma ORM client (PostgreSQL)
+jsonwebtoken            ^9.0.2     # JWT authentication
+bcryptjs                ^2.4.3     # Password hashing
+dotenv                  ^16.4.5    # Environment variable loader
+cors                    ^2.8.5     # Cross-Origin Resource Sharing middleware
+helmet                  ^7.1.0     # HTTP security headers
+morgan                  ^1.10.0    # HTTP request logger
+express-rate-limit      ^7.2.0    # API rate limiting
+nanoid                  ^5.0.7     # Unique ID generation (ticket IDs)
+node-cron               ^3.0.3     # Cron job scheduler
+winston                 ^3.13.0    # Production-grade logging
+axios                   ^1.6.8     # HTTP client (for external API calls)
+
+# DevDependencies (backend)
+prisma                  ^5.13.0    # Prisma CLI (migrations, studio)
+nodemon                 ^3.1.0     # Auto-restart dev server on file changes
+
+
+# ── Shared Internal Packages ─────────────────────────────────────────────────
+@suvidha/config         *          # Shared constants and configuration
+@suvidha/i18n           *          # Translations: English, Hindi, Tamil, Telugu
+@suvidha/ui             *          # Shared React component library (Button, Card, Input, Modal)
+@suvidha/utils          *          # Shared utilities (validators, formatDate, generateTicketId)
+
+
+# ── External Assets / CDN ────────────────────────────────────────────────────
+Google Fonts — Noto Sans (wght 400–700)
+Google Fonts — Noto Sans Devanagari (wght 400–700)
+Google Material Icons  (CDN: fonts.googleapis.com/icon?family=Material+Icons)
+Government of India — State Emblem SVG (Wikimedia Commons)
+Digital India Logo SVG (Wikimedia Commons)
+
+
+# ── Database ─────────────────────────────────────────────────────────────────
+PostgreSQL    >= 14.0
+# ORM: Prisma (schema at apps/backend/prisma/schema.prisma)
+# Models: User, Department, Complaint, ServiceRequest, BillPayment, AdminUser
+
+
+# ── Environment Variables Required (.env) ────────────────────────────────────
+DATABASE_URL=postgresql://USER:PASS@HOST:5432/suvidha
+JWT_SECRET=<your-256-bit-secret>
+ADMIN_JWT_SECRET=<your-256-bit-admin-secret>
+PORT=3001
+NODE_ENV=development
+
+
+# ── Installation & Setup ─────────────────────────────────────────────────────
+# 1. Clone repository
+#    git clone https://github.com/Subhashree0718/kiosk.git
+#    cd kiosk
+
+# 2. Install all dependencies (all workspaces)
+#    npm install
+
+# 3. Set up environment variables
+#    cp .env.example .env   (edit DATABASE_URL, JWT_SECRET etc.)
+
+# 4. Run database migrations
+#    cd apps/backend
+#    npx prisma migrate dev --name init
+#    npx prisma db seed     (optional: seed sample data)
+
+# 5. Start all services (Turborepo parallel dev)
+#    npm run dev
+#    ├── Kiosk Frontend → http://localhost:5173
+#    ├── Admin Dashboard → http://localhost:5174
+#    └── Backend API    → http://localhost:3001
+
+# 6. Individual app start (optional)
+#    npm run dev:kiosk     (kiosk only)
+#    npm run dev:admin     (admin only)
+#    npm run dev:backend   (backend only)
+################################################################################

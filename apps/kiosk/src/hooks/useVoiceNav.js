@@ -20,7 +20,6 @@ export function useVoiceNav() {
 
         recognition.onresult = (event) => {
             const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
-            console.log(`[Voice] Command: "${transcript}"`);
 
             if (transcript.includes('home') || transcript.includes('dashboard')) navigate('/dashboard');
             else if (transcript.includes('bill') || transcript.includes('payment')) navigate('/bill-payment');
