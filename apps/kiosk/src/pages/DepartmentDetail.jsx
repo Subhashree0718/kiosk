@@ -163,252 +163,224 @@ export default function DepartmentDetail() {
 
     return (
         <GovLayout breadcrumbs={['Departments', dept.name]}>
+            <div className="kiosk-container">
 
-            {/* ── Department banner ─────────────────────────────── */}
-            <div style={{
-                background: dept.accentColor,
-                borderRadius: 'var(--gov-radius)',
-                padding: '20px 24px',
-                marginBottom: 16,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 20,
-                boxShadow: '0 3px 10px rgba(0,0,0,0.15)',
-            }}>
+                {/* ── Department banner ─────────────────────────────── */}
                 <div style={{
-                    width: 68, height: 68, borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.18)',
-                    border: '2px solid rgba(255,255,255,0.35)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0,
+                    background: dept.accentColor,
+                    borderRadius: 24,
+                    padding: '40px 60px',
+                    marginBottom: 30,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 45,
+                    boxShadow: '0 15px 35px rgba(0,0,0,0.15)',
+                    borderBottom: '8px solid var(--gov-saffron)'
                 }}>
-                    <Icon name={dept.icon} size={36} color="#fff" />
-                </div>
-                <div style={{ flex: 1 }}>
-                    <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: 12, marginBottom: 3 }}>{dept.nameHi}</div>
-                    <div style={{ color: '#fff', fontSize: 22, fontWeight: 700, lineHeight: 1.2 }}>{dept.name}</div>
-                    <div style={{ display: 'flex', gap: 16, marginTop: 8, flexWrap: 'wrap' }}>
-                        <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 12, display: 'flex', alignItems: 'center', gap: 5 }}>
-                            <Icon name="business" size={14} color="rgba(255,255,255,0.75)" />{dept.nodal}
-                        </span>
-                        <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 12, display: 'flex', alignItems: 'center', gap: 5 }}>
-                            <Icon name="phone" size={14} color="rgba(255,255,255,0.75)" />Helpline: <strong>{dept.helpline}</strong>
-                        </span>
-                        <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 12, display: 'flex', alignItems: 'center', gap: 5 }}>
-                            <Icon name="schedule" size={14} color="rgba(255,255,255,0.75)" />SLA: {dept.sla}
-                        </span>
+                    <div style={{
+                        width: 120, height: 120, borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.15)',
+                        border: '4px solid rgba(255,255,255,0.3)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        flexShrink: 0,
+                    }}>
+                        <Icon name={dept.icon} size={64} color="#fff" />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                        <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: 20, marginBottom: 5, fontWeight: 700 }}>{dept.nameHi}</div>
+                        <div style={{ color: '#fff', fontSize: 48, fontWeight: 900, lineHeight: 1.1 }}>{dept.name}</div>
+                        <div style={{ display: 'flex', gap: 30, marginTop: 20, flexWrap: 'wrap' }}>
+                            <span style={{ color: '#fff', fontSize: 16, display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(255,255,255,0.1)', padding: '8px 20px', borderRadius: 50 }}>
+                                <Icon name="business" size={20} /> {dept.nodal}
+                            </span>
+                            <span style={{ color: '#fff', fontSize: 16, display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(255,255,255,0.1)', padding: '8px 20px', borderRadius: 50 }}>
+                                <Icon name="phone" size={20} /> Helpline: <strong>{dept.helpline}</strong>
+                            </span>
+                            <span style={{ color: '#fff', fontSize: 16, display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(255,255,255,0.1)', padding: '8px 20px', borderRadius: 50 }}>
+                                <Icon name="schedule" size={20} /> SLA: {dept.sla}
+                            </span>
+                        </div>
                     </div>
                 </div>
-                {/* Quick action */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
-                    <button
-                        className="gov-btn"
-                        onClick={() => navigate('/complaint', { state: { deptName: dept.name } })}
-                        style={{ background: '#fff', color: dept.accentColor, fontWeight: 700, fontSize: 12.5, display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', border: 'none' }}
-                    >
-                        <Icon name="campaign" size={16} color={dept.accentColor} />Lodge Complaint
-                    </button>
-                    <button
-                        className="gov-btn"
-                        onClick={() => navigate('/service-request', { state: { deptName: dept.name } })}
-                        style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', fontWeight: 700, fontSize: 12.5, display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', border: '1px solid rgba(255,255,255,0.45)' }}
-                    >
-                        <Icon name="assignment" size={16} color="#fff" />Service Request
-                    </button>
-                </div>
-            </div>
 
-            {/* ── Description strip ─────────────────────────────── */}
-            <div className="gov-card" style={{ marginBottom: 16 }}>
-                <div className="gov-card__body" style={{ fontSize: 13, color: '#2d3748', lineHeight: 1.7, display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                    <Icon name="info" size={18} color={dept.accentColor} style={{ flexShrink: 0, marginTop: 1 }} />
-                    {dept.description}
+                {/* ── Tabs ──────────────────────────────────────────── */}
+                <div style={{
+                    display: 'flex', gap: 15,
+                    marginBottom: 30,
+                    background: '#f1f5f9',
+                    padding: 10,
+                    borderRadius: 20
+                }}>
+                    {['services', 'faqs', 'notices'].map(tab => (
+                        <button
+                            key={tab}
+                            onClick={() => { setActiveTab(tab); setSearch(''); }}
+                            style={{
+                                flex: 1,
+                                padding: '20px',
+                                border: 'none',
+                                borderRadius: 15,
+                                fontSize: 20,
+                                fontWeight: 800,
+                                background: activeTab === tab ? '#fff' : 'transparent',
+                                color: activeTab === tab ? dept.accentColor : '#64748b',
+                                boxShadow: activeTab === tab ? '0 4px 12px rgba(0,0,0,0.05)' : 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: 12,
+                                transition: 'all 0.2s',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            <Icon name={tab === 'services' ? 'miscellaneous_services' : tab === 'faqs' ? 'help' : 'campaign'} size={24} />
+                            {tab === 'services' ? 'Services' : tab === 'faqs' ? 'FAQs' : 'Notices'}
+                        </button>
+                    ))}
                 </div>
-            </div>
 
-            {/* ── Search bar ────────────────────────────────────── */}
-            <div style={{
-                background: '#fff', border: '1px solid var(--gov-border)',
-                borderRadius: 'var(--gov-radius)', padding: '10px 14px',
-                marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10,
-                boxShadow: 'var(--gov-shadow-sm)',
-            }}>
-                <Icon name="search" size={20} color="var(--gov-text-muted)" />
-                <input
-                    type="text"
-                    placeholder={`Search services in ${dept.name}…`}
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                    style={{
-                        flex: 1, border: 'none', outline: 'none',
-                        fontSize: 14, fontFamily: 'var(--gov-font)', color: 'var(--gov-text)',
-                        background: 'transparent',
-                    }}
-                />
-                {search && (
-                    <button
-                        onClick={() => setSearch('')}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-                    >
-                        <Icon name="close" size={18} color="var(--gov-text-muted)" />
-                    </button>
+                {/* ── Search Bar (Only for services) ────────────────── */}
+                {activeTab === 'services' && (
+                    <div style={{
+                        background: '#fff', border: '3px solid #e2e8f0',
+                        borderRadius: 24, padding: '20px 35px',
+                        marginBottom: 35, display: 'flex', alignItems: 'center', gap: 20,
+                        boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
+                    }}>
+                        <Icon name="search" size={32} color="#94a3b8" />
+                        <input
+                            type="text"
+                            placeholder={`Search services in ${dept.name}...`}
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            style={{
+                                flex: 1, border: 'none', outline: 'none',
+                                fontSize: 24, fontWeight: 600, color: 'var(--gov-navy)',
+                                background: 'transparent',
+                            }}
+                        />
+                    </div>
                 )}
-            </div>
 
-            {/* ── Tabs ──────────────────────────────────────────── */}
-            <div style={{
-                display: 'flex', gap: 0,
-                borderBottom: '2px solid var(--gov-border)',
-                marginBottom: 16,
-            }}>
-                {['services', 'faqs', 'notices'].map(tab => (
-                    <button
-                        key={tab}
-                        onClick={() => { setActiveTab(tab); setSearch(''); }}
-                        style={{
-                            background: 'none', border: 'none', cursor: 'pointer',
-                            padding: '10px 18px', fontSize: 13, fontWeight: 600,
-                            fontFamily: 'var(--gov-font)',
-                            color: activeTab === tab ? dept.accentColor : 'var(--gov-text-muted)',
-                            borderBottom: activeTab === tab ? `3px solid ${dept.accentColor}` : '3px solid transparent',
-                            marginBottom: -2,
-                            textTransform: 'capitalize',
-                            transition: 'color 0.15s',
-                        }}
-                    >
-                        {tab === 'services' && <Icon name="miscellaneous_services" size={15} color={activeTab === tab ? dept.accentColor : 'var(--gov-text-muted)'} style={{ marginRight: 5 }} />}
-                        {tab === 'faqs' && <Icon name="help" size={15} color={activeTab === tab ? dept.accentColor : 'var(--gov-text-muted)'} style={{ marginRight: 5 }} />}
-                        {tab === 'notices' && <Icon name="campaign" size={15} color={activeTab === tab ? dept.accentColor : 'var(--gov-text-muted)'} style={{ marginRight: 5 }} />}
-                        {tab === 'services' ? 'Services' : tab === 'faqs' ? 'FAQs' : 'Notices'}
-                    </button>
-                ))}
-            </div>
+                {/* ── Content Area ──────────────────────────────────── */}
+                <div style={{ minHeight: 400 }}>
+                    {activeTab === 'services' && (
+                        <>
+                            {filteredServices.length === 0 ? (
+                                <div style={{ textAlign: 'center', padding: '100px 0', color: '#94a3b8' }}>
+                                    <Icon name="search_off" size={80} style={{ marginBottom: 20, opacity: 0.3 }} />
+                                    <div style={{ fontSize: 24, fontWeight: 700 }}>No services match "{search}"</div>
+                                </div>
+                            ) : (
+                                <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', gap: 30 }}>
+                                    {filteredServices.map(s => (
+                                        <div key={s.id} className="kiosk-tile" style={{
+                                            alignItems: 'flex-start',
+                                            textAlign: 'left',
+                                            padding: '40px',
+                                            minHeight: 'auto',
+                                            borderTop: `10px solid ${dept.accentColor}`
+                                        }}>
+                                            <div style={{ display: 'flex', gap: 20, marginBottom: 20 }}>
+                                                <div style={{
+                                                    width: 60, height: 60, background: `${dept.accentColor}15`,
+                                                    borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                                }}>
+                                                    <Icon name={s.icon} size={36} color={dept.accentColor} />
+                                                </div>
+                                                <div style={{ flex: 1 }}>
+                                                    <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)' }}>{s.name}</div>
+                                                    <div style={{ fontSize: 18, color: '#64748b', fontWeight: 600, marginTop: 4 }}>SLA: {s.sla}</div>
+                                                </div>
+                                            </div>
+                                            <div style={{ fontSize: 18, color: '#475569', lineHeight: 1.6, marginBottom: 30, height: 60, overflow: 'hidden' }}>
+                                                {s.desc}
+                                            </div>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderTop: '2px solid #f1f5f9', paddingTop: 20 }}>
+                                                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--gov-navy)' }}>
+                                                    {s.fee}
+                                                </div>
+                                                <button
+                                                    className="kiosk-btn kiosk-btn--primary"
+                                                    style={{ height: 60, padding: '0 30px', fontSize: 18 }}
+                                                    onClick={() => navigate('/service-request', { state: { deptName: dept.name, serviceName: s.name } })}
+                                                >
+                                                    APPLY NOW
+                                                    <Icon name="arrow_forward" size={20} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </>
+                    )}
 
-            {/* ── SERVICES tab ──────────────────────────────────── */}
-            {activeTab === 'services' && (
-                <>
-                    {filteredServices.length === 0 ? (
-                        <div className="gov-alert gov-alert--info">
-                            <Icon name="search_off" size={15} style={{ marginRight: 6 }} />
-                            No services match &ldquo;{search}&rdquo;.
-                        </div>
-                    ) : (
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))', gap: 12, marginBottom: 16 }}>
-                            {filteredServices.map(s => (
-                                <div key={s.id} style={{
-                                    background: '#fff', border: '1px solid #d5dde6',
-                                    borderRadius: 'var(--gov-radius)', overflow: 'hidden',
-                                    boxShadow: 'var(--gov-shadow-sm)',
-                                    display: 'flex', flexDirection: 'column',
-                                    transition: 'box-shadow 0.18s, transform 0.18s',
-                                }}
-                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.13)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--gov-shadow-sm)'; e.currentTarget.style.transform = 'none'; }}
-                                >
-                                    <div style={{ borderLeft: `4px solid ${dept.accentColor}`, padding: '12px 14px', flex: 1 }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-                                            <Icon name={s.icon} size={22} color={dept.accentColor} />
-                                            <div style={{ fontWeight: 700, fontSize: 13.5, color: 'var(--gov-navy)' }}>{s.name}</div>
-                                        </div>
-                                        <div style={{ fontSize: 12.5, color: 'var(--gov-text-muted)', lineHeight: 1.5, marginBottom: 10 }}>{s.desc}</div>
-                                        <div style={{ display: 'flex', gap: 12 }}>
-                                            <span style={{ fontSize: 11.5, display: 'flex', alignItems: 'center', gap: 4 }}>
-                                                <Icon name="payments" size={13} color="var(--gov-text-muted)" />{s.fee}
-                                            </span>
-                                            <span style={{ fontSize: 11.5, display: 'flex', alignItems: 'center', gap: 4, color: '#1a6e25' }}>
-                                                <Icon name="schedule" size={13} color="#1a6e25" />{s.sla}
-                                            </span>
-                                        </div>
+                    {activeTab === 'faqs' && (
+                        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+                            {dept.faqs.map((faq, i) => (
+                                <div key={i} style={{
+                                    background: '#fff', border: '3px solid #e2e8f0',
+                                    borderRadius: 24, marginBottom: 20, padding: '30px 40px'
+                                }}>
+                                    <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)', display: 'flex', gap: 15, marginBottom: 15 }}>
+                                        <Icon name="help" size={28} color={dept.accentColor} />
+                                        {faq.q}
                                     </div>
-                                    <div style={{ borderTop: '1px solid #dde3ee', display: 'flex' }}>
-                                        <button
-                                            onClick={() => navigate('/service-request', { state: { deptName: dept.name, serviceName: s.name } })}
-                                            style={{
-                                                flex: 1, padding: '9px 6px',
-                                                background: dept.accentColor, color: '#fff',
-                                                border: 'none', cursor: 'pointer',
-                                                fontSize: 12, fontWeight: 700,
-                                                fontFamily: 'var(--gov-font)',
-                                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
-                                                transition: 'filter 0.15s',
-                                            }}
-                                            onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.15)'}
-                                            onMouseLeave={e => e.currentTarget.style.filter = 'none'}
-                                        >
-                                            <Icon name="arrow_forward" size={15} color="#fff" />
-                                            Apply Now
-                                        </button>
+                                    <div style={{ fontSize: 20, color: '#475569', lineHeight: 1.6, paddingLeft: 43 }}>
+                                        {faq.a}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     )}
-                </>
-            )}
 
-            {/* ── FAQs tab ──────────────────────────────────────── */}
-            {activeTab === 'faqs' && (
-                <div style={{ marginBottom: 16 }}>
-                    {dept.faqs.map((faq, i) => (
-                        <details key={i} style={{
-                            background: '#fff', border: '1px solid #d5dde6',
-                            borderRadius: 'var(--gov-radius)', marginBottom: 8,
-                            overflow: 'hidden',
-                        }}>
-                            <summary style={{
-                                padding: '12px 16px', cursor: 'pointer',
-                                fontWeight: 600, fontSize: 13.5, color: 'var(--gov-navy)',
-                                display: 'flex', alignItems: 'center', gap: 8,
-                                listStyle: 'none',
-                            }}>
-                                <Icon name="help" size={18} color={dept.accentColor} />
-                                {faq.q}
-                            </summary>
-                            <div style={{
-                                padding: '10px 16px 14px 44px',
-                                fontSize: 13, color: '#4a5568', lineHeight: 1.6,
-                                borderTop: `1px solid ${dept.accentColor}20`,
-                            }}>
-                                {faq.a}
+                    {activeTab === 'notices' && (
+                        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+                            <div className="kiosk-form" style={{ padding: 0, overflow: 'hidden', border: '3px solid #e2e8f0' }}>
+                                <div style={{ background: 'var(--gov-navy)', color: '#fff', padding: '25px 40px', fontSize: 22, fontWeight: 800, display: 'flex', gap: 15 }}>
+                                    <Icon name="notifications_active" size={28} color="var(--gov-saffron)" />
+                                    Official Notices & Announcements
+                                </div>
+                                <div style={{ padding: '20px 0' }}>
+                                    {dept.notices.map((n, i) => (
+                                        <div key={i} style={{
+                                            padding: '25px 40px', borderBottom: i === dept.notices.length - 1 ? 'none' : '2px solid #f1f5f9',
+                                            display: 'flex', gap: 20, alignItems: 'flex-start'
+                                        }}>
+                                            <div style={{
+                                                background: 'var(--gov-saffron)', color: '#fff', padding: '8px 15px',
+                                                borderRadius: 10, fontSize: 16, fontWeight: 800, whiteSpace: 'nowrap'
+                                            }}>{n.date}</div>
+                                            <div style={{ fontSize: 19, color: '#1e293b', fontWeight: 600, lineHeight: 1.5 }}>{n.text}</div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </details>
-                    ))}
+                        </div>
+                    )}
                 </div>
-            )}
 
-            {/* ── Notices tab ───────────────────────────────────── */}
-            {activeTab === 'notices' && (
-                <div className="gov-card" style={{ marginBottom: 16 }}>
-                    <div className="gov-card__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Icon name="notifications_active" size={16} color="#fff" />
-                        {dept.name} — Notices & Announcements
-                    </div>
-                    <ul className="gov-news-list">
-                        {dept.notices.map((n, i) => (
-                            <li key={i} className="gov-news-item">
-                                <span className="gov-news-date">{n.date}</span>
-                                <span style={{ display: 'flex', alignItems: 'flex-start', gap: 6, flex: 1 }}>
-                                    <Icon name="arrow_right" size={18} color="var(--gov-navy)" style={{ flexShrink: 0, marginTop: 1 }} />
-                                    {n.text}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
+                {/* ── Bottom Actions ───────────────────────────────────── */}
+                <div style={{ display: 'flex', gap: 20, marginTop: 50, justifyContent: 'center' }}>
+                    <button
+                        className="kiosk-btn kiosk-btn--secondary"
+                        style={{ height: 80, padding: '0 60px', fontSize: 22 }}
+                        onClick={() => navigate('/departments')}
+                    >
+                        <Icon name="arrow_back" size={24} />
+                        BACK TO DEPARTMENTS
+                    </button>
+                    <button
+                        className="kiosk-btn kiosk-btn--primary"
+                        style={{ height: 80, padding: '0 60px', fontSize: 22, background: 'var(--gov-navy)' }}
+                        onClick={() => navigate('/dashboard')}
+                    >
+                        <Icon name="home" size={24} />
+                        HOME
+                    </button>
                 </div>
-            )}
-
-            {/* ── Back button ───────────────────────────────────── */}
-            <div style={{ marginBottom: 8 }}>
-                <button
-                    className="gov-btn gov-btn--outline gov-btn--sm"
-                    onClick={() => navigate('/departments')}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-                >
-                    <Icon name="arrow_back" size={16} />
-                    Back to All Departments
-                </button>
             </div>
-
         </GovLayout>
     );
 }

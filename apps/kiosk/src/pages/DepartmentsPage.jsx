@@ -85,185 +85,140 @@ export default function DepartmentsPage() {
 
     return (
         <GovLayout breadcrumbs={['Government Departments']}>
+            <div className="kiosk-container" style={{ padding: '20px 0' }}>
 
-            {/* Section heading */}
-            <div style={{
-                background: 'var(--gov-navy)',
-                color: '#fff',
-                padding: '10px 16px',
-                borderRadius: 'var(--gov-radius) var(--gov-radius) 0 0',
-                display: 'flex', alignItems: 'center', gap: 10,
-                borderBottom: '4px solid var(--gov-saffron)',
-            }}>
-                <Icon name="account_balance" size={20} color="#fff" />
-                <div>
-                    <div style={{ fontWeight: 700, fontSize: 15, letterSpacing: '0.5px' }}>
-                        GOVERNMENT DEPARTMENTS
-                    </div>
-                    <div style={{ fontSize: 11, opacity: 0.8 }}>
-                        सरकारी विभाग — Select a department to avail services or lodge a grievance
-                    </div>
+                <div className="kiosk-header" style={{ textAlign: 'center', marginBottom: 50 }}>
+                    <h1 className="kiosk-title" style={{ fontSize: 48, fontWeight: 900, color: 'var(--gov-navy)' }}>Service Directory / सेवा निर्देशिका</h1>
+                    <p style={{ fontSize: 22, color: '#64748b', fontWeight: 600, marginTop: 10 }}> Select a government department to explore available citizen services.</p>
                 </div>
-            </div>
 
-            {/* Alert strip */}
-            <div style={{
-                background: '#fffbf0', border: '1px solid #f0d080', borderTop: 'none',
-                padding: '7px 16px', fontSize: 12, color: '#7d5a00',
-                marginBottom: 20, borderRadius: '0 0 var(--gov-radius) var(--gov-radius)',
-                display: 'flex', alignItems: 'center', gap: 8,
-            }}>
-                <Icon name="warning_amber" size={16} color="#d4ac0d" />
-                <span>
-                    For emergency services, call <strong>Police: 100</strong> &nbsp;|&nbsp;
-                    <strong>Fire: 101</strong> &nbsp;|&nbsp; <strong>Ambulance: 108</strong>
-                </span>
-            </div>
+                {/* Search / Filter Concept (Kiosk Style) */}
+                <div style={{ background: '#fff', padding: '30px 40px', borderRadius: 24, boxShadow: '0 10px 30px rgba(0,0,0,0.05)', display: 'flex', gap: 20, alignItems: 'center', marginBottom: 40, border: '1px solid #f1f5f9' }}>
+                    <div style={{ background: 'var(--gov-navy)', color: '#fff', padding: '15px 30px', borderRadius: 16, display: 'flex', alignItems: 'center', gap: 10, fontWeight: 800, fontSize: 18 }}>
+                        <Icon name="search" size={24} />
+                        QUICK SEARCH
+                    </div>
+                    <input
+                        className="kiosk-input"
+                        placeholder="Type department name or service... (e.g. Water, Bill, Certificate)"
+                        style={{ flex: 1, height: 70, fontSize: 22, margin: 0, background: '#f8fafc', border: '2px solid #e2e8f0' }}
+                    />
+                </div>
 
-            {/* Department cards grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16, marginBottom: 20 }}>
-                {allDepts.map(dept => (
-                    <article key={dept.id}
-                        onClick={() => navigate(`/departments/${dept.id}`)}
-                        style={{
-                            background: '#fff', border: '1px solid #d0d8e4',
-                            borderRadius: 'var(--gov-radius)',
-                            boxShadow: '0 2px 6px rgba(0,51,102,0.07)',
-                            display: 'flex', flexDirection: 'column', overflow: 'hidden',
-                            cursor: 'pointer',
-                            transition: 'box-shadow 0.18s, transform 0.18s',
-                        }}
-                        onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 22px rgba(0,51,102,0.16)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                        onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,51,102,0.07)'; e.currentTarget.style.transform = 'none'; }}
-                    >
-
-                        {/* Coloured header */}
-                        <div style={{ background: dept.accentColor, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
-                            <div style={{
-                                width: 48, height: 48, borderRadius: '50%',
-                                background: 'rgba(255,255,255,0.18)',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                flexShrink: 0,
-                            }}>
-                                <Icon name={dept.icon} size={26} color="#fff" />
+                {/* Department cards grid */}
+                <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: 30 }}>
+                    {allDepts.map(dept => (
+                        <div key={dept.id}
+                            className="kiosk-tile"
+                            style={{
+                                borderLeft: `12px solid ${dept.accentColor}`,
+                                padding: '40px',
+                                gap: '20px',
+                                alignItems: 'stretch',
+                                background: '#fff',
+                                borderRadius: 32,
+                                minHeight: 400,
+                                boxShadow: '0 8px 0 rgba(0,0,0,0.02), 0 20px 40px rgba(0,0,0,0.04)'
+                            }}
+                            onClick={() => navigate(dept.id === 'water' ? '/water' : `/departments/${dept.id}`)}
+                        >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 25, marginBottom: 15 }}>
+                                <div style={{
+                                    width: 90, height: 90, borderRadius: 28,
+                                    background: dept.accentColor + '15',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    flexShrink: 0, border: `2px solid ${dept.accentColor}30`
+                                }}>
+                                    <Icon name={dept.icon} size={48} color={dept.accentColor} />
+                                </div>
+                                <div style={{ flex: 1, textAlign: 'left' }}>
+                                    <div className="kiosk-gov-tile-hi" style={{ fontSize: 24, margin: 0, color: dept.accentColor, opacity: 0.8 }}>{dept.nameHi}</div>
+                                    <div className="kiosk-tile__label" style={{ fontSize: 28, color: 'var(--gov-navy)', fontWeight: 900 }}>{dept.name}</div>
+                                </div>
                             </div>
+
                             <div style={{ flex: 1 }}>
-                                <div style={{ color: '#fff', fontWeight: 700, fontSize: 14, lineHeight: 1.3 }}>{dept.name}</div>
-                                {dept.nameHi && <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: 12, marginTop: 2 }}>{dept.nameHi}</div>}
+                                <div style={{
+                                    fontSize: 14, fontWeight: 800, textTransform: 'uppercase',
+                                    color: '#94a3b8', letterSpacing: '1px', marginBottom: 15,
+                                    textAlign: 'left', borderBottom: '2px solid #f1f5f9', paddingBottom: 10
+                                }}>Available Channels</div>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 15 }}>
+                                    {dept.services.slice(0, 4).map(s => (
+                                        <div key={s} style={{
+                                            fontSize: 15, color: '#475569', fontWeight: 600,
+                                            padding: '12px 15px', background: '#f8fafc', borderRadius: 12,
+                                            display: 'flex', alignItems: 'center', gap: 10,
+                                        }}>
+                                            <Icon name="check_circle" size={18} color={dept.accentColor} />
+                                            {s}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                            <Icon name="chevron_right" size={22} color="rgba(255,255,255,0.7)" />
-                        </div>
 
-                        {/* Nodal */}
-                        <div style={{
-                            background: '#f5f7fb', borderBottom: '1px solid #dde3ee',
-                            padding: '6px 16px', fontSize: 11.5, color: '#4a5568',
-                            display: 'flex', alignItems: 'center', gap: 6,
-                        }}>
-                            <Icon name="business" size={14} color="#6b7280" />
-                            {dept.nodal}
-                        </div>
-
-                        {/* Services list */}
-                        <div style={{ padding: '12px 16px', flex: 1 }}>
                             <div style={{
-                                fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
-                                color: dept.accentColor, letterSpacing: '0.6px', marginBottom: 8,
-                            }}>Available Services</div>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                                {dept.services.map(s => (
-                                    <li key={s} style={{
-                                        fontSize: 12.5, color: '#2d3748',
-                                        padding: '5px 0', borderBottom: '1px dashed #e8edf4',
-                                        display: 'flex', alignItems: 'center', gap: 8,
-                                    }}>
-                                        <Icon name="arrow_right" size={16} color={dept.accentColor} />
-                                        {s}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Helpline + SLA */}
-                        <div style={{
-                            background: '#f5f7fb', borderTop: '1px solid #dde3ee',
-                            padding: '8px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
-                                <Icon name="phone" size={14} color={dept.accentColor} />
-                                <span style={{ color: '#4a5568' }}>Helpline:</span>
-                                <strong style={{ color: dept.accentColor, fontFamily: 'Courier New, monospace', fontSize: 13 }}>
-                                    {dept.helpline}
-                                </strong>
-                            </div>
-                            <div style={{
-                                background: '#eaf4eb', color: '#1a6e25', borderRadius: 12,
-                                padding: '2px 9px', fontSize: 11, fontWeight: 700,
-                                display: 'flex', alignItems: 'center', gap: 4,
+                                background: '#f8fafc', borderRadius: 20,
+                                padding: '20px 25px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                                marginTop: '10px', border: '1px solid #e2e8f0'
                             }}>
-                                <Icon name="schedule" size={13} color="#1a6e25" />
-                                SLA: {dept.sla}
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                    <Icon name="phone" size={24} color={dept.accentColor} />
+                                    <div style={{ textAlign: 'left' }}>
+                                        <div style={{ fontSize: 11, fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase' }}>Dept Helpline</div>
+                                        <div style={{ color: dept.accentColor, fontSize: 20, fontWeight: 900, fontFamily: 'monospace' }}>
+                                            {dept.helpline}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style={{
+                                    background: '#fff', color: '#1a6e25', borderRadius: 14,
+                                    padding: '8px 15px', fontSize: 14, fontWeight: 800,
+                                    display: 'flex', alignItems: 'center', gap: 8, border: '1px solid #dcfce7', boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
+                                }}>
+                                    <Icon name="speed" size={20} color="#1a6e25" />
+                                    SLA: {dept.sla}
+                                </div>
                             </div>
                         </div>
+                    ))}
+                </div>
 
-                        {/* Actions */}
-                        <div style={{ display: 'flex', borderTop: '1px solid #dde3ee' }}>
-                            <button
-                                onClick={e => { e.stopPropagation(); navigate('/complaint', { state: { deptName: dept.name } }); }}
-                                style={{
-                                    flex: 1, padding: '11px 6px', background: dept.accentColor,
-                                    color: '#fff', border: 'none', borderRight: '1px solid rgba(255,255,255,0.2)',
-                                    cursor: 'pointer', fontSize: 12.5, fontWeight: 700,
-                                    fontFamily: 'var(--gov-font)',
-                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-                                    transition: 'filter 0.15s',
-                                }}
-                                onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.15)'}
-                                onMouseLeave={e => e.currentTarget.style.filter = 'none'}
-                            >
-                                <Icon name="campaign" size={16} color="#fff" />
-                                Lodge Complaint
-                            </button>
-                            <button
-                                onClick={e => { e.stopPropagation(); navigate('/service-request', { state: { deptName: dept.name } }); }}
-                                style={{
-                                    flex: 1, padding: '11px 6px', background: 'var(--gov-navy)',
-                                    color: '#fff', border: 'none',
-                                    cursor: 'pointer', fontSize: 12.5, fontWeight: 700,
-                                    fontFamily: 'var(--gov-font)',
-                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-                                    transition: 'filter 0.15s',
-                                }}
-                                onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.3)'}
-                                onMouseLeave={e => e.currentTarget.style.filter = 'none'}
-                            >
-                                <Icon name="assignment" size={16} color="#fff" />
-                                Service Request
-                            </button>
-                        </div>
-                    </article>
-
-                ))}
-            </div>
-
-            {/* RTI Note */}
-            <div style={{
-                border: '1px solid #d0d8e4', borderLeft: '4px solid var(--gov-green)',
-                background: '#f0faf1', padding: '10px 16px', borderRadius: 'var(--gov-radius)',
-                fontSize: 12.5, color: '#2d4a30', display: 'flex', alignItems: 'flex-start', gap: 10,
-            }}>
-                <Icon name="info" size={18} color="#1e8449" style={{ flexShrink: 0, marginTop: 1 }} />
-                <span>
-                    All grievances are tracked via a unique <strong>Ticket ID</strong> sent to your registered mobile.
-                    Under the RTI Act, grievance status must be updated within <strong>30 days</strong> of submission.
-                    Visit{' '}
+                {/* RTI Note */}
+                <div style={{
+                    background: 'var(--gov-navy)', padding: '35px 50px', borderRadius: 32,
+                    color: '#fff', display: 'flex', alignItems: 'center', gap: 30,
+                    marginTop: 60, position: 'relative', overflow: 'hidden'
+                }}>
+                    <div style={{ position: 'absolute', right: -20, bottom: -20, opacity: 0.1 }}>
+                        <Icon name="gavel" size={150} />
+                    </div>
+                    <Icon name="verified_user" size={60} color="var(--gov-saffron)" style={{ flexShrink: 0 }} />
+                    <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 24, fontWeight: 900, marginBottom: 5 }}>Citizen’s Right to Service Act</div>
+                        <p style={{ fontSize: 16, opacity: 0.8, margin: 0, lineHeight: 1.5 }}>
+                            All listed services are governed by the State Digital Charter. Grievances must be resolved within the specified SLA.
+                            Use your <strong>Ticket ID</strong> for tracking and escalation.
+                        </p>
+                    </div>
                     <button
                         onClick={() => navigate('/contact')}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--gov-navy)', textDecoration: 'underline', fontSize: 12.5, padding: 0, fontFamily: 'var(--gov-font)' }}
-                    >Contact Us</button>{' '}for all helpline numbers.
-                </span>
-            </div>
+                        className="kiosk-btn kiosk-btn--primary"
+                        style={{ width: 'auto', padding: '0 40px', height: 60, background: 'var(--gov-saffron)', margin: 0 }}
+                    >GET ASSISTANCE</button>
+                </div>
 
+                <div style={{ textAlign: 'center', marginTop: 50 }}>
+                    <button className="kiosk-btn kiosk-btn--secondary" style={{ width: 400, height: 90, borderRadius: 24 }} onClick={() => navigate('/dashboard')}>
+                        <div style={{ textAlign: 'left' }}>
+                            <span className="kiosk-gov-btn-hi" style={{ fontSize: 20 }}>मुख्य पृष्ठ पर जाएं</span>
+                            <div style={{ fontSize: 16, opacity: 0.8 }}>BACK TO HOME DASHBOARD</div>
+                        </div>
+                        <Icon name="home_work" size={40} color="#fff" />
+                    </button>
+                </div>
+            </div>
         </GovLayout>
     );
 }
+

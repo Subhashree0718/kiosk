@@ -6,6 +6,7 @@ import { serviceRequestRouter } from '../modules/serviceRequest/serviceRequest.r
 import { paymentRouter } from '../modules/payment/payment.routes.js';
 import { ticketRouter } from '../modules/ticket/ticket.routes.js';
 import { adminRouter } from '../modules/admin/admin.routes.js';
+import { waterRouter } from '../modules/water/water.routes.js';
 
 export const router = Router();
 
@@ -16,3 +17,5 @@ router.use('/service-requests', serviceRequestRouter);
 router.use('/payments', paymentRouter);
 router.use('/tickets', ticketRouter);
 router.use('/admin', adminRouter);
+router.use('/water', waterRouter);
+

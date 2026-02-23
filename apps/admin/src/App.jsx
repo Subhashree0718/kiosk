@@ -14,21 +14,24 @@ import './styles/global.css';
 function GovHeader() {
     return (
         <>
+            <div className="kiosk-gov-strip" style={{ height: 8 }}></div>
             <div className="admin-utility-bar">
                 <span>भारत सरकार | Government of India</span>
-                <span>Screen Reader | A- A A+</span>
+                <span>Screen Reader Access | Sitemap | Skip to Content</span>
             </div>
-            <header className="admin-header">
+            <header className="admin-header" style={{ background: 'var(--gov-navy)', color: '#fff', padding: '15px 20px', borderBottom: '4px solid var(--gov-saffron)' }}>
                 <img
                     className="admin-header__emblem"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/240px-Emblem_of_India.svg.png"
                     alt="Emblem"
+                    style={{ filter: 'brightness(0) invert(1)', height: 60 }}
                 />
                 <div className="admin-header__title">
-                    <h1>SUVIDHA – Admin Portal</h1>
-                    <span>Ministry of Urban Affairs | Citizen Service Management System</span>
+                    <h1 style={{ color: '#fff', fontSize: 20 }}>सुविधा – एडमिन पोर्टल</h1>
+                    <div style={{ fontSize: 16, fontWeight: 600, opacity: 0.9 }}>SUVIDHA – Admin Portal</div>
+                    <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 11 }}>Ministry of Urban Affairs | System Administration Panel</span>
                 </div>
-                <span className="admin-header__badge">🔐 Admin</span>
+                <span className="admin-header__badge" style={{ background: 'var(--gov-saffron)', color: '#fff' }}>🔐 SECURE ACCESS</span>
             </header>
         </>
     );

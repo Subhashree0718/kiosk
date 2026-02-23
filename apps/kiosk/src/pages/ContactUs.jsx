@@ -39,196 +39,194 @@ export default function ContactUs() {
 
     return (
         <GovLayout breadcrumbs={['Contact Us']}>
+            <div className="kiosk-container">
 
-            {/* Page heading strip */}
-            <div style={{
-                background: 'var(--gov-navy)', color: '#fff',
-                padding: '10px 16px', borderRadius: 'var(--gov-radius) var(--gov-radius) 0 0',
-                display: 'flex', alignItems: 'center', gap: 10,
-                borderBottom: '4px solid var(--gov-saffron)', marginBottom: 20,
-            }}>
-                <Icon name="contacts" size={20} color="#fff" />
-                <div>
-                    <div style={{ fontWeight: 700, fontSize: 15, letterSpacing: '0.4px' }}>CONTACT US / संपर्क करें</div>
-                    <div style={{ fontSize: 11, opacity: 0.8 }}>Reach out to SUVIDHA Kiosk helpdesk or the concerned department directly</div>
+                <div className="kiosk-header">
+                    <div className="kiosk-title" style={{ fontSize: 36 }}>Help & Support Centre</div>
+                    <div style={{ fontStyle: 'italic', fontSize: 24, color: '#666', marginBottom: 15 }}>सहायता एवं सहयोग केंद्र</div>
+                    <p style={{ fontSize: 20, color: '#666', fontWeight: 500 }}>
+                        Reach out to SUVIDHA Kiosk helpdesk or the concerned department directly.
+                    </p>
                 </div>
-            </div>
 
-            {/* Address + Hours */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+                {/* Office & Hours Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30, marginBottom: 40 }}>
 
-                {/* Office Address */}
-                <div className="gov-card">
-                    <div className="gov-card__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Icon name="account_balance" size={16} color="#fff" />
-                        Office Address
-                    </div>
-                    <div className="gov-card__body" style={{ fontSize: 13 }}>
-                        <p style={{ fontWeight: 700, color: 'var(--gov-navy)', marginBottom: 8 }}>
-                            SUVIDHA Kiosk Initiative
+                    {/* Office Address */}
+                    <div className="kiosk-form" style={{ maxWidth: '100%', margin: 0, padding: 35 }}>
+                        <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)', borderBottom: '3px solid #f1f5f9', paddingBottom: 15, marginBottom: 20, display: 'flex', gap: 15, alignItems: 'center' }}>
+                            <Icon name="account_balance" size={28} color="var(--gov-navy)" />
+                            Official Head Office
+                        </div>
+                        <p style={{ fontSize: 22, fontWeight: 800, color: 'var(--gov-navy)', marginBottom: 20 }}>
+                            SUVIDHA Kiosk Initiative HQ
                         </p>
-                        {[
-                            { icon: 'business', text: 'Ministry of Housing and Urban Affairs' },
-                            { icon: 'flag', text: 'Government of India' },
-                            { icon: 'location_on', text: 'Nirman Bhavan, New Delhi – 110 001' },
-                        ].map(r => (
-                            <div key={r.icon} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 5 }}>
-                                <Icon name={r.icon} size={14} color="var(--gov-text-muted)" style={{ marginTop: 2, flexShrink: 0 }} />
-                                <span style={{ color: '#4a5568' }}>{r.text}</span>
-                            </div>
-                        ))}
-                        <hr className="gov-divider" />
-                        {[
-                            { icon: 'email', text: 'helpdesk@suvidha.gov.in', href: 'mailto:helpdesk@suvidha.gov.in' },
-                            { icon: 'language', text: 'www.suvidha.gov.in', href: 'https://suvidha.gov.in' },
-                            { icon: 'print', text: 'Fax: 011-2306-1234', href: null },
-                        ].map(r => (
-                            <div key={r.icon} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 5 }}>
-                                <Icon name={r.icon} size={14} color="var(--gov-navy)" style={{ flexShrink: 0 }} />
-                                {r.href
-                                    ? <a href={r.href} style={{ fontSize: 13, color: 'var(--gov-navy)' }}>{r.text}</a>
-                                    : <span style={{ fontSize: 13, color: '#4a5568' }}>{r.text}</span>
-                                }
-                            </div>
-                        ))}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 15 }}>
+                            {[
+                                { icon: 'business', text: 'Ministry of Housing and Urban Affairs' },
+                                { icon: 'flag', text: 'Government of India' },
+                                { icon: 'location_on', text: 'Nirman Bhavan, New Delhi – 110 001' },
+                            ].map(r => (
+                                <div key={r.icon} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                                    <Icon name={r.icon} size={20} color="var(--gov-saffron)" style={{ marginTop: 4 }} />
+                                    <span style={{ fontSize: 18, color: '#1e293b', fontWeight: 600 }}>{r.text}</span>
+                                </div>
+                            ))}
+                        </div>
+                        <div style={{ marginTop: 30, paddingTop: 20, borderTop: '2px dashed #e2e8f0', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                            {[
+                                { icon: 'email', text: 'helpdesk@suvidha.gov.in' },
+                                { icon: 'language', text: 'www.suvidha.gov.in' },
+                                { icon: 'print', text: 'Fax: 011-2306-1234' },
+                            ].map(r => (
+                                <div key={r.icon} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                                    <Icon name={r.icon} size={18} color="var(--gov-navy)" />
+                                    <span style={{ fontSize: 18, color: 'var(--gov-navy)', fontWeight: 700 }}>{r.text}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
 
-                {/* Office Hours */}
-                <div className="gov-card">
-                    <div className="gov-card__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Icon name="schedule" size={16} color="#fff" />
-                        Office Hours
-                    </div>
-                    <div className="gov-card__body" style={{ padding: 0 }}>
+                    {/* Office Hours */}
+                    <div className="kiosk-form" style={{ maxWidth: '100%', margin: 0, padding: 35 }}>
+                        <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)', borderBottom: '3px solid #f1f5f9', paddingBottom: 15, marginBottom: 20, display: 'flex', gap: 15, alignItems: 'center' }}>
+                            <Icon name="schedule" size={28} color="var(--gov-navy)" />
+                            Office Timing
+                        </div>
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                             <tbody>
                                 {OFFICE_HOURS.map(({ day, hrs }) => (
-                                    <tr key={day} style={{ borderBottom: '1px solid var(--gov-border)' }}>
-                                        <td style={{ padding: '9px 14px', color: 'var(--gov-text-muted)', fontSize: 13 }}>{day}</td>
+                                    <tr key={day} style={{ borderBottom: '2px solid #f8fafc' }}>
+                                        <td style={{ padding: '15px 0', color: '#64748b', fontSize: 18, fontWeight: 600 }}>{day}</td>
                                         <td style={{
-                                            padding: '9px 14px', fontWeight: 700, fontSize: 13,
-                                            color: hrs === 'Closed' ? 'var(--gov-error)' : 'var(--gov-navy)',
-                                            display: 'flex', alignItems: 'center', gap: 5,
+                                            padding: '15px 0', fontWeight: 800, fontSize: 18, textAlign: 'right',
+                                            color: hrs === 'Closed' ? '#ef4444' : 'var(--gov-navy)',
                                         }}>
-                                            <Icon name={hrs === 'Closed' ? 'block' : 'check_circle'} size={14}
-                                                color={hrs === 'Closed' ? 'var(--gov-error)' : 'var(--gov-green)'} />
                                             {hrs}
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        <div className="gov-alert gov-alert--info" style={{ fontSize: 11.5, margin: 12, borderRadius: 'var(--gov-radius)' }}>
-                            <Icon name="info" size={13} color="#1a5276" style={{ marginRight: 5 }} />
-                            Kiosk terminals are operational 24x7 for self-service.
+                        <div style={{
+                            marginTop: 25,
+                            background: '#f0f9ff',
+                            padding: '15px 20px',
+                            borderRadius: 12,
+                            border: '1.5px solid #0ea5e9',
+                            display: 'flex', gap: 12, alignItems: 'center'
+                        }}>
+                            <Icon name="info" size={20} color="#0369a1" />
+                            <div style={{ fontSize: 15, color: '#0369a1', fontWeight: 700 }}>
+                                Kiosk terminals are operational 24x7.
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Helpline numbers table */}
-            <div className="gov-card" style={{ marginBottom: 20 }}>
-                <div className="gov-card__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Icon name="phone_in_talk" size={16} color="#fff" />
-                    Department-wise Helpline Numbers
-                </div>
-                <div className="gov-card__body" style={{ padding: 0 }}>
-                    <table className="gov-table">
-                        <thead>
-                            <tr>
-                                <th>Department</th>
-                                <th>Helpline Number</th>
-                                <th>Available Hours</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {HELPLINES.map(h => (
-                                <tr key={h.dept}>
-                                    <td style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                        <Icon name={h.icon} size={15} color="var(--gov-navy)" />
-                                        {h.dept}
-                                    </td>
-                                    <td>
-                                        <span style={{
-                                            fontWeight: 700, color: 'var(--gov-navy)',
-                                            fontSize: 14, fontFamily: 'Courier New, monospace',
-                                        }}>{h.number}</span>
-                                    </td>
-                                    <td style={{ color: 'var(--gov-text-muted)', fontSize: 12 }}>{h.hours}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            {/* Feedback form */}
-            <div className="gov-card">
-                <div className="gov-card__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Icon name="mail" size={16} color="#fff" />
-                    Online Feedback / Query Form
-                </div>
-                <div className="gov-card__body">
-                    {sent ? (
-                        <div className="gov-alert gov-alert--success" style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                            <Icon name="check_circle" size={20} color="#155724" style={{ flexShrink: 0, marginTop: 1 }} />
-                            <div>
-                                Your query has been submitted successfully. We will respond within 2 working days.
-                                <br />Reference number: <strong>SVD-{Date.now().toString().slice(-8)}</strong>
+                {/* Helpline Grid */}
+                <div style={{ marginBottom: 40 }}>
+                    <div style={{ fontSize: 28, fontWeight: 900, color: 'var(--gov-navy)', marginBottom: 25, textAlign: 'center' }}>
+                        Emergency & Department Helplines
+                    </div>
+                    <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
+                        {HELPLINES.map(h => (
+                            <div key={h.dept} className="kiosk-tile" style={{ padding: '30px 25px', minHeight: 'auto', flexDirection: 'row', gap: 20, justifyContent: 'flex-start', textAlign: 'left' }}>
+                                <div style={{
+                                    width: 60, height: 60, background: 'var(--gov-navy)',
+                                    borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}>
+                                    <Icon name={h.icon} size={32} color="#fff" />
+                                </div>
+                                <div style={{ flex: 1 }}>
+                                    <div style={{ fontSize: 16, color: '#64748b', fontWeight: 700, textTransform: 'uppercase', marginBottom: 2 }}>{h.dept}</div>
+                                    <div style={{ fontSize: 26, fontWeight: 900, color: 'var(--gov-navy)', letterSpacing: 1 }}>{h.number}</div>
+                                    <div style={{ fontSize: 14, color: 'var(--gov-saffron)', fontWeight: 700 }}>{h.hours}</div>
+                                </div>
                             </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Feedback Form */}
+                <div className="kiosk-form" style={{ maxWidth: 1000 }}>
+                    <div style={{ fontSize: 28, fontWeight: 900, color: 'var(--gov-navy)', borderBottom: '3px solid #f1f5f9', paddingBottom: 20, marginBottom: 30, display: 'flex', gap: 15, alignItems: 'center' }}>
+                        <Icon name="mail" size={32} color="var(--gov-navy)" />
+                        Submit Feedback or Query / प्रश्न एवं सुझाव
+                    </div>
+
+                    {sent ? (
+                        <div style={{
+                            background: '#f0fdf4', border: '3px solid #16a34a',
+                            padding: '40px', borderRadius: 24, textAlign: 'center'
+                        }}>
+                            <Icon name="check_circle" size={80} color="#16a34a" style={{ marginBottom: 20 }} />
+                            <div style={{ fontSize: 32, fontWeight: 800, color: '#166534', marginBottom: 10 }}>Submission Successful!</div>
+                            <p style={{ fontSize: 20, color: '#166534', marginBottom: 30 }}>
+                                Reference Number: <strong style={{ fontFamily: 'monospace', background: '#dcfce7', padding: '4px 12px', borderRadius: 8 }}>SVD-{Date.now().toString().slice(-8)}</strong>
+                            </p>
+                            <button className="kiosk-btn kiosk-btn--primary" style={{ width: 300, margin: '0 auto' }} onClick={() => setSent(false)}>
+                                SUBMIT ANOTHER
+                            </button>
                         </div>
                     ) : (
                         <form onSubmit={submit}>
-                            <div className="gov-form-row">
-                                <div className="gov-form-group">
-                                    <label className="gov-form-group__label">
-                                        Full Name <span className="gov-form-group__req">*</span>
-                                    </label>
-                                    <input className="gov-form-group__field" type="text"
-                                        placeholder="As per official records"
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30 }}>
+                                <div className="kiosk-input-group">
+                                    <label className="kiosk-label">Full Name / पूर्ण नाम</label>
+                                    <input className="kiosk-input" type="text"
+                                        placeholder="As per records"
                                         value={form.name} onChange={set('name')} required />
                                 </div>
-                                <div className="gov-form-group">
-                                    <label className="gov-form-group__label">
-                                        Mobile Number <span className="gov-form-group__req">*</span>
-                                    </label>
-                                    <input className="gov-form-group__field" type="tel"
-                                        placeholder="10-digit mobile number"
+                                <div className="kiosk-input-group">
+                                    <label className="kiosk-label">Mobile Number / मोबाइल</label>
+                                    <input className="kiosk-input" type="tel"
+                                        placeholder="10-digit number"
                                         value={form.mobile} onChange={set('mobile')} maxLength={10} required />
                                 </div>
                             </div>
-                            <div className="gov-form-group">
-                                <label className="gov-form-group__label">
-                                    Subject / विषय <span className="gov-form-group__req">*</span>
-                                </label>
-                                <input className="gov-form-group__field" type="text"
+                            <div className="kiosk-input-group">
+                                <label className="kiosk-label">Subject / विषय</label>
+                                <input className="kiosk-input" type="text"
                                     placeholder="Brief subject of your query"
                                     value={form.subject} onChange={set('subject')} required />
                             </div>
-                            <div className="gov-form-group">
-                                <label className="gov-form-group__label">
-                                    Message / संदेश <span className="gov-form-group__req">*</span>
-                                </label>
-                                <textarea className="gov-form-group__field gov-form-group__field--textarea"
-                                    placeholder="Describe your query or feedback in detail"
-                                    rows={4} value={form.message} onChange={set('message')} required />
+                            <div className="kiosk-input-group">
+                                <label className="kiosk-label">Message / संदेश</label>
+                                <textarea className="kiosk-input"
+                                    style={{ height: 180, paddingTop: 20 }}
+                                    placeholder="Describe your query in detail..."
+                                    value={form.message} onChange={set('message')} required />
                             </div>
-                            <div className="gov-alert gov-alert--info" style={{ fontSize: 11.5, marginBottom: 14, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                                <Icon name="verified_user" size={16} color="#1a5276" style={{ flexShrink: 0, marginTop: 1 }} />
-                                Your personal information is collected solely for the purpose of addressing your query
-                                and is protected under the Personal Data Protection Bill, 2023.
+
+                            <div style={{
+                                display: 'flex', gap: 15, alignItems: 'center',
+                                background: '#f8fafc', padding: 20, borderRadius: 16, marginBottom: 35
+                            }}>
+                                <Icon name="verified_user" size={24} color="var(--gov-navy)" />
+                                <div style={{ fontSize: 16, color: '#475569', fontWeight: 600 }}>
+                                    Your data is protected under the IT Act, 2000 and the Personal Data Protection Bill, 2023.
+                                </div>
                             </div>
-                            <button type="submit" className="gov-btn gov-btn--primary"
-                                style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                                <Icon name="send" size={16} color="#fff" />
-                                Submit Query
-                            </button>
+
+                            <div style={{ display: 'flex', gap: 20 }}>
+                                <button type="button" className="kiosk-btn kiosk-btn--secondary" style={{ flex: 1 }} onClick={() => navigate('/dashboard')}>
+                                    <Icon name="arrow_back" size={20} />
+                                    CANCEL
+                                </button>
+                                <button type="submit" className="kiosk-btn kiosk-btn--primary" style={{ flex: 2 }}>
+                                    SUBMIT QUERY
+                                    <Icon name="send" size={20} />
+                                </button>
+                            </div>
                         </form>
                     )}
                 </div>
-            </div>
 
+                <div style={{ textAlign: 'center', marginTop: 50, color: '#94a3b8', fontSize: 16 }}>
+                    🏢 Official Kiosk Interface v2.0 | Digital India Initiative
+                </div>
+            </div>
         </GovLayout>
     );
 }

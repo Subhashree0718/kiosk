@@ -12,6 +12,10 @@ import Receipt from '../pages/Receipt.jsx';
 import ContactUs from '../pages/ContactUs.jsx';
 import DepartmentsPage from '../pages/DepartmentsPage.jsx';
 import DepartmentDetail from '../pages/DepartmentDetail.jsx';
+import WaterDepartment from '../pages/WaterDepartment.jsx';
+import WaterComplaints from '../pages/WaterComplaints.jsx';
+import WaterTaxCharges from '../pages/WaterTaxCharges.jsx';
+import WaterNewConnection from '../pages/WaterNewConnection.jsx';
 
 function ProtectedRoute({ children }) {
     const { token } = useKioskStore();
@@ -34,8 +38,12 @@ export function AppRoutes() {
             <Route path="/departments/:slug" element={<DepartmentDetail />} />
             <Route path="/electricity" element={<DepartmentDetail />} />
             <Route path="/gas" element={<DepartmentDetail />} />
-            <Route path="/water" element={<DepartmentDetail />} />
             <Route path="/municipal" element={<DepartmentDetail />} />
+            {/* ── Water Department Portal ─────────────────────────── */}
+            <Route path="/water" element={<WaterDepartment />} />
+            <Route path="/water/complaints" element={<WaterComplaints />} />
+            <Route path="/water/tax" element={<WaterTaxCharges />} />
+            <Route path="/water/new-connection" element={<WaterNewConnection />} />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );

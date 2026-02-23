@@ -11,11 +11,11 @@ const Icon = ({ name, size = 18, color = 'currentColor', style = {} }) => (
 /* ── Nav items ───────────────────────────────────────────────────── */
 const NAV_ITEMS = [
     { label: 'Home', path: '/dashboard', icon: 'home' },
-    { label: 'Services', path: '/dashboard', icon: null },
-    { label: 'Departments', path: '/departments', icon: null },
-    { label: 'Track Status', path: '/status', icon: null },
-    { label: 'Grievances', path: '/complaint', icon: null },
-    { label: 'Contact Us', path: '/contact', icon: null },
+    { label: 'Services', path: '/departments', icon: 'widgets' },
+    { label: 'Departments', path: '/departments', icon: 'business' },
+    { label: 'Track Status', path: '/status', icon: 'track_changes' },
+    { label: 'Grievances', path: '/complaint', icon: 'campaign' },
+    { label: 'Contact Us', path: '/contact', icon: 'support_agent' },
 ];
 
 const TICKER_TEXT =
@@ -37,6 +37,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
         <div className="gov-shell">
 
             {/* ══ 1. TOP UTILITY BAR ════════════════════════════════ */}
+            <div className="kiosk-gov-strip"></div>
             <div className="gov-utility-bar">
                 <div className="gov-utility-bar__left">
                     <a href="#main-content">Skip to Main Content</a>
@@ -63,32 +64,18 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
             </div>
 
             {/* ══ 2. SITE HEADER ════════════════════════════════════ */}
-            <header className="gov-header">
+            <header className="kiosk-gov-header">
                 <img
-                    className="gov-header__emblem"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/240px-Emblem_of_India.svg.png"
+                    className="kiosk-gov-emblem"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png"
                     alt="State Emblem of India"
                     onError={e => { e.target.style.display = 'none'; }}
                 />
-                <div className="gov-header__titles">
-                    <div className="gov-header__hi">भारत सरकार | Government of India</div>
-                    <div className="gov-header__name">SUVIDHA – सुविधा</div>
-                    <div className="gov-header__subtitle">
-                        Smart Urban Virtual Interactive Digital Helpdesk Assistant
-                    </div>
-                </div>
-                <div className="gov-header__right">
-                    <img
-                        className="gov-header__logo-right"
-                        src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png"
-                        alt="Digital India"
-                        onError={e => { e.target.style.display = 'none'; }}
-                    />
-                    <div className="gov-header__search">
-                        <input type="text" placeholder="Search…" aria-label="Search" />
-                        <button aria-label="Search">
-                            <Icon name="search" size={16} color="#fff" />
-                        </button>
+                <div className="kiosk-gov-title-group">
+                    <div className="kiosk-gov-text-hi">सुविधा – डिजिटल सहायता डेस्क</div>
+                    <div className="kiosk-gov-text-en">SUVIDHA – Digital Helpdesk</div>
+                    <div style={{ fontSize: 15, opacity: 0.8, marginTop: 6, letterSpacing: '0.5px' }}>
+                        Smart Urban Virtual Interactive Digital Helpdesk Assistant | Government of India
                     </div>
                 </div>
             </header>
@@ -276,6 +263,6 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                 </div>
             </footer>
 
-        </div>
+        </div >
     );
 }

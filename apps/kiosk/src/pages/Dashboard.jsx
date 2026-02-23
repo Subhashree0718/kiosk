@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
 import { useKioskStore } from '../store/index.js';
 
-/* ── Helper: Material Icon ─────────────────────────────────────── */
 const Icon = ({ name, size = 24, color, style = {} }) => (
     <span className="material-icons" style={{ fontSize: size, color, lineHeight: 1, verticalAlign: 'middle', ...style }}>
         {name}
@@ -125,226 +124,209 @@ export default function Dashboard() {
         timerRef.current = setInterval(() => setSlide(s => (s + 1) % BANNER_SLIDES.length), 5000);
     }
 
-    /* ── Sidebar ──────────────────────────────────────────────── */
-    const SidebarContent = (
-        <>
-            {/* Emergency Helplines */}
-            <div className="gov-widget">
-                <div className="gov-widget__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Icon name="phone_in_talk" size={16} />
-                    Emergency Helplines
-                </div>
-                <div className="gov-widget__body">
-                    <div style={{ fontSize: 11.5, color: 'var(--gov-text-muted)', marginBottom: 8 }}>
-                        Toll-free &nbsp;|&nbsp; 24x7 Available
-                    </div>
-                    {HELPLINES.map(h => (
-                        <div key={h.label} className="gov-helpline-row">
-                            <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12.5 }}>
-                                <Icon name={h.icon} size={15} color="var(--gov-navy)" />
-                                {h.label}
-                            </span>
-                            <span className="gov-helpline-num">{h.number}</span>
-                        </div>
-                    ))}
-                    <div style={{ marginTop: 8, padding: '6px 0', borderTop: '1px solid var(--gov-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 700, color: '#c0392b', fontSize: 13 }}>
-                            <Icon name="emergency" size={16} color="#c0392b" />
-                            Emergency
-                        </span>
-                        <span className="gov-helpline-num" style={{ color: '#c0392b', fontSize: 16 }}>112</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* Quick Access */}
-            <div className="gov-widget">
-                <div className="gov-widget__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Icon name="flash_on" size={16} />
-                    Quick Access
-                </div>
-                <div className="gov-widget__body" style={{ padding: 8 }}>
-                    {QUICK_ACCESS.map(b => (
-                        <button key={b.label} onClick={() => navigate(b.path)}
-                            style={{
-                                display: 'flex', alignItems: 'center', gap: 10,
-                                width: '100%', margin: '4px 0',
-                                background: b.bg, color: '#fff', border: 'none',
-                                padding: '9px 12px', borderRadius: 'var(--gov-radius)',
-                                cursor: 'pointer', fontSize: 12.5, fontWeight: 600,
-                                fontFamily: 'var(--gov-font)', transition: 'filter 0.15s',
-                            }}
-                            onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.15)'}
-                            onMouseLeave={e => e.currentTarget.style.filter = 'none'}
-                        >
-                            <Icon name={b.icon} size={17} />
-                            {b.label}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Useful Links */}
-            <div className="gov-widget">
-                <div className="gov-widget__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Icon name="link" size={16} />
-                    Government Links
-                </div>
-                <div className="gov-widget__body">
-                    {USEFUL_LINKS.map(([label, url]) => (
-                        <div key={label} style={{ padding: '5px 0', borderBottom: '1px dashed #dde3ee', display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <Icon name="open_in_new" size={13} color="var(--gov-text-muted)" />
-                            <a href={url} target="_blank" rel="noreferrer" style={{ fontSize: 12.5, color: 'var(--gov-navy)' }}>
-                                {label}
-                            </a>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </>
-    );
-
-    /* ── Render ───────────────────────────────────────────────── */
     return (
-        <GovLayout breadcrumbs={[]} showSidebar sidebar={SidebarContent}>
-
-            {/* Hero Slider */}
-            <div style={{ position: 'relative', marginBottom: 16, borderRadius: 'var(--gov-radius)', overflow: 'hidden', boxShadow: 'var(--gov-shadow)' }}>
-                {BANNER_SLIDES.map((s, i) => (
-                    <div key={s.id} style={{ display: i === slide ? 'flex' : 'none', background: s.bg, height: 270, alignItems: 'center', padding: '0 40px', gap: 30 }}>
-                        <div style={{
-                            width: 90, height: 90, borderRadius: '50%',
-                            background: 'rgba(255,255,255,0.15)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            flexShrink: 0, border: '2px solid rgba(255,255,255,0.3)',
-                        }}>
-                            <Icon name={s.icon} size={48} color="#fff" />
-                        </div>
-                        <div>
-                            <div style={{
-                                display: 'inline-block', background: 'var(--gov-saffron)',
-                                color: '#fff', fontSize: 11, fontWeight: 700,
-                                padding: '3px 10px', borderRadius: 2, marginBottom: 10,
-                                letterSpacing: '0.8px', textTransform: 'uppercase',
-                            }}>{s.tag}</div>
-                            <div style={{ color: '#fff', fontSize: 22, fontWeight: 700, lineHeight: 1.3, marginBottom: 8 }}>{s.title}</div>
-                            <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: 14, lineHeight: 1.6 }}>{s.subtitle}</div>
-                        </div>
-                    </div>
-                ))}
-                <button className="gov-hero__prev" onClick={() => goSlide((slide - 1 + BANNER_SLIDES.length) % BANNER_SLIDES.length)}>
-                    <Icon name="chevron_left" size={24} />
-                </button>
-                <button className="gov-hero__next" onClick={() => goSlide((slide + 1) % BANNER_SLIDES.length)}>
-                    <Icon name="chevron_right" size={24} />
-                </button>
-                <div className="gov-hero__indicators">
-                    {BANNER_SLIDES.map((_, i) => (
-                        <button key={i} className={`gov-hero__dot${i === slide ? ' gov-hero__dot--active' : ''}`}
-                            onClick={() => goSlide(i)} />
-                    ))}
+        <GovLayout breadcrumbs={[]} showSidebar={false}>
+            {/* 1. ELITE TOP TICKER (UPGRADED) */}
+            <div className="kiosk-ticker-elite" style={{ height: 60, display: 'flex', alignItems: 'center', position: 'relative', zIndex: 100 }}>
+                <div style={{ background: 'var(--gov-saffron)', color: '#fff', padding: '0 30px', height: '100%', display: 'flex', alignItems: 'center', fontWeight: 900, fontSize: 16, zIndex: 10, boxShadow: '10px 0 20px rgba(0,0,0,0.3)', whiteSpace: 'nowrap' }}>
+                    <Icon name="campaign" size={24} style={{ marginRight: 10 }} />
+                    LATEST UPDATES / नवीनतम अपडेट
                 </div>
-            </div>
-
-            {/* Stats Strip */}
-            <div className="gov-stats-strip" style={{ marginBottom: 16, borderRadius: 'var(--gov-radius)', overflow: 'hidden' }}>
-                {STATS.map(s => (
-                    <div key={s.label} className="gov-stat-item">
-                        <Icon name={s.icon} size={22} color="var(--gov-saffron)" style={{ marginBottom: 4 }} />
-                        <div className="gov-stat-item__num">{s.num}</div>
-                        <div className="gov-stat-item__label">{s.label}</div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Citizen Services */}
-            <div className="gov-card" style={{ marginBottom: 16 }}>
-                <div className="gov-card__header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Icon name="account_balance" size={18} />
-                        Citizen Services / नागरिक सेवाएं
-                    </span>
-                    <span className="gov-section-title__more" onClick={() => navigate('/departments')}>
-                        View All Departments
-                    </span>
-                </div>
-                <div className="gov-service-grid">
-                    {CITIZEN_SERVICES.map(svc => (
-                        <div key={svc.label} className="gov-service-tile" onClick={() => navigate(svc.path)}>
-                            <div style={{
-                                width: 54, height: 54, borderRadius: '50%',
-                                background: svc.color + '18',
-                                border: `2px solid ${svc.color}35`,
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            }}>
-                                <Icon name={svc.icon} size={26} color={svc.color} />
-                            </div>
-                            <div>
-                                <div className="gov-service-tile__label" style={{ color: svc.color }}>{svc.label}</div>
-                                <div className="gov-service-tile__desc">{svc.labelHi}</div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* News & Announcements */}
-            <div className="gov-card" style={{ marginBottom: 16 }}>
-                <div className="gov-card__header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Icon name="newspaper" size={18} />
-                        Latest News & Announcements
-                    </span>
-                    <span className="gov-section-title__more">View All</span>
-                </div>
-                <ul className="gov-news-list">
+                <div className="gov-ticker" style={{ flex: 1, whiteSpace: 'nowrap', color: '#fff', fontSize: 18, fontWeight: 700 }}>
                     {NEWS_ITEMS.map((n, i) => (
-                        <li key={i} className="gov-news-item">
-                            <span className={`gov-news-date${n.isNew ? ' gov-news-date--new' : ''}`}>{n.date}</span>
-                            <span style={{ display: 'flex', alignItems: 'flex-start', gap: 6, flex: 1 }}>
-                                <Icon name="arrow_right" size={18} color="var(--gov-navy)" style={{ flexShrink: 0, marginTop: 1 }} />
-                                <span className="gov-news-link">
-                                    {n.text}
-                                    {n.isNew && <span className="gov-badge-new">NEW</span>}
-                                </span>
-                            </span>
-                        </li>
+                        <span key={i} style={{ margin: '0 50px', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+                            <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--gov-saffron)', boxShadow: '0 0 10px var(--gov-saffron)' }}></div>
+                            {n.text}
+                        </span>
                     ))}
-                </ul>
+                </div>
             </div>
 
-            {/* Government Schemes */}
-            <div className="gov-card" style={{ marginBottom: 16 }}>
-                <div className="gov-card__header" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Icon name="star_border" size={18} />
-                    Government Schemes / सरकारी योजनाएं
-                </div>
-                <div className="gov-scheme-grid">
-                    {SCHEMES.map(sc => (
-                        <div key={sc.name} className="gov-scheme-card">
-                            <div className="gov-scheme-card__banner" style={{ background: sc.color }} />
-                            <div className="gov-scheme-card__body">
-                                <Icon name={sc.icon} size={28} color={sc.color} style={{ marginBottom: 8, display: 'block' }} />
-                                <div className="gov-scheme-card__name">{sc.name}</div>
-                                <div className="gov-scheme-card__desc">{sc.desc}</div>
+            <div className="kiosk-gradient-patriotic" style={{ padding: '40px 0', minHeight: '100vh' }}>
+                <div className="kiosk-container">
+
+                    {/* 2. PREMIUM WELCOME HEADER (GLASSMORPHISM) */}
+                    <div className="kiosk-glass" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 50, padding: '40px 60px', borderRadius: 40, border: '2px solid rgba(255,255,255,0.5)' }}>
+                        <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 15, marginBottom: 10 }}>
+                                <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#10b981', boxShadow: '0 0 15px #10b981' }}></div>
+                                <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gov-navy)', textTransform: 'uppercase', letterSpacing: 2 }}>KIOSK UNIT SVDH-001 (ACTIVE)</div>
+                            </div>
+                            <h1 className="kiosk-text-display" style={{ fontSize: 56, color: 'var(--gov-navy)', margin: 0 }}>
+                                SUVIDHA Gateway
+                                <span style={{ display: 'block', fontSize: 36, color: 'var(--gov-saffron)', fontWeight: 800, marginTop: 5 }}>जन सेवा केंद्र में आपका स्वागत है</span>
+                            </h1>
+                        </div>
+                        <div style={{ textAlign: 'right', display: 'flex', gap: 30, alignItems: 'center' }}>
+                            <div style={{ textAlign: 'right' }}>
+                                <div style={{ fontSize: 56, fontWeight: 900, color: 'var(--gov-navy)', fontFamily: 'monospace', lineHeight: 1 }}>
+                                    {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </div>
+                                <div style={{ fontSize: 20, color: '#64748b', fontWeight: 700, marginTop: 5 }}>
+                                    {new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })}
+                                </div>
+                            </div>
+                            <div style={{ padding: '25px', background: 'rgba(255,255,255,0.5)', borderRadius: 30, border: '1.5px solid #fff' }}>
+                                <Icon name="wifi_tethering" size={48} color="var(--gov-navy)" />
                             </div>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* 3. HERO SHOWCASE CAROUSEL (UPGRADED) */}
+                    <div style={{ marginBottom: 60, position: 'relative', height: 320, borderRadius: 50, overflow: 'hidden', boxShadow: '0 30px 60px -12px rgba(0,0,0,0.25)' }}>
+                        {BANNER_SLIDES.map((s, i) => (
+                            <div key={s.id} style={{
+                                position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                                background: s.bg, opacity: slide === i ? 1 : 0, transition: 'opacity 1s cubic-bezier(0.4, 0, 0.2, 1)',
+                                padding: '60px 80px', color: '#fff', display: 'flex', alignItems: 'center', pointerEvents: slide === i ? 'auto' : 'none'
+                            }}>
+                                <div style={{ flex: 1 }}>
+                                    <div style={{ background: 'rgba(255,255,255,0.25)', padding: '10px 25px', borderRadius: 100, fontSize: 16, fontWeight: 900, width: 'fit-content', marginBottom: 20, backdropFilter: 'blur(10px)', textTransform: 'uppercase', letterSpacing: 1.5 }}>
+                                        {s.tag}
+                                    </div>
+                                    <h2 style={{ fontSize: 56, fontWeight: 900, margin: '0 0 15px 0', textShadow: '0 4px 15px rgba(0,0,0,0.3)' }}>{s.title}</h2>
+                                    <p style={{ fontSize: 26, opacity: 0.9, maxWidth: 800, fontWeight: 600, lineHeight: 1.4 }}>{s.subtitle}</p>
+                                </div>
+                                <div style={{ width: 180, height: 180, background: 'rgba(255,255,255,0.2)', borderRadius: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(20px)', border: '2px solid rgba(255,255,255,0.4)', boxShadow: '0 15px 35px rgba(0,0,0,0.2)' }}>
+                                    <Icon name={s.icon} size={90} color="#fff" />
+                                </div>
+                            </div>
+                        ))}
+                        <div style={{ position: 'absolute', bottom: 40, right: 80, display: 'flex', gap: 15 }}>
+                            {BANNER_SLIDES.map((_, i) => (
+                                <button key={i} onClick={() => goSlide(i)} style={{
+                                    width: slide === i ? 60 : 16, height: 16, borderRadius: 10, background: slide === i ? '#fff' : 'rgba(255,255,255,0.4)',
+                                    border: 'none', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', cursor: 'pointer'
+                                }} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* 4. MAIN SERVICE CORE (ELITE GLASS TILES) */}
+                    <div style={{ marginBottom: 60 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
+                            <div style={{ borderLeft: '12px solid var(--gov-saffron)', paddingLeft: 25 }}>
+                                <h2 className="kiosk-text-display" style={{ fontSize: 42, color: 'var(--gov-navy)', margin: 0 }}>Citizen Services Center / नागरिक सेवा केंद्र</h2>
+                                <p style={{ fontSize: 22, color: '#334155', margin: '5px 0 0 0', fontWeight: 700 }}>Select a category to begin your application process.</p>
+                            </div>
+                            <button className="kiosk-btn-premium" style={{ background: 'var(--gov-navy)', color: '#fff', height: 80, padding: '0 40px' }} onClick={() => navigate('/departments')}>
+                                ALL DEPARTMENTS
+                                <span className="material-icons">apps</span>
+                            </button>
+                        </div>
+
+                        <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: 35 }}>
+                            {CITIZEN_SERVICES.map(svc => (
+                                <div key={svc.label}
+                                    className="kiosk-glass"
+                                    style={{
+                                        padding: '50px 30px', borderRadius: 40,
+                                        display: 'flex', flexDirection: 'column', alignItems: 'center',
+                                        cursor: 'pointer', transition: 'all 0.3s ease', textAlign: 'center'
+                                    }}
+                                    onClick={() => navigate(svc.path)}
+                                    onMouseEnter={e => {
+                                        e.currentTarget.style.transform = 'translateY(-15px)';
+                                        e.currentTarget.style.boxShadow = '0 30px 60px rgba(0,0,0,0.1)';
+                                        e.currentTarget.style.borderColor = svc.color;
+                                    }}
+                                    onMouseLeave={e => {
+                                        e.currentTarget.style.transform = 'none';
+                                        e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(31, 38, 135, 0.07)';
+                                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
+                                    }}
+                                >
+                                    <div style={{
+                                        color: svc.color, background: `${svc.color}15`, width: 120, height: 120,
+                                        borderRadius: 35, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 30,
+                                        boxShadow: `0 15px 30px ${svc.color}20`, border: `2px solid ${svc.color}30`
+                                    }}>
+                                        <Icon name={svc.icon} size={70} color={svc.color} />
+                                    </div>
+                                    <div className="kiosk-gov-tile-hi" style={{ fontSize: 28, color: svc.color, marginBottom: 8 }}>{svc.labelHi}</div>
+                                    <div className="kiosk-tile__label" style={{ fontSize: 24, fontWeight: 900, color: 'var(--gov-navy)', textTransform: 'uppercase' }}>{svc.label}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* 5. QUICK TRACK & EMERGENCY (ULTRA HIGH IMPACT) */}
+                    <div style={{ display: 'grid', gridTemplateColumns: '2.5fr 1fr', gap: 40, marginBottom: 60 }}>
+                        {/* Quick Track Card */}
+                        <div className="kiosk-glass-dark" style={{ borderRadius: 50, padding: 60, position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,33,71,0.3)' }}>
+                            <div style={{ position: 'absolute', top: -150, right: -150, width: 500, height: 500, background: 'rgba(255,255,255,0.05)', borderRadius: '50%' }}></div>
+                            <div style={{ position: 'relative', zIndex: 1 }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 15 }}>
+                                    <div style={{ padding: 15, background: 'rgba(255,255,255,0.15)', borderRadius: 20 }}>
+                                        <Icon name="track_changes" size={48} color="var(--gov-saffron)" />
+                                    </div>
+                                    <div>
+                                        <div className="kiosk-text-display" style={{ fontSize: 36, color: '#fff' }}>Track Status / आवेदन स्थिति</div>
+                                        <p style={{ fontSize: 20, opacity: 0.8, margin: 0, fontWeight: 600 }}>Enter your Ticket ID for real-time verification.</p>
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', gap: 20, marginTop: 40 }}>
+                                    <input
+                                        type="text"
+                                        placeholder="SVDH-0000-0000"
+                                        className="kiosk-input-elite"
+                                        style={{ flex: 1, background: 'rgba(255,255,255,0.1)', border: '3.5px solid rgba(255,255,255,0.2)', padding: '30px 40px', borderRadius: 28, color: '#fff', fontSize: 32, fontWeight: 900, fontFamily: 'monospace', outline: 'none', textAlign: 'center' }}
+                                    />
+                                    <button className="kiosk-btn-premium" style={{ width: 280, background: 'var(--gov-saffron)', color: '#fff', fontSize: 24 }} onClick={() => navigate('/status')}>
+                                        TRACK NOW
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Emergency Contact */}
+                        <div className="kiosk-glass" style={{ border: '4px solid #fee2e2', borderRadius: 50, padding: 60, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <div style={{ width: 100, height: 100, background: '#fee2e2', color: '#ef4444', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 25px', boxShadow: '0 15px 30px rgba(239, 68, 68, 0.2)' }}>
+                                <Icon name="emergency" size={54} color="#ef4444" />
+                            </div>
+                            <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase', letterSpacing: 2 }}>Emergency</div>
+                            <div style={{ fontSize: 72, fontWeight: 900, color: 'var(--gov-navy)', margin: '10px 0', lineHeight: 1 }}>112</div>
+                            <p style={{ fontSize: 18, color: '#64748b', fontWeight: 700 }}>Toll-free Central Line</p>
+                        </div>
+                    </div>
+
+                    {/* 6. ELITE FOOTER BAR (GLASSMORPHISM) */}
+                    <div className="kiosk-glass" style={{ padding: '60px 80px', borderRadius: 50, border: '2.5px dashed rgba(0,0,0,0.1)', textAlign: 'center', marginBottom: 40 }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: 80, marginBottom: 50 }}>
+                            {STATS.map(s => (
+                                <div key={s.label} style={{ textAlign: 'left' }}>
+                                    <div style={{ fontSize: 48, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1 }}>{s.num}</div>
+                                    <div style={{ fontSize: 16, color: '#64748b', fontWeight: 800, textTransform: 'uppercase', marginTop: 10 }}>{s.label}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: 30 }}>
+                            <button
+                                className="kiosk-btn-premium"
+                                onClick={() => { logout(); navigate('/login'); }}
+                                style={{ width: 450, height: 100, background: '#fff', border: '3.5px solid #fee2e2', borderRadius: 30 }}
+                            >
+                                <div style={{ textAlign: 'left', flex: 1 }}>
+                                    <span className="kiosk-gov-btn-hi" style={{ color: '#ef4444', fontSize: 24 }}>लॉगआउट करें</span>
+                                    <div style={{ fontSize: 18, fontWeight: 700, color: '#64748b', textTransform: 'uppercase' }}>SECURE LOGOUT ({user?.mobile || '99XXXXXX'})</div>
+                                </div>
+                                <Icon name="logout" size={42} color="#ef4444" />
+                            </button>
+                        </div>
+
+                        <div style={{ marginTop: 60, display: 'flex', justifyContent: 'center', gap: 40, opacity: 0.6 }}>
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png" alt="Digital India" style={{ height: 50 }} />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png" alt="Emblem" style={{ height: 60 }} />
+                        </div>
+
+                        <div style={{ marginTop: 30, fontSize: 16, color: '#64748b', fontWeight: 700 }}>
+                            Official SUVIDHA Digital Platform v4.2.0 | Ministry of Electronics & IT | Digital India Initiative
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            {/* Logout */}
-            <div style={{ textAlign: 'right', marginBottom: 8 }}>
-                <button
-                    className="gov-btn gov-btn--outline gov-btn--sm"
-                    onClick={() => { logout(); navigate('/login'); }}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-                >
-                    <Icon name="logout" size={16} />
-                    {user?.mobile ? `Logout (${user.mobile})` : 'Logout'}
-                </button>
-            </div>
-
         </GovLayout>
     );
 }

@@ -45,66 +45,115 @@ export default function ComplaintForm() {
 
     return (
         <GovLayout breadcrumbs={['Citizen Services', 'Lodge Complaint']}>
-            <div style={{ maxWidth: 600, margin: '0 auto' }}>
-                <div className="gov-card">
-                    <div className="gov-card__header">📢 Lodge Grievance / शिकायत दर्ज करें</div>
-                    <div className="gov-card__body">
-                        <div className="gov-alert gov-alert--info mb-2" style={{ fontSize: 12 }}>
-                            ℹ Under the Grievance Redressal Act, your complaint will be resolved within the SLA period.
-                            You will receive an SMS with your Ticket ID.
+            <div className="kiosk-container">
+
+                <div className="kiosk-header">
+                    <div className="kiosk-title" style={{ fontSize: 36 }}>Lodge Grievance / शिकायत दर्ज करें</div>
+                    <div style={{ fontStyle: 'italic', fontSize: 24, color: '#666', marginBottom: 15 }}>सरकारी शिकायत निवारण सेवा</div>
+                    <p style={{ fontSize: 20, color: '#666', fontWeight: 500 }}>
+                        Submit your grievance. We will resolve it within the SLA period.
+                    </p>
+                </div>
+
+                <div className="kiosk-form" style={{ maxWidth: 900 }}>
+                    <div style={{
+                        background: '#eff6ff', borderLeft: '10px solid #2563eb',
+                        padding: '20px 25px', borderRadius: 12, color: '#1e40af',
+                        marginBottom: 30, fontSize: 18, lineHeight: 1.6
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontWeight: 800, marginBottom: 5 }}>
+                            <span className="material-icons">info</span>
+                            IMPORTANT INFORMATION
                         </div>
-                        {error && <div className="gov-alert gov-alert--error mb-2">⚠ {error}</div>}
+                        Under the Grievance Redressal Act, your complaint will be resolved within the SLA period.
+                        You will receive an SMS with your <strong>Ticket ID</strong>.
+                    </div>
 
-                        <form onSubmit={submit}>
-                            <div className="gov-form-group">
-                                <label className="gov-form-group__label">Concerned Department <span className="gov-form-group__req">*</span></label>
-                                <select className="gov-form-group__field" value={form.dept}
-                                    onChange={e => setForm(f => ({ ...f, dept: e.target.value }))} required>
-                                    <option value="">-- Select Department --</option>
-                                    {depts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
-                                </select>
+                    {error && (
+                        <div style={{
+                            background: '#fef2f2', border: '2px solid #ef4444',
+                            padding: '15px 20px', borderRadius: 12, color: '#b91c1c',
+                            marginBottom: 25, display: 'flex', alignItems: 'center', gap: 10, fontSize: 18, fontWeight: 600
+                        }}>
+                            <span className="material-icons">error</span>
+                            {error}
+                        </div>
+                    )}
+
+                    <form onSubmit={submit}>
+                        <div className="kiosk-input-group">
+                            <label className="kiosk-label">Concerned Department (संबंधित विभाग)</label>
+                            <select
+                                className="kiosk-input"
+                                value={form.dept}
+                                onChange={e => setForm(f => ({ ...f, dept: e.target.value }))}
+                                required
+                            >
+                                <option value="">-- Select Department --</option>
+                                {depts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+                            </select>
+                        </div>
+
+                        <div className="kiosk-input-group">
+                            <label className="kiosk-label">Detailed Description (शिकायत का विवरण)</label>
+                            <textarea
+                                className="kiosk-input"
+                                style={{ height: 'auto', minHeight: 180, padding: '20px 30px' }}
+                                placeholder="Describe your grievance in detail..."
+                                value={form.description}
+                                onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
+                                required
+                            />
+                        </div>
+
+                        <div className="kiosk-input-group">
+                            <label className="kiosk-label">Location / Address (स्थान / पता)</label>
+                            <div style={{ display: 'flex', gap: 15 }}>
+                                <input
+                                    className="kiosk-input"
+                                    style={{ flex: 1 }}
+                                    type="text"
+                                    placeholder="Enter Landmark / Building / Street"
+                                    value={form.location}
+                                    onChange={e => setForm(f => ({ ...f, location: e.target.value }))}
+                                />
+                                <button
+                                    type="button"
+                                    className="kiosk-btn kiosk-btn--secondary"
+                                    style={{ whiteSpace: 'nowrap', height: 75 }}
+                                    onClick={getLocation}
+                                    disabled={locLoading}
+                                >
+                                    <span className="material-icons">{locLoading ? 'sync' : 'my_location'}</span>
+                                    {locLoading ? 'Wait...' : 'GPS'}
+                                </button>
                             </div>
-
-                            <div className="gov-form-group">
-                                <label className="gov-form-group__label">Complaint Description <span className="gov-form-group__req">*</span></label>
-                                <textarea className="gov-form-group__field gov-form-group__field--textarea"
-                                    placeholder="Describe your grievance in detail (minimum 20 characters)…"
-                                    rows={4} value={form.description}
-                                    onChange={e => setForm(f => ({ ...f, description: e.target.value }))} required />
-                            </div>
-
-                            <div className="gov-form-group">
-                                <label className="gov-form-group__label">Location / Address</label>
-                                <div style={{ display: 'flex', gap: 8 }}>
-                                    <input className="gov-form-group__field" type="text"
-                                        placeholder="Street / Ward / Landmark"
-                                        value={form.location} onChange={e => setForm(f => ({ ...f, location: e.target.value }))} />
-                                    <button type="button" className="gov-btn gov-btn--outline gov-btn--sm"
-                                        style={{ whiteSpace: 'nowrap' }} onClick={getLocation} disabled={locLoading}>
-                                        {locLoading ? '…' : '📍 GPS'}
-                                    </button>
+                            {form.lat && (
+                                <div style={{
+                                    marginTop: 12, fontSize: 16, color: '#15803d',
+                                    display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600
+                                }}>
+                                    <span className="material-icons">check_circle</span>
+                                    GPS Co-ordinates captured: {form.lat}, {form.lng}
                                 </div>
-                                {form.lat && (
-                                    <span style={{ fontSize: 11.5, color: 'var(--gov-success)' }}>
-                                        ✅ GPS captured: {form.lat}, {form.lng}
-                                    </span>
-                                )}
-                            </div>
+                            )}
+                        </div>
 
-                            <hr className="gov-divider" />
-                            <div style={{ display: 'flex', gap: 10 }}>
-                                <button type="button" className="gov-btn gov-btn--outline" onClick={() => navigate('/dashboard')}>
-                                    ← Back
-                                </button>
-                                <button type="submit" className="gov-btn gov-btn--primary gov-btn--full" disabled={loading}>
-                                    {loading ? 'Submitting…' : 'Submit Complaint →'}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div className="gov-card__footer" style={{ fontSize: 11.5 }}>
-                        🔒 Your complaint is treated as confidential. Reference: IT Act, 2000 §43A
-                    </div>
+                        <div style={{ marginTop: 50, display: 'flex', gap: 20 }}>
+                            <button type="button" className="kiosk-btn kiosk-btn--secondary" style={{ flex: 1 }} onClick={() => navigate('/dashboard')}>
+                                <span className="material-icons">arrow_back</span>
+                                BACK
+                            </button>
+                            <button type="submit" className="kiosk-btn kiosk-btn--primary" style={{ flex: 2 }} disabled={loading}>
+                                {loading ? 'Submitting...' : 'Submit Complaint / शिकायत भेजें'}
+                                <span className="material-icons">send</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div style={{ textAlign: 'center', marginTop: 30, color: '#666', fontSize: 16 }}>
+                    🔒 All submissions are encrypted and forwarded to the nodal officer under IT Act, 2000.
                 </div>
             </div>
         </GovLayout>

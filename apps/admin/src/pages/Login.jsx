@@ -37,12 +37,18 @@ export default function Login() {
     }
 
     return (
-        <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #111928 0%, #1e3a8a 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, sans-serif' }}>
-            <div style={{ background: '#fff', borderRadius: 20, width: '100%', maxWidth: 400, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,.3)' }}>
-                <div style={{ background: 'linear-gradient(90deg,#1a56db,#7e3af2)', padding: '2rem', textAlign: 'center' }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '.5rem' }}>🏛️</div>
-                    <div style={{ color: '#fff', fontWeight: 800, fontSize: '1.25rem' }}>SUVIDHA Admin</div>
-                    <div style={{ color: 'rgba(255,255,255,.7)', fontSize: '.82rem', marginTop: '.25rem' }}>Authorized Access Only</div>
+        <div style={{ minHeight: '100vh', background: 'var(--gov-body-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--gov-font)', position: 'relative' }}>
+            <div className="kiosk-gov-strip" style={{ position: 'absolute', top: 0, height: 12 }}></div>
+
+            <div style={{ background: '#fff', borderRadius: 12, width: '100%', maxWidth: 450, overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', border: '1px solid #d0d7de' }}>
+                <div style={{ background: 'var(--gov-navy)', padding: '2.5rem 2rem', textAlign: 'center', borderBottom: '6px solid var(--gov-saffron)' }}>
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png"
+                        alt="Emblem"
+                        style={{ height: 80, filter: 'brightness(0) invert(1)', marginBottom: '1rem' }}
+                    />
+                    <div style={{ color: '#fff', fontWeight: 800, fontSize: '1.5rem', letterSpacing: '0.05em' }}>सुविधा एडमिन</div>
+                    <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', marginTop: '0.25rem', fontWeight: 600 }}>SUVIDHA ADMIN PORTAL</div>
                 </div>
 
                 <div style={{ padding: '2rem' }}>

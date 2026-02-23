@@ -30,86 +30,129 @@ export default function StatusTracker() {
 
     return (
         <GovLayout breadcrumbs={['Citizen Services', 'Track Complaint / Status']}>
-            <div style={{ maxWidth: 620, margin: '0 auto' }}>
-                <div className="gov-card" style={{ marginBottom: 16 }}>
-                    <div className="gov-card__header">🔍 Track Complaint / Service Request Status</div>
-                    <div className="gov-card__body">
-                        <p style={{ fontSize: 13, marginBottom: 14, color: 'var(--gov-text-muted)' }}>
-                            Enter the Ticket ID received via SMS after submitting your complaint or service request.
-                        </p>
-                        {error && <div className="gov-alert gov-alert--error mb-2">⚠ {error}</div>}
-                        <form onSubmit={search} style={{ display: 'flex', gap: 10 }}>
+            <div className="kiosk-container">
+
+                <div className="kiosk-header">
+                    <div className="kiosk-title" style={{ fontSize: 36 }}>Track Your Application</div>
+                    <div style={{ fontStyle: 'italic', fontSize: 24, color: '#666', marginBottom: 15 }}>आवेदन की स्थिति जांचें</div>
+                    <p style={{ fontSize: 20, color: '#666', fontWeight: 500 }}>
+                        Enter your Ticket ID to know the current status and activity log.
+                    </p>
+                </div>
+
+                <div className="kiosk-form" style={{ maxWidth: 850 }}>
+                    <div className="kiosk-input-group">
+                        <label className="kiosk-label">Ticket ID / शिकायत संख्या</label>
+                        <form onSubmit={search} style={{ display: 'flex', gap: 15 }}>
                             <input
-                                className="gov-form-group__field gov-otp-input"
-                                style={{ flex: 1, letterSpacing: '0.15em', fontSize: '1.1rem', textTransform: 'uppercase' }}
-                                type="text" placeholder="SVDH-XXXXXXXX"
-                                value={ticketId} onChange={e => setTicketId(e.target.value.toUpperCase())}
-                                maxLength={16} required
+                                className="kiosk-input"
+                                style={{ flex: 1, letterSpacing: '0.15em', fontSize: 32, textTransform: 'uppercase' }}
+                                type="text"
+                                placeholder="SVDH-XXXXXXXX"
+                                value={ticketId}
+                                onChange={e => setTicketId(e.target.value.toUpperCase())}
+                                maxLength={20}
+                                required
                             />
-                            <button className="gov-btn gov-btn--primary" type="submit" disabled={loading}>
-                                {loading ? '…' : 'Track →'}
+                            <button className="kiosk-btn kiosk-btn--primary" type="submit" disabled={loading} style={{ height: 75 }}>
+                                <span className="material-icons">{loading ? 'sync' : 'search'}</span>
+                                {loading ? 'Wait...' : 'Track'}
                             </button>
                         </form>
+                        <div style={{ marginTop: 10, fontSize: 16, color: '#666' }}>
+                            * You can find the Ticket ID in the SMS sent to your registered mobile number.
+                        </div>
                     </div>
+
+                    {error && (
+                        <div style={{
+                            background: '#fef2f2', border: '2px solid #ef4444',
+                            padding: '15px 20px', borderRadius: 12, color: '#b91c1c',
+                            marginTop: 20, display: 'flex', alignItems: 'center', gap: 10, fontSize: 18, fontWeight: 600
+                        }}>
+                            <span className="material-icons">error</span>
+                            {error}
+                        </div>
+                    )}
                 </div>
 
                 {result && (
-                    <div className="gov-card">
-                        <div className="gov-card__header">
-                            Ticket Details
-                            <span className={`gov-badge ${STATUS_COLORS[result.status] || ''}`}
-                                style={{ marginLeft: 12, verticalAlign: 'middle' }}>
+                    <div className="kiosk-form" style={{ maxWidth: 850, marginTop: 40, background: '#fff' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30, borderBottom: '3px solid #f0f0f0', paddingBottom: 20 }}>
+                            <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--gov-navy)' }}>
+                                Ticket Details
+                            </div>
+                            <span className={`gov-badge ${STATUS_COLORS[result.status] || ''}`} style={{ fontSize: 18, padding: '10px 20px' }}>
                                 {result.status?.replace(/_/g, ' ')}
                             </span>
                         </div>
-                        <div className="gov-card__body">
-                            <table className="gov-table" style={{ marginBottom: 16 }}>
+
+                        <div style={{
+                            background: '#f8fafc', border: '2px solid #e2e8f0',
+                            borderRadius: 16, padding: '30px', marginBottom: 30
+                        }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 20 }}>
                                 <tbody>
-                                    <tr><td><b>Ticket ID</b></td>
-                                        <td><span className="gov-ticket-id">{result.ticketId}</span></td></tr>
-                                    <tr><td><b>Service Type</b></td><td>{result.serviceType?.replace(/_/g, ' ')}</td></tr>
-                                    <tr><td><b>Status</b></td>
-                                        <td><span className={`gov-badge ${STATUS_COLORS[result.status] || ''}`}>
-                                            {result.status?.replace(/_/g, ' ')}</span></td></tr>
-                                    <tr><td><b>Priority</b></td><td>{result.priority}</td></tr>
-                                    <tr><td><b>SLA Deadline</b></td>
-                                        <td style={{ color: 'var(--gov-error)' }}>
+                                    <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                                        <td style={{ padding: '15px 0', color: '#64748b' }}>Ticket ID</td>
+                                        <td style={{ padding: '15px 0', fontWeight: 800, textAlign: 'right', color: 'var(--gov-navy)' }}>{result.ticketId}</td>
+                                    </tr>
+                                    <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                                        <td style={{ padding: '15px 0', color: '#64748b' }}>Service Type</td>
+                                        <td style={{ padding: '15px 0', fontWeight: 800, textAlign: 'right' }}>{result.serviceType?.replace(/_/g, ' ')}</td>
+                                    </tr>
+                                    <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                                        <td style={{ padding: '15px 0', color: '#64748b' }}>SLA Deadline</td>
+                                        <td style={{ padding: '15px 0', fontWeight: 800, color: '#c2410c', textAlign: 'right' }}>
                                             {result.slaDeadline ? new Date(result.slaDeadline).toLocaleString('en-IN') : '—'}
-                                        </td></tr>
-                                    <tr><td><b>Created On</b></td>
-                                        <td>{result.createdAt ? new Date(result.createdAt).toLocaleString('en-IN') : '—'}</td></tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style={{ padding: '15px 0', color: '#64748b' }}>Created On</td>
+                                        <td style={{ padding: '15px 0', fontWeight: 800, textAlign: 'right' }}>
+                                            {result.createdAt ? new Date(result.createdAt).toLocaleString('en-IN') : '—'}
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
-
-                            {result.statusHistory?.length > 0 && (
-                                <>
-                                    <h4 style={{ fontSize: 13, fontWeight: 700, color: 'var(--gov-navy)', marginBottom: 10 }}>
-                                        Status History / गतिविधि इतिहास
-                                    </h4>
-                                    <div style={{ borderLeft: '3px solid var(--gov-navy)', paddingLeft: 16 }}>
-                                        {result.statusHistory.map((h, i) => (
-                                            <div key={i} style={{ marginBottom: 12, position: 'relative' }}>
-                                                <div style={{
-                                                    position: 'absolute', left: -22, top: 3,
-                                                    width: 10, height: 10, borderRadius: '50%',
-                                                    background: i === 0 ? 'var(--gov-saffron)' : 'var(--gov-navy)',
-                                                    border: '2px solid #fff', boxShadow: '0 0 0 2px var(--gov-navy)'
-                                                }} />
-                                                <div style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--gov-navy)' }}>
-                                                    {h.status?.replace(/_/g, ' ')}
-                                                </div>
-                                                {h.note && <div style={{ fontSize: 12, color: 'var(--gov-text-muted)' }}>{h.note}</div>}
-                                                <div style={{ fontSize: 11, color: '#999' }}>
-                                                    {new Date(h.changedAt).toLocaleString('en-IN')}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </>
-                            )}
                         </div>
+
+                        {result.statusHistory?.length > 0 && (
+                            <div style={{ marginTop: 20 }}>
+                                <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--gov-navy)', marginBottom: 25, display: 'flex', alignItems: 'center', gap: 10 }}>
+                                    <span className="material-icons">history</span>
+                                    Resolution Timeline / गतिविधि इतिहास
+                                </div>
+                                <div style={{ borderLeft: '5px solid var(--gov-navy)', paddingLeft: 30, marginLeft: 15 }}>
+                                    {result.statusHistory.map((h, i) => (
+                                        <div key={i} style={{ marginBottom: 30, position: 'relative' }}>
+                                            <div style={{
+                                                position: 'absolute', left: -42, top: 4,
+                                                width: 18, height: 18, borderRadius: '50%',
+                                                background: i === 0 ? 'var(--gov-saffron)' : 'var(--gov-navy)',
+                                                border: '4px solid #fff', boxShadow: '0 0 0 4px var(--gov-navy)'
+                                            }} />
+                                            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gov-navy)' }}>
+                                                {h.status?.replace(/_/g, ' ')}
+                                            </div>
+                                            {h.note && <div style={{ fontSize: 16, color: '#4b5563', marginTop: 5, background: '#f3f4f6', padding: '10px 15px', borderRadius: 8 }}>{h.note}</div>}
+                                            <div style={{ fontSize: 14, color: '#9ca3af', marginTop: 5, fontWeight: 600 }}>
+                                                {new Date(h.changedAt).toLocaleString('en-IN')}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
+
+                <div style={{ textAlign: 'center', marginTop: 40 }}>
+                    <button className="kiosk-btn kiosk-btn--secondary" onClick={() => window.history.back()}>
+                        <span className="material-icons">arrow_back</span>
+                        Go Back / पीछे जाएं
+                    </button>
+                </div>
             </div>
         </GovLayout>
     );

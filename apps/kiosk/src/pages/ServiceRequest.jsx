@@ -47,70 +47,109 @@ export default function ServiceRequest() {
 
     return (
         <GovLayout breadcrumbs={['Citizen Services', 'Service Request']}>
-            <div style={{ maxWidth: 620, margin: '0 auto' }}>
-                <div className="gov-card">
-                    <div className="gov-card__header">📋 Citizen Service Request Application</div>
-                    <div className="gov-card__body">
-                        <div className="gov-alert gov-alert--info mb-2" style={{ fontSize: 12 }}>
-                            ℹ Submit your application online. You will receive a reference number via SMS for tracking.
+            <div className="kiosk-container">
+
+                <div className="kiosk-header">
+                    <div className="kiosk-title" style={{ fontSize: 36 }}>Service Application / सेवा आवेदन</div>
+                    <div style={{ fontStyle: 'italic', fontSize: 24, color: '#666', marginBottom: 15 }}>नागरिक सेवा अनुरोध पत्र</div>
+                    <p style={{ fontSize: 20, color: '#666', fontWeight: 500 }}>
+                        Apply for new connections, certificates, and other municipal services.
+                    </p>
+                </div>
+
+                <div className="kiosk-form" style={{ maxWidth: 1000 }}>
+                    <div style={{
+                        background: '#f0fdf4', borderLeft: '10px solid #16a34a',
+                        padding: '20px 25px', borderRadius: 12, color: '#166534',
+                        marginBottom: 30, fontSize: 18, lineHeight: 1.6
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontWeight: 800, marginBottom: 5 }}>
+                            <span className="material-icons">info</span>
+                            PROCESS INFORMATION
                         </div>
-                        {error && <div className="gov-alert gov-alert--error mb-2">⚠ {error}</div>}
-                        <form onSubmit={submit}>
-                            <div className="gov-form-row">
-                                <div className="gov-form-group">
-                                    <label className="gov-form-group__label">Department <span className="gov-form-group__req">*</span></label>
-                                    <select className="gov-form-group__field" value={form.dept} onChange={set('dept')} required>
-                                        <option value="">-- Select --</option>
-                                        {depts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
-                                    </select>
-                                </div>
-                                <div className="gov-form-group">
-                                    <label className="gov-form-group__label">Service Type <span className="gov-form-group__req">*</span></label>
-                                    <select className="gov-form-group__field" value={form.serviceType} onChange={set('serviceType')} required>
-                                        <option value="">-- Select --</option>
-                                        {SERVICE_TYPES.map(s => <option key={s} value={s}>{s}</option>)}
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div className="gov-form-row">
-                                <div className="gov-form-group">
-                                    <label className="gov-form-group__label">Applicant Name <span className="gov-form-group__req">*</span></label>
-                                    <input className="gov-form-group__field" type="text" placeholder="As per Aadhaar"
-                                        value={form.name} onChange={set('name')} required />
-                                </div>
-                                <div className="gov-form-group">
-                                    <label className="gov-form-group__label">Contact Number</label>
-                                    <input className="gov-form-group__field" type="tel" placeholder="10-digit mobile"
-                                        value={form.phone} onChange={set('phone')} maxLength={10} />
-                                </div>
-                            </div>
-
-                            <div className="gov-form-group">
-                                <label className="gov-form-group__label">Address / Property Details</label>
-                                <input className="gov-form-group__field" type="text" placeholder="Door No, Street, Ward"
-                                    value={form.address} onChange={set('address')} />
-                            </div>
-
-                            <div className="gov-form-group">
-                                <label className="gov-form-group__label">Additional Details / Remarks</label>
-                                <textarea className="gov-form-group__field gov-form-group__field--textarea"
-                                    placeholder="Any additional information…" rows={3}
-                                    value={form.details} onChange={set('details')} />
-                            </div>
-
-                            <div className="gov-alert gov-alert--info" style={{ fontSize: 11.5, marginBottom: 14 }}>
-                                📄 Declaration: I hereby declare that the information provided is true and correct to the best of my knowledge.
-                            </div>
-
-                            <div style={{ display: 'flex', gap: 10 }}>
-                                <button type="button" className="gov-btn gov-btn--outline" onClick={() => navigate('/dashboard')}>← Back</button>
-                                <button type="submit" className="gov-btn gov-btn--primary gov-btn--full" disabled={loading}>
-                                    {loading ? 'Submitting Application…' : 'Submit Application →'}
-                                </button>
-                            </div>
-                        </form>
+                        Submit your application online. You will receive a reference number via SMS for tracking.
+                        Please ensure all details match your official documents.
                     </div>
+
+                    {error && (
+                        <div style={{
+                            background: '#fef2f2', border: '2px solid #ef4444',
+                            padding: '15px 20px', borderRadius: 12, color: '#b91c1c',
+                            marginBottom: 25, display: 'flex', alignItems: 'center', gap: 10, fontSize: 18, fontWeight: 600
+                        }}>
+                            <span className="material-icons">error</span>
+                            {error}
+                        </div>
+                    )}
+
+                    <form onSubmit={submit}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30 }}>
+                            <div className="kiosk-input-group">
+                                <label className="kiosk-label">Concerned Department (विभाग)</label>
+                                <select className="kiosk-input" value={form.dept} onChange={set('dept')} required>
+                                    <option value="">-- Select --</option>
+                                    {depts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+                                </select>
+                            </div>
+                            <div className="kiosk-input-group">
+                                <label className="kiosk-label">Service Type (सेवा का प्रकार)</label>
+                                <select className="kiosk-input" value={form.serviceType} onChange={set('serviceType')} required>
+                                    <option value="">-- Select --</option>
+                                    {SERVICE_TYPES.map(s => <option key={s} value={s}>{s}</option>)}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30 }}>
+                            <div className="kiosk-input-group">
+                                <label className="kiosk-label">Applicant Name (आवेदक का नाम)</label>
+                                <input className="kiosk-input" type="text" placeholder="As per Aadhaar"
+                                    value={form.name} onChange={set('name')} required />
+                            </div>
+                            <div className="kiosk-input-group">
+                                <label className="kiosk-label">Contact Number (संपर्क नंबर)</label>
+                                <input className="kiosk-input" type="tel" placeholder="10-digit mobile"
+                                    value={form.phone} onChange={set('phone')} maxLength={10} />
+                            </div>
+                        </div>
+
+                        <div className="kiosk-input-group">
+                            <label className="kiosk-label">Address / Property Details (पता / संपत्ति का विवरण)</label>
+                            <input className="kiosk-input" type="text" placeholder="Door No, Street, Ward, Landmark"
+                                value={form.address} onChange={set('address')} />
+                        </div>
+
+                        <div className="kiosk-input-group">
+                            <label className="kiosk-label">Additional Details / Remarks (अतिरिक्त विवरण)</label>
+                            <textarea className="kiosk-input" style={{ height: 'auto', minHeight: 120, padding: '20px 30px' }}
+                                placeholder="Any additional information..."
+                                value={form.details} onChange={set('details')} />
+                        </div>
+
+                        <div style={{
+                            background: '#fff7ed', border: '1px solid #fed7aa',
+                            padding: '15px 20px', borderRadius: 12, color: '#9a3412',
+                            marginBottom: 40, fontSize: 16, display: 'flex', alignItems: 'flex-start', gap: 10
+                        }}>
+                            <span className="material-icons" style={{ fontSize: 20, marginTop: 2 }}>verified</span>
+                            <span><strong>Declaration:</strong> I hereby declare that the information provided is true and correct to the best of my knowledge. Misrepresentation of facts is a punishable offense.</span>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: 20 }}>
+                            <button type="button" className="kiosk-btn kiosk-btn--secondary" style={{ flex: 1 }} onClick={() => navigate('/dashboard')}>
+                                <span className="material-icons">arrow_back</span>
+                                BACK
+                            </button>
+                            <button type="submit" className="kiosk-btn kiosk-btn--primary" style={{ flex: 2 }} disabled={loading}>
+                                {loading ? 'Processing...' : 'Submit Application / आवेदन जमा करें'}
+                                <span className="material-icons">fact_check</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div style={{ textAlign: 'center', marginTop: 30, color: '#666', fontSize: 16 }}>
+                    📄 All applications are processed as per the Citizens Charter of the respective department.
                 </div>
             </div>
         </GovLayout>
