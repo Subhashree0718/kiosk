@@ -120,7 +120,7 @@ export default function DepartmentsPage() {
                                 minHeight: 400,
                                 boxShadow: '0 8px 0 rgba(0,0,0,0.02), 0 20px 40px rgba(0,0,0,0.04)'
                             }}
-                            onClick={() => navigate(dept.id === 'water' ? '/water' : `/departments/${dept.id}`)}
+                            onClick={() => navigate(dept.id === 'water' ? '/water' : dept.id === 'electricity' ? '/electricity' : `/departments/${dept.id}`)}
                         >
                             <div style={{ display: 'flex', alignItems: 'center', gap: 25, marginBottom: 15 }}>
                                 <div style={{
