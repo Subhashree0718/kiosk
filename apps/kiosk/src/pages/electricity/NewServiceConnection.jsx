@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import GovLayout from '../components/GovLayout.jsx';
+import GovLayout from '../../components/GovLayout.jsx';
 
 const Icon = ({ name, size = 18, color = 'currentColor', style = {} }) => (
     <span className="material-icons" style={{ fontSize: size, color, lineHeight: 1, verticalAlign: 'middle', ...style }}>{name}</span>

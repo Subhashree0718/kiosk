@@ -46,14 +46,57 @@ const BANNER_SLIDES = [
 ];
 
 const CITIZEN_SERVICES = [
-    { icon: 'electric_bolt', label: 'Electricity', labelHi: 'विद्युत', path: '/service-request', color: '#1a5276' },
-    { icon: 'water_drop', label: 'Water Supply', labelHi: 'जल सेवा', path: '/service-request', color: '#117a65' },
-    { icon: 'local_fire_department', label: 'Gas Service', labelHi: 'गैस सेवा', path: '/service-request', color: '#c0392b' },
-    { icon: 'home_work', label: 'Property Tax', labelHi: 'संपत्ति कर', path: '/bill-payment', color: '#7d6608' },
-    { icon: 'report_problem', label: 'Grievance', labelHi: 'शिकायत', path: '/complaint', color: '#6c3483' },
-    { icon: 'location_city', label: 'Municipal', labelHi: 'नगर निगम', path: '/departments', color: '#003366' },
-    { icon: 'description', label: 'Certificates', labelHi: 'प्रमाणपत्र', path: '/service-request', color: '#1e8449' },
-    { icon: 'manage_search', label: 'Track Status', labelHi: 'स्थिति', path: '/status', color: '#2e4057' },
+    {
+        icon: 'electric_bolt', label: 'Electricity', labelHi: 'विद्युत',
+        path: '/electricity', color: '#1a5276',
+        desc: 'New connection, bill pay & service requests',
+        descHi: 'नया कनेक्शन, बिल भुगतान और सेवा अनुरोध',
+    },
+    {
+        icon: 'water_drop', label: 'Water Supply', labelHi: 'जल सेवा',
+        path: '/water', color: '#117a65',
+        desc: 'Pay water tax, complaints & new connection',
+        descHi: 'जल कर भुगतान, शिकायत और नया कनेक्शन',
+    },
+    {
+        icon: 'local_fire_department', label: 'Gas Service', labelHi: 'गैस सेवा',
+        path: null, color: '#c0392b',
+        desc: 'New connection, safety check & bill payment',
+        descHi: 'नया कनेक्शन, सुरक्षा जांच और बिल भुगतान',
+        comingSoon: true,
+    },
+    {
+        icon: 'home_work', label: 'Property Tax', labelHi: 'संपत्ति कर',
+        path: null, color: '#7d6608',
+        desc: 'Pay house & commercial property tax online',
+        descHi: 'घरेलू और वाणिज्यिक संपत्ति कर ऑनलाइन दें',
+        comingSoon: true,
+    },
+    {
+        icon: 'report_problem', label: 'Grievance', labelHi: 'शिकायत',
+        path: '/complaint', color: '#6c3483',
+        desc: 'Lodge a complaint against any department',
+        descHi: 'किसी विभाग के खिलाफ शिकायत दर्ज करें',
+    },
+    {
+        icon: 'location_city', label: 'Municipal', labelHi: 'नगर निगम',
+        path: '/departments', color: '#003366',
+        desc: 'All departments, notices & civic services',
+        descHi: 'सभी विभाग, सूचनाएं और नागरिक सेवाएं',
+    },
+    {
+        icon: 'description', label: 'Certificates', labelHi: 'प्रमाणपत्र',
+        path: null, color: '#1e8449',
+        desc: 'Birth, death, income & residence certificates',
+        descHi: 'जन्म, मृत्यु, आय और निवास प्रमाणपत्र',
+        comingSoon: true,
+    },
+    {
+        icon: 'manage_search', label: 'Track Status', labelHi: 'आवेदन स्थिति',
+        path: '/status', color: '#2e4057',
+        desc: 'Track any application by Ticket / Complaint ID',
+        descHi: 'टिकट / शिकायत ID द्वारा आवेदन की स्थिति जानें',
+    },
 ];
 
 const NEWS_ITEMS = [
@@ -145,16 +188,23 @@ export default function Dashboard() {
             <div className="kiosk-gradient-patriotic" style={{ padding: '40px 0', minHeight: '100vh' }}>
                 <div className="kiosk-container">
 
-                    {/* 2. PREMIUM WELCOME HEADER (GLASSMORPHISM) */}
+                    {/* 2. PREMIUM WELCOME HEADER */}
                     <div className="kiosk-glass" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 50, padding: '40px 60px', borderRadius: 40, border: '2px solid rgba(255,255,255,0.5)' }}>
                         <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 15, marginBottom: 10 }}>
                                 <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#10b981', boxShadow: '0 0 15px #10b981' }}></div>
-                                <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gov-navy)', textTransform: 'uppercase', letterSpacing: 2 }}>KIOSK UNIT SVDH-001 (ACTIVE)</div>
+                                <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--gov-navy)', textTransform: 'uppercase', letterSpacing: 2 }}>
+                                    <span className="lang-en">KIOSK UNIT SVDH-001 — ACTIVE</span>
+                                    <span className="lang-hi">किओस्क इकाई SVDH-001 — सक्रिय</span>
+                                </div>
                             </div>
-                            <h1 className="kiosk-text-display" style={{ fontSize: 56, color: 'var(--gov-navy)', margin: 0 }}>
-                                SUVIDHA Gateway
-                                <span style={{ display: 'block', fontSize: 36, color: 'var(--gov-saffron)', fontWeight: 800, marginTop: 5 }}>जन सेवा केंद्र में आपका स्वागत है</span>
+                            <h1 className="kiosk-text-display" style={{ fontSize: 50, color: 'var(--gov-navy)', margin: 0, lineHeight: 1.15 }}>
+                                <span className="lang-en" style={{ display: 'block' }}>SUVIDHA Gateway</span>
+                                <span className="lang-hi" style={{ display: 'block' }}>सुविधा पोर्टल</span>
+                                <span style={{ display: 'block', fontSize: 30, color: 'var(--gov-saffron)', fontWeight: 800, marginTop: 6 }}>
+                                    <span className="lang-en">Welcome to the Citizen Service Centre</span>
+                                    <span className="lang-hi">जन सेवा केंद्र में आपका स्वागत है</span>
+                                </span>
                             </h1>
                         </div>
                         <div style={{ textAlign: 'right', display: 'flex', gap: 30, alignItems: 'center' }}>
@@ -202,32 +252,44 @@ export default function Dashboard() {
                         </div>
                     </div>
 
-                    {/* 4. MAIN SERVICE CORE (ELITE GLASS TILES) */}
+                    {/* 4. MAIN SERVICE CORE */}
                     <div style={{ marginBottom: 60 }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
                             <div style={{ borderLeft: '12px solid var(--gov-saffron)', paddingLeft: 25 }}>
-                                <h2 className="kiosk-text-display" style={{ fontSize: 42, color: 'var(--gov-navy)', margin: 0 }}>Citizen Services Center / नागरिक सेवा केंद्र</h2>
-                                <p style={{ fontSize: 22, color: '#334155', margin: '5px 0 0 0', fontWeight: 700 }}>Select a category to begin your application process.</p>
+                                <h2 className="kiosk-text-display" style={{ fontSize: 38, color: 'var(--gov-navy)', margin: 0 }}>
+                                    <span className="lang-en">Citizen Services Center</span>
+                                    <span className="lang-hi">नागरिक सेवा केंद्र</span>
+                                </h2>
+                                <p style={{ fontSize: 18, color: '#334155', margin: '6px 0 0 0', fontWeight: 600 }}>
+                                    <span className="lang-en">Select a category to begin your application.</span>
+                                    <span className="lang-hi">आवेदन शुरू करने हेतु श्रेणी चुनें।</span>
+                                </p>
                             </div>
-                            <button className="kiosk-btn-premium" style={{ background: 'var(--gov-navy)', color: '#fff', height: 80, padding: '0 40px' }} onClick={() => navigate('/departments')}>
-                                ALL DEPARTMENTS
+                            <button className="kiosk-btn-premium" style={{ background: 'var(--gov-navy)', color: '#fff', height: 72, padding: '0 36px', fontSize: 15 }} onClick={() => navigate('/departments')}>
+                                <span className="lang-en">ALL DEPARTMENTS</span>
+                                <span className="lang-hi">सभी विभाग</span>
                                 <span className="material-icons">apps</span>
                             </button>
                         </div>
 
-                        <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: 35 }}>
+                        {/* Equal-height tiles — grid uses align-items:stretch */}
+                        <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: 28, alignItems: 'stretch' }}>
                             {CITIZEN_SERVICES.map(svc => (
                                 <div key={svc.label}
                                     className="kiosk-glass"
                                     style={{
-                                        padding: '50px 30px', borderRadius: 40,
+                                        padding: '32px 20px 24px', borderRadius: 32, position: 'relative',
                                         display: 'flex', flexDirection: 'column', alignItems: 'center',
-                                        cursor: 'pointer', transition: 'all 0.3s ease', textAlign: 'center'
+                                        cursor: svc.comingSoon ? 'default' : 'pointer',
+                                        transition: 'all 0.3s ease', textAlign: 'center',
+                                        opacity: svc.comingSoon ? 0.72 : 1,
+                                        minHeight: 260,
                                     }}
-                                    onClick={() => navigate(svc.path)}
+                                    onClick={() => !svc.comingSoon && svc.path && navigate(svc.path)}
                                     onMouseEnter={e => {
-                                        e.currentTarget.style.transform = 'translateY(-15px)';
-                                        e.currentTarget.style.boxShadow = '0 30px 60px rgba(0,0,0,0.1)';
+                                        if (svc.comingSoon) return;
+                                        e.currentTarget.style.transform = 'translateY(-10px)';
+                                        e.currentTarget.style.boxShadow = `0 30px 60px ${svc.color}22`;
                                         e.currentTarget.style.borderColor = svc.color;
                                     }}
                                     onMouseLeave={e => {
@@ -236,33 +298,56 @@ export default function Dashboard() {
                                         e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
                                     }}
                                 >
+                                    {svc.comingSoon && (
+                                        <div style={{ position: 'absolute', top: 14, right: 14, background: '#f39c12', color: '#fff', fontSize: 9, fontWeight: 900, padding: '3px 9px', borderRadius: 20, letterSpacing: 1, textTransform: 'uppercase' }}>
+                                            <span className="lang-en">COMING SOON</span>
+                                            <span className="lang-hi">जल्द आएगा</span>
+                                        </div>
+                                    )}
+                                    {/* Icon */}
                                     <div style={{
-                                        color: svc.color, background: `${svc.color}15`, width: 120, height: 120,
-                                        borderRadius: 35, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 30,
-                                        boxShadow: `0 15px 30px ${svc.color}20`, border: `2px solid ${svc.color}30`
+                                        color: svc.color, background: `${svc.color}15`, width: 100, height: 100,
+                                        borderRadius: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        marginBottom: 16, flexShrink: 0,
+                                        boxShadow: `0 10px 24px ${svc.color}20`, border: `2px solid ${svc.color}25`
                                     }}>
-                                        <Icon name={svc.icon} size={70} color={svc.color} />
+                                        <Icon name={svc.icon} size={56} color={svc.color} />
                                     </div>
-                                    <div className="kiosk-gov-tile-hi" style={{ fontSize: 28, color: svc.color, marginBottom: 8 }}>{svc.labelHi}</div>
-                                    <div className="kiosk-tile__label" style={{ fontSize: 24, fontWeight: 900, color: 'var(--gov-navy)', textTransform: 'uppercase' }}>{svc.label}</div>
+                                    {/* Label — language-switching */}
+                                    <div style={{ fontWeight: 900, fontSize: 17, color: 'var(--gov-navy)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+                                        <span className="lang-en">{svc.label}</span>
+                                        <span className="lang-hi kiosk-gov-tile-hi" style={{ textTransform: 'none', fontSize: 20 }}>{svc.labelHi}</span>
+                                    </div>
+                                    {/* Desc — pinned to bottom via flex-grow spacer */}
+                                    <div style={{ flex: 1 }} />
+                                    <div style={{ fontSize: 12, color: '#64748b', fontWeight: 600, lineHeight: 1.55, marginTop: 4 }}>
+                                        <span className="lang-en">{svc.desc}</span>
+                                        <span className="lang-hi">{svc.descHi}</span>
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* 5. QUICK TRACK & EMERGENCY (ULTRA HIGH IMPACT) */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '2.5fr 1fr', gap: 40, marginBottom: 60 }}>
+                    {/* 5. QUICK TRACK & EMERGENCY */}
+                    <div style={{ display: 'grid', gridTemplateColumns: '2.5fr 1fr', gap: 36, marginBottom: 60 }}>
                         {/* Quick Track Card */}
-                        <div className="kiosk-glass-dark" style={{ borderRadius: 50, padding: 60, position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,33,71,0.3)' }}>
+                        <div className="kiosk-glass-dark" style={{ borderRadius: 40, padding: '48px 52px', position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,33,71,0.3)' }}>
                             <div style={{ position: 'absolute', top: -150, right: -150, width: 500, height: 500, background: 'rgba(255,255,255,0.05)', borderRadius: '50%' }}></div>
                             <div style={{ position: 'relative', zIndex: 1 }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 15 }}>
-                                    <div style={{ padding: 15, background: 'rgba(255,255,255,0.15)', borderRadius: 20 }}>
-                                        <Icon name="track_changes" size={48} color="var(--gov-saffron)" />
+                                    <div style={{ padding: 15, background: 'rgba(255,255,255,0.15)', borderRadius: 20, flexShrink: 0 }}>
+                                        <Icon name="track_changes" size={44} color="var(--gov-saffron)" />
                                     </div>
                                     <div>
-                                        <div className="kiosk-text-display" style={{ fontSize: 36, color: '#fff' }}>Track Status / आवेदन स्थिति</div>
-                                        <p style={{ fontSize: 20, opacity: 0.8, margin: 0, fontWeight: 600 }}>Enter your Ticket ID for real-time verification.</p>
+                                        <div className="kiosk-text-display" style={{ fontSize: 32, color: '#fff', lineHeight: 1.2 }}>
+                                            <span className="lang-en">Track Application Status</span>
+                                            <span className="lang-hi">आवेदन स्थिति जाँचें</span>
+                                        </div>
+                                        <p style={{ fontSize: 17, opacity: 0.75, margin: '6px 0 0', fontWeight: 600 }}>
+                                            <span className="lang-en">Enter your Ticket ID for real-time update.</span>
+                                            <span className="lang-hi">रियल-टाइम अपडेट के लिए टिकट ID दर्ज करें।</span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', gap: 20, marginTop: 40 }}>
@@ -280,13 +365,19 @@ export default function Dashboard() {
                         </div>
 
                         {/* Emergency Contact */}
-                        <div className="kiosk-glass" style={{ border: '4px solid #fee2e2', borderRadius: 50, padding: 60, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                            <div style={{ width: 100, height: 100, background: '#fee2e2', color: '#ef4444', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 25px', boxShadow: '0 15px 30px rgba(239, 68, 68, 0.2)' }}>
-                                <Icon name="emergency" size={54} color="#ef4444" />
+                        <div className="kiosk-glass" style={{ border: '4px solid #fee2e2', borderRadius: 40, padding: '48px 36px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                            <div style={{ width: 90, height: 90, background: '#fee2e2', color: '#ef4444', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', boxShadow: '0 15px 30px rgba(239, 68, 68, 0.2)' }}>
+                                <Icon name="emergency" size={50} color="#ef4444" />
                             </div>
-                            <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase', letterSpacing: 2 }}>Emergency</div>
-                            <div style={{ fontSize: 72, fontWeight: 900, color: 'var(--gov-navy)', margin: '10px 0', lineHeight: 1 }}>112</div>
-                            <p style={{ fontSize: 18, color: '#64748b', fontWeight: 700 }}>Toll-free Central Line</p>
+                            <div style={{ fontSize: 17, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 4 }}>
+                                <span className="lang-en">Emergency</span>
+                                <span className="lang-hi">आपातकाल</span>
+                            </div>
+                            <div style={{ fontSize: 68, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1 }}>112</div>
+                            <p style={{ fontSize: 15, color: '#64748b', fontWeight: 700, marginTop: 8 }}>
+                                <span className="lang-en">Toll-free Central Line</span>
+                                <span className="lang-hi">टोल-फ्री केंद्रीय हेल्पलाइन</span>
+                            </p>
                         </div>
                     </div>
 

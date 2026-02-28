@@ -3,13 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
 import api from '../services/api.js';
 import { useKioskStore } from '../store/index.js';
+import { useT } from '../hooks/useT.js';
 
 const NUM_PAD = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'CLR', '0', 'DEL'];
 
 export default function Auth() {
     const navigate = useNavigate();
     const setAuth = useKioskStore(s => s.setAuth);
-    const [step, setStep] = useState(1); // 1=mobile, 2=otp
+    const setSessionMobile = useKioskStore(s => s.setSessionMobile);
+    const { t } = useT();
+    const [step, setStep] = useState(1);
     const [mobile, setMobile] = useState('');
     const [otp, setOtp] = useState('');
     const [loading, setLoading] = useState(false);
@@ -19,7 +22,7 @@ export default function Auth() {
     async function sendOtp(e) {
         if (e) e.preventDefault();
         if (!/^[6-9]\d{9}$/.test(mobile)) {
-            setError('Please enter a valid 10-digit Indian mobile number.');
+            setError(t('Please enter a valid 10-digit Indian mobile number.', 'कृपया वैध 10-अंक भारतीय मोबाइल नंबर दर्ज करें।'));
             return;
         }
         setError(''); setLoading(true);
@@ -39,6 +42,7 @@ export default function Auth() {
         try {
             const { data } = await api.post('/auth/verify-otp', { mobile, code: otp });
             setAuth(data.user, data.token);
+            setSessionMobile(mobile); // Store verified mobile globally for all departments
             navigate('/dashboard');
         } catch (err) {
             setError(err.response?.data?.message || 'Invalid or expired OTP.');

@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// SUVIDHA – Prisma Database Schema
-// Database: PostgreSQL
-// ─────────────────────────────────────────────────────────────────────────────
 
 generator client {
   provider = "prisma-client-js"
@@ -12,7 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ─── Enums ────────────────────────────────────────────────────────────────────
 
 enum Role {
   CITIZEN

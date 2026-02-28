@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useKioskStore } from '../store/index.js';
+import { useT } from '../hooks/useT.js';
 
 /* ── Icon helper ─────────────────────────────────────────────────── */
 const Icon = ({ name, size = 18, color = 'currentColor', style = {} }) => (
@@ -9,13 +11,13 @@ const Icon = ({ name, size = 18, color = 'currentColor', style = {} }) => (
 );
 
 /* ── Nav items ───────────────────────────────────────────────────── */
-const NAV_ITEMS = [
-    { label: 'Home', path: '/dashboard', icon: 'home' },
-    { label: 'Services', path: '/departments', icon: 'widgets' },
-    { label: 'Departments', path: '/departments', icon: 'business' },
-    { label: 'Track Status', path: '/status', icon: 'track_changes' },
-    { label: 'Grievances', path: '/complaint', icon: 'campaign' },
-    { label: 'Contact Us', path: '/contact', icon: 'support_agent' },
+const NAV_DEFS = [
+    { en: 'HOME', hi: 'होम', path: '/dashboard', icon: 'home' },
+    { en: 'SERVICES', hi: 'सेवाएं', path: '/departments', icon: 'widgets' },
+    { en: 'DEPARTMENTS', hi: 'विभाग', path: '/departments', icon: 'business' },
+    { en: 'TRACK STATUS', hi: 'स्थिति ट्रैक करें', path: '/status', icon: 'track_changes' },
+    { en: 'GRIEVANCES', hi: 'शिकायतें', path: '/complaint', icon: 'campaign' },
+    { en: 'CONTACT US', hi: 'संपर्क करें', path: '/contact', icon: 'support_agent' },
 ];
 
 const TICKER_TEXT =
@@ -29,7 +31,9 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
     const navigate = useNavigate();
     const location = useLocation();
     const [fontSize, setFontSize] = useState(14);
-    const [lang, setLang] = useState('en');
+    const storeLanguage = useKioskStore(s => s.language);
+    const setStoreLanguage = useKioskStore(s => s.setLanguage);
+    const { t } = useT();
 
     useEffect(() => { document.body.style.fontSize = fontSize + 'px'; }, [fontSize]);
 
@@ -53,12 +57,12 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                     <button className="gov-font-btn" onClick={() => setFontSize(f => Math.min(18, f + 1))}>A+</button>
                     <span className="gov-utility-bar__sep">|</span>
                     <button className="gov-lang-btn"
-                        onClick={() => setLang('hi')}
-                        style={lang === 'hi' ? { background: 'var(--gov-saffron)', color: '#fff', borderRadius: 2, padding: '2px 6px' } : {}}
+                        onClick={() => setStoreLanguage('hi')}
+                        style={storeLanguage === 'hi' ? { background: 'var(--gov-saffron)', color: '#fff', borderRadius: 2, padding: '2px 6px' } : {}}
                     >हिन्दी</button>
                     <button className="gov-lang-btn"
-                        onClick={() => setLang('en')}
-                        style={lang === 'en' ? { background: 'var(--gov-saffron)', color: '#fff', borderRadius: 2, padding: '2px 6px' } : {}}
+                        onClick={() => setStoreLanguage('en')}
+                        style={storeLanguage === 'en' ? { background: 'var(--gov-saffron)', color: '#fff', borderRadius: 2, padding: '2px 6px' } : {}}
                     >English</button>
                 </div>
             </div>
@@ -72,23 +76,22 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                     onError={e => { e.target.style.display = 'none'; }}
                 />
                 <div className="kiosk-gov-title-group">
-                    <div className="kiosk-gov-text-hi">सुविधा – डिजिटल सहायता डेस्क</div>
-                    <div className="kiosk-gov-text-en">SUVIDHA – Digital Helpdesk</div>
-                    <div style={{ fontSize: 15, opacity: 0.8, marginTop: 6, letterSpacing: '0.5px' }}>
-                        Smart Urban Virtual Interactive Digital Helpdesk Assistant | Government of India
-                    </div>
+                    <div className="kiosk-gov-text-hi">{t('SUVIDHA – Digital Helpdesk', 'सुविधा – डिजिटल सहायता डेस्क')}</div>
+                    <div className="kiosk-gov-text-en">{t('Smart Urban Virtual Interactive Digital Helpdesk Assistant', 'स्मार्ट नगर वर्चुअल इंटरैक्टिव डिजिटल सहायता')}</div>
+                    <div style={{ fontSize: 13, opacity: 0.7, marginTop: 4 }}>{t('Government of India', 'भारत सरकार')}</div>
                 </div>
             </header>
 
             {/* ══ 3. PRIMARY NAV ════════════════════════════════════ */}
             <nav className="gov-navbar" role="navigation" aria-label="Main Navigation">
-                {NAV_ITEMS.map((item, idx) => {
+                {NAV_DEFS.map((item, idx) => {
+                    const label = storeLanguage === 'hi' ? item.hi : item.en;
                     const isActive =
                         location.pathname === item.path ||
                         (item.path !== '/dashboard' && location.pathname.startsWith(item.path));
                     return (
                         <button
-                            key={item.label}
+                            key={item.en}
                             className={[
                                 'gov-navbar__item',
                                 idx === 0 ? 'gov-navbar__item--home' : '',
@@ -98,7 +101,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                             aria-current={isActive ? 'page' : undefined}
                         >
                             {idx === 0 && <Icon name="home" size={16} color="#fff" style={{ marginRight: 5 }} />}
-                            {item.label}
+                            {label}
                         </button>
                     );
                 })}
@@ -108,7 +111,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
             <div className="gov-ticker">
                 <span className="gov-ticker__label" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                     <Icon name="campaign" size={14} color="#fff" />
-                    NOTICE
+                    {t('NOTICE', 'सूचना')}
                 </span>
                 <div style={{ overflow: 'hidden', flex: 1 }}>
                     <span className="gov-ticker__content">{TICKER_TEXT}</span>

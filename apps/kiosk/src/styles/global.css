@@ -24,10 +24,49 @@
   --gov-success: #155724;
   --gov-input-border: #aab7c4;
   --gov-font: 'Noto Sans', 'Noto Sans Devanagari', Arial, sans-serif;
-  --gov-radius: 4px;
-  --gov-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.10);
-  --gov-shadow: 0 2px 8px rgba(0, 0, 0, 0.13);
+  --gov-radius: 8px;
+  --gov-shadow-sm: 0 4px 6px rgba(0, 51, 102, 0.08);
+  --gov-shadow: 0 8px 24px rgba(0, 51, 102, 0.15);
+  --gov-glass-bg: rgba(255, 255, 255, 0.85);
+  --gov-glass-border: rgba(255, 255, 255, 0.6);
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   GLOBAL LANGUAGE SWITCHING
+   Set data-lang="en" or data-lang="hi" on <html> to switch language
+   across ALL pages without touching each component.
+
+   .lang-hi  = Hindi-only   → hidden when lang=en
+   .lang-en  = English-only → hidden when lang=hi
+
+   Existing "auto" classes treated as Hindi:
+     .kiosk-gov-text-hi, .kiosk-gov-btn-hi, .kiosk-gov-tile-hi, .kiosk-gov-label-hi
+   Existing "auto" classes treated as English:
+     .kiosk-gov-text-en  (sub-title row in header)
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Default: show both */
+.lang-en,
+.lang-hi {
+  display: initial;
+}
+
+/* ── ENGLISH mode: hide every Hindi element ────────────────────────── */
+html[data-lang="en"] .lang-hi,
+html[data-lang="en"] .kiosk-gov-text-hi,
+html[data-lang="en"] .kiosk-gov-btn-hi,
+html[data-lang="en"] .kiosk-gov-tile-hi,
+html[data-lang="en"] .kiosk-gov-label-hi {
+  display: none !important;
+}
+
+/* ── HINDI mode: hide every English element ────────────────────────── */
+html[data-lang="hi"] .lang-en,
+html[data-lang="hi"] .kiosk-gov-text-en {
+  display: none !important;
+}
+
+
 
 /* ── Reset ────────────────────────────────────────────────────────── */
 *,
@@ -77,6 +116,12 @@ button {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.kiosk-gov-strip {
+  height: 8px;
+  background: linear-gradient(90deg, #FF671F 0%, #FF671F 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #046A38 66.66%, #046A38 100%);
+  width: 100%;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -267,11 +312,13 @@ button {
   border: none;
   color: #fff;
   font-family: var(--gov-font);
-  font-size: 13px;
+  font-size: 15px;
+  /* Larger font for kiosk */
   font-weight: 600;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  padding: 13px 16px;
+  padding: 18px 24px;
+  /* Larger tap targets */
   cursor: pointer;
   transition: background 0.18s, color 0.18s;
   white-space: nowrap;
@@ -425,12 +472,20 @@ button {
    6. CARDS
    ═══════════════════════════════════════════════════════════════════ */
 .gov-card {
-  background: #fff;
-  border: 1px solid #d5dde6;
+  background: var(--gov-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gov-glass-border);
   border-radius: var(--gov-radius);
   box-shadow: var(--gov-shadow-sm);
   overflow: hidden;
   margin-bottom: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gov-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--gov-shadow);
 }
 
 .gov-card__header {
@@ -560,22 +615,24 @@ button {
 }
 
 .gov-service-tile {
-  background: #fff;
-  border: 1px solid #dde3ee;
+  background: var(--gov-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--gov-glass-border);
   border-radius: var(--gov-radius);
-  padding: 16px 10px;
+  padding: 24px 16px;
   text-align: center;
   cursor: pointer;
-  transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .gov-service-tile:hover {
-  box-shadow: 0 4px 14px rgba(0, 51, 102, 0.14);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.15);
+  transform: translateY(-4px);
   border-color: var(--gov-navy);
 }
 

@@ -16,6 +16,7 @@ import WaterDepartment from '../pages/WaterDepartment.jsx';
 import WaterComplaints from '../pages/WaterComplaints.jsx';
 import WaterTaxCharges from '../pages/WaterTaxCharges.jsx';
 import WaterNewConnection from '../pages/WaterNewConnection.jsx';
+import WaterAccount from '../pages/WaterAccount.jsx';
 
 // ── Electricity Department Portal ────────────────────────────────────────────
 import ElectricityDepartment from '../pages/ElectricityDepartment.jsx';
@@ -113,6 +114,8 @@ export function AppRoutes() {
             <Route path="/water/complaints" element={<WaterComplaints />} />
             <Route path="/water/tax" element={<WaterTaxCharges />} />
             <Route path="/water/new-connection" element={<WaterNewConnection />} />
+            <Route path="/water/account" element={<WaterAccount />} />
+
 
             {/* ── Electricity Department Portal ────────────────────────── */}
             <Route path="/electricity" element={<ElectricityDepartment />} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
+import { useKioskStore } from '../store/index.js';
 
 const LANGUAGES = [
     { code: 'en', script: 'A', name: 'English' },
@@ -11,11 +12,14 @@ const LANGUAGES = [
 
 export default function LanguageSelect() {
     const navigate = useNavigate();
+    const setLanguage = useKioskStore(s => s.setLanguage);
 
     function select(code) {
         localStorage.setItem('lang', code);
+        setLanguage(code);           // ← persist to store so useT() works everywhere
         navigate('/login');
     }
+
 
     return (
         <GovLayout breadcrumbs={[]} showSidebar={false}>

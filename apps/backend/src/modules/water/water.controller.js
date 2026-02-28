@@ -10,7 +10,12 @@ import {
     waterGetComplaintStatusService,
     waterSubmitNewConnectionService,
     waterGetConnectionStatusService,
+    waterCheckRegistrationService,
+    waterMyPropertiesService,
+    waterMyApplicationsService,
+    waterGetAccountHistoryService,
 } from './water.service.js';
+
 
 const ok = (res, data, status = 200) => res.status(status).json({ success: true, ...data });
 const fail = (res, message, status = 400) => res.status(status).json({ success: false, message });
@@ -37,18 +42,18 @@ export async function waterVerifyOtp(req, res, next) {
 /* ── Consumer ────────────────────────────────────────────────── */
 export async function waterRegisterConsumer(req, res, next) {
     try {
-        const { propertyId, mobile, email, password } = req.body;
-        if (!propertyId || !mobile) return fail(res, 'propertyId and mobile are required.');
-        const data = await waterRegisterConsumerService({ propertyId, mobile, email, password });
+        const { mobile, name, address, email } = req.body;
+        if (!mobile) return fail(res, 'mobile is required.');
+        const data = await waterRegisterConsumerService({ mobile, name, address, email });
         return ok(res, data, 201);
     } catch (err) { next(err); }
 }
 
 export async function waterConsumerLogin(req, res, next) {
     try {
-        const { mobile, password, otp } = req.body;
+        const { mobile, otp } = req.body;
         if (!mobile) return fail(res, 'mobile is required.');
-        const data = await waterConsumerLoginService({ mobile, password, otp });
+        const data = await waterConsumerLoginService({ mobile, otp });
         return ok(res, data);
     } catch (err) { next(err); }
 }
@@ -95,6 +100,17 @@ export async function waterFindProperty(req, res, next) {
     } catch (err) { next(err); }
 }
 
+/* ── Account History ─────────────────────────────────────────── */
+export async function waterGetAccountHistory(req, res, next) {
+    try {
+        const { mobile } = req.query;
+        if (!mobile) return fail(res, 'mobile is required.');
+        const data = await waterGetAccountHistoryService(mobile);
+        return ok(res, data);
+    } catch (err) { next(err); }
+}
+
+
 /* ── New Connection ──────────────────────────────────────────── */
 export async function waterSubmitNewConnection(req, res, next) {
     try {
@@ -109,5 +125,33 @@ export async function waterGetConnectionStatus(req, res, next) {
         const { applicationNo } = req.params;
         const data = await waterGetConnectionStatusService(applicationNo);
         return ok(res, { data });
+    } catch (err) { next(err); }
+}
+
+/* ── SESSION IDENTITY — Global Mobile-Based Endpoints ──────── */
+export async function waterCheckRegistration(req, res, next) {
+    try {
+        const { mobile } = req.query;
+        if (!mobile) return fail(res, 'mobile is required.');
+        const data = await waterCheckRegistrationService(mobile);
+        return ok(res, data);
+    } catch (err) { next(err); }
+}
+
+export async function waterGetMyProperties(req, res, next) {
+    try {
+        const { mobile } = req.query;
+        if (!mobile) return fail(res, 'mobile is required.');
+        const data = await waterMyPropertiesService(mobile);
+        return ok(res, data);
+    } catch (err) { next(err); }
+}
+
+export async function waterGetMyApplications(req, res, next) {
+    try {
+        const { mobile } = req.query;
+        if (!mobile) return fail(res, 'mobile is required.');
+        const data = await waterMyApplicationsService(mobile);
+        return ok(res, data);
     } catch (err) { next(err); }
 }

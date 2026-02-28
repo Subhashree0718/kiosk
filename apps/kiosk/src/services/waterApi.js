@@ -52,4 +52,15 @@ export const wFindProperty = (data) => waterApi.post('/find-property', data);
 export const wSubmitNewConnection = (data) => waterApi.post('/connections', data);
 export const wGetConnectionStatus = (applicationNo) => waterApi.get(`/connections/${applicationNo}`);
 
+/* ── Session Identity Endpoints ─────────────────────────────────── */
+// Check if mobile is registered in Water DB (for entry check in WaterDepartment.jsx)
+export const wCheckRegistration = (mobile) => waterApi.get('/check-registration', { params: { mobile } });
+// Get all property IDs for a mobile (Forgot Property ID, Quick Pay auto-load)
+export const wMyProperties = (mobile) => waterApi.get('/my-properties', { params: { mobile } });
+// Get all new connection applications for a mobile (Forgot Application Number)
+export const wMyApplications = (mobile) => waterApi.get('/my-applications', { params: { mobile } });
+// Get full account history: payments, complaints, new connections
+export const wAccountHistory = (mobile) => waterApi.get('/account-history', { params: { mobile } });
+
 export default waterApi;
+

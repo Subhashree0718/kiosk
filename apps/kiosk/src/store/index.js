@@ -10,12 +10,25 @@ export const useKioskStore = create((set) => ({
     },
     logout: () => {
         localStorage.removeItem('suvidha_token');
-        set({ user: null, token: null });
+        localStorage.removeItem('suvidha_session_mobile');
+        set({ user: null, token: null, sessionMobile: null });
     },
 
-    // Language
-    language: 'en',
-    setLanguage: (lang) => set({ language: lang }),
+    // Global Session Identity — set once after OTP, used across all departments
+    sessionMobile: localStorage.getItem('suvidha_session_mobile') || null,
+    setSessionMobile: (mobile) => {
+        if (mobile) localStorage.setItem('suvidha_session_mobile', mobile);
+        else localStorage.removeItem('suvidha_session_mobile');
+        set({ sessionMobile: mobile });
+    },
+
+    // Language — persisted across refreshes
+    language: localStorage.getItem('lang') || 'en',
+    setLanguage: (lang) => {
+        localStorage.setItem('lang', lang);
+        set({ language: lang });
+    },
+
 
     // Session
     lastActivity: Date.now(),
