@@ -1,30 +1,27 @@
-import axios from 'axios';
 import { logger } from '../../config/logger.js';
+import twilio from 'twilio';
 
 /**
- * Send an SMS via the configured gateway.
- * Falls back to console log in development.
+ * Send an SMS via Twilio.
+ * Falls back to console log in development or if keys are missing.
  */
-const isDevStub = !process.env.SMS_API_KEY ||
-    process.env.SMS_API_KEY.startsWith('your_');
+const isDevStub = !process.env.TWILIO_ACCOUNT_SID ||
+    process.env.TWILIO_ACCOUNT_SID.startsWith('your_');
 
-export async function sendSms(mobile, code) {
+export async function sendSms(mobile, message) {
     if (isDevStub) {
-        logger.info(`[DEV SMS] To: +91${mobile} | OTP: ${code}`);
+        logger.info(`[DEV SMS] To: +91${mobile} | ${message}`);
         return { stub: true };
     }
     try {
-        const res = await axios.post(process.env.SMS_GATEWAY_URL, {
-            variables_values: code,
-            route: 'otp',
-            numbers: mobile,
-        }, {
-            headers: {
-                authorization: process.env.SMS_API_KEY
-            }
+        const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+        const res = await client.messages.create({
+            body: message,
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: `+91${mobile}`
         });
-        logger.info(`SMS sent to ${mobile} | Status: ${res.status}`);
-        return res.data;
+        logger.info(`SMS sent to ${mobile} | SID: ${res.sid}`);
+        return res;
     } catch (err) {
         logger.error(`SMS failed for ${mobile}: ${err.message}`);
         // Non-fatal – log and continue

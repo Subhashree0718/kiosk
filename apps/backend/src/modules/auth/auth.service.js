@@ -22,7 +22,8 @@ export async function sendOtpService(mobile) {
     const expiresAt = new Date(Date.now() + OTP_EXPIRES_MINUTES * 60_000);
     await db.otp.create({ data: { mobile, code, expiresAt } });
 
-    await sendSms(mobile, code);
+    const message = `Your SUVIDHA OTP is ${code}. Valid for ${OTP_EXPIRES_MINUTES} minutes. Do not share this.`;
+    await sendSms(mobile, message);
 
     return { message: 'OTP sent successfully.' };
 }
