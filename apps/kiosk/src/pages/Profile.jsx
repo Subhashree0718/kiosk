@@ -76,32 +76,32 @@ export default function Profile() {
             <div className="kiosk-container" style={{ padding: '40px 0' }}>
 
                 {/* 1. Profile Header Card */}
-                <div className="kiosk-glass" style={{ padding: 40, borderRadius: 40, marginBottom: 40, display: 'flex', gap: 40, alignItems: 'center', border: '2px solid rgba(255,255,255,0.5)' }}>
-                    <div style={{ width: 150, height: 150, borderRadius: '50%', background: 'linear-gradient(135deg, var(--gov-navy), var(--gov-saffron))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-                        <Icon name="person" size={80} color="#fff" />
+                <div className="kiosk-glass" style={{ padding: 'var(--kiosk-p-lg)', borderRadius: 40, marginBottom: 40, display: 'flex', flexWrap: 'wrap', gap: 30, alignItems: 'center', border: '2px solid rgba(255,255,255,0.5)', justifyContent: 'center' }}>
+                    <div style={{ width: 120, height: 120, borderRadius: '50%', background: 'linear-gradient(135deg, var(--gov-navy), var(--gov-saffron))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', flexShrink: 0 }}>
+                        <Icon name="person" size={60} color="#fff" />
                     </div>
-                    <div style={{ flex: 1 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 15, marginBottom: 8 }}>
+                    <div style={{ flex: '1 1 300px', textAlign: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 15, marginBottom: 12, flexWrap: 'wrap' }}>
                             <div style={{ background: 'var(--gov-saffron)', color: '#fff', fontSize: 12, fontWeight: 900, padding: '4px 12px', borderRadius: 20, letterSpacing: 1 }}>{profile.role}</div>
-                            <div style={{ color: '#64748b', fontSize: 14, fontWeight: 700 }}>{t('Member Since:', 'सदस्यता तिथि:')} {new Date(profile.memberSince).toLocaleDateString()}</div>
+                            <div style={{ color: '#64748b', fontSize: 13, fontWeight: 700 }}>{t('Member Since:', 'सदस्यता तिथि:')}: {new Date(profile.memberSince).toLocaleDateString()}</div>
                         </div>
-                        <h1 style={{ fontSize: 42, color: 'var(--gov-navy)', margin: 0, fontWeight: 900 }}>{profile.name || t('Citizen User', 'नागरिक उपयोगकर्ता')}</h1>
-                        <div style={{ display: 'flex', gap: 30, marginTop: 15 }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#334155', fontWeight: 700 }}>
-                                <Icon name="smartphone" size={20} color="var(--gov-navy)" /> {profile.mobile}
+                        <h1 style={{ fontSize: 'var(--kiosk-subtitle-size)', color: 'var(--gov-navy)', margin: 0, fontWeight: 900 }}>{profile.name || t('Citizen User', 'नागरिक उपयोगकर्ता')}</h1>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 20, marginTop: 15 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#334155', fontWeight: 700, fontSize: 15 }}>
+                                <Icon name="smartphone" size={18} color="var(--gov-navy)" /> {profile.mobile}
                             </div>
                             {profile.email && (
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#334155', fontWeight: 700 }}>
-                                    <Icon name="alternate_email" size={20} color="var(--gov-navy)" /> {profile.email}
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#334155', fontWeight: 700, fontSize: 15 }}>
+                                    <Icon name="alternate_email" size={18} color="var(--gov-navy)" /> {profile.email}
                                 </div>
                             )}
                         </div>
                         {profile.propertyId && (
-                            <div style={{ marginTop: 10, display: 'flex', gap: 20 }}>
-                                <div style={{ background: '#f1f5f9', padding: '6px 15px', borderRadius: 10, fontSize: 13, border: '1px solid #e2e8f0' }}>
+                            <div style={{ marginTop: 15, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 15 }}>
+                                <div style={{ background: '#f1f5f9', padding: '6px 12px', borderRadius: 10, fontSize: 12, border: '1px solid #e2e8f0' }}>
                                     <b>PID:</b> {profile.propertyId}
                                 </div>
-                                <div style={{ background: '#f1f5f9', padding: '6px 15px', borderRadius: 10, fontSize: 13, border: '1px solid #e2e8f0' }}>
+                                <div style={{ background: '#f1f5f9', padding: '6px 12px', borderRadius: 10, fontSize: 12, border: '1px solid #e2e8f0' }}>
                                     <b>CID:</b> {profile.consumerId}
                                 </div>
                             </div>
@@ -109,25 +109,25 @@ export default function Profile() {
                     </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: 30 }}>
+                <div className="kiosk-grid" style={{ gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 3fr)', gap: 'var(--kiosk-gap)', alignItems: 'start' }}>
 
                     {/* Sidebar Tabs */}
-                    <div className="kiosk-glass" style={{ padding: 20, borderRadius: 30, height: 'fit-content' }}>
+                    <div className="kiosk-glass" style={{ padding: 15, borderRadius: 30, height: 'fit-content', display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {tabs.map(t => (
                             <button
                                 key={t.id}
                                 onClick={() => setActiveTab(t.id)}
                                 style={{
-                                    width: '100%', padding: '20px 25px', borderRadius: 20, border: 'none',
+                                    width: '100%', padding: '15px 20px', borderRadius: 20, border: 'none',
                                     background: activeTab === t.id ? 'var(--gov-navy)' : 'transparent',
                                     color: activeTab === t.id ? '#fff' : '#334155',
-                                    display: 'flex', alignItems: 'center', gap: 15, cursor: 'pointer',
-                                    transition: 'all 0.2s', marginBottom: 10, textAlign: 'left',
-                                    fontWeight: 800, fontSize: 18
+                                    display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer',
+                                    transition: 'all 0.2s', textAlign: 'left',
+                                    fontWeight: 800, fontSize: 16
                                 }}
                             >
-                                <Icon name={t.icon} size={24} color={activeTab === t.id ? '#fff' : 'var(--gov-navy)'} />
-                                {t.label}
+                                <Icon name={t.icon} size={20} color={activeTab === t.id ? '#fff' : 'var(--gov-navy)'} />
+                                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.label}</span>
                             </button>
                         ))}
                     </div>
@@ -139,7 +139,7 @@ export default function Profile() {
                                 <h2 style={{ fontSize: 28, color: 'var(--gov-navy)', marginBottom: 30, borderBottom: '2px solid #f1f5f9', paddingBottom: 15 }}>
                                     {t('Overview & Metrics', 'सिंहावलोकन और मेट्रिक्स')}
                                 </h2>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
+                                <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-grid-2col)', gap: 20 }}>
                                     <SummaryCard icon="payments" color="#3b82f6" label={t('Total Payments', 'कुल भुगतान')} value={`₹${summary.totalWaterAmountPaid + summary.totalGeneralPayments}`} />
                                     <SummaryCard icon="campaign" color="#f59e0b" label={t('Active Grievances', 'सक्रिय शिकायतें')} value={summary.pendingWaterComplaints} />
                                     <SummaryCard icon="assignment_turned_in" color="#10b981" label={t('Services Used', 'उपयोग की गई सेवाएँ')} value={summary.totalServiceRequests + summary.totalWaterConnections} />
@@ -217,13 +217,13 @@ export default function Profile() {
                                 <h2 style={{ fontSize: 28, color: 'var(--gov-navy)', marginBottom: 30, borderBottom: '2px solid #f1f5f9', paddingBottom: 15 }}>
                                     {t('System Logs & Profile Changes', 'सिस्टम लॉग और प्रोफ़ाइल परिवर्तन')}
                                 </h2>
-                                <div style={{ borderLeft: '4px solid var(--gov-saffron)', paddingLeft: 30, marginLeft: 10 }}>
+                                <div style={{ borderLeft: '4px solid var(--gov-saffron)', paddingLeft: 'var(--kiosk-gap)', marginLeft: 10 }}>
                                     {history.changeLog.map((log, i) => (
                                         <div key={i} style={{ marginBottom: 30, position: 'relative' }}>
-                                            <div style={{ position: 'absolute', left: -38, top: 0, width: 16, height: 16, borderRadius: '50%', background: 'var(--gov-saffron)', border: '4px solid #fff', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}></div>
-                                            <div style={{ fontSize: 14, fontWeight: 800, color: '#64748b' }}>{new Date(log.date).toLocaleString()}</div>
-                                            <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--gov-navy)', marginTop: 4 }}>{log.type.replace(/_/g, ' ')}</div>
-                                            <div style={{ fontSize: 16, color: '#334155', marginTop: 4 }}>{log.note}</div>
+                                            <div style={{ position: 'absolute', left: 'calc(-1 * var(--kiosk-gap) - 10px)', top: 0, width: 16, height: 16, borderRadius: '50%', background: 'var(--gov-saffron)', border: '4px solid #fff', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}></div>
+                                            <div style={{ fontSize: 13, fontWeight: 800, color: '#64748b' }}>{new Date(log.date).toLocaleString()}</div>
+                                            <div style={{ fontSize: 17, fontWeight: 900, color: 'var(--gov-navy)', marginTop: 4 }}>{log.type.replace(/_/g, ' ')}</div>
+                                            <div style={{ fontSize: 15, color: '#334155', marginTop: 4 }}>{log.note}</div>
                                         </div>
                                     ))}
                                 </div>

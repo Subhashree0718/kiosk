@@ -24,7 +24,7 @@ export default function App_CalculateCharges() {
         icon="calculate"
         theme="purple"
     >
-        <form className="kiosk-form" onSubmit={handleSubmit} className="p-8">
+        <form className="kiosk-form p-8" onSubmit={handleSubmit}>
             <div className="form-grid">
 
               <div className="flex flex-col gap-2 relative group col-span-1 md:col-span-2">

@@ -42,15 +42,15 @@ export default function ContactUs() {
             <div className="kiosk-container">
 
                 <div className="kiosk-header">
-                    <div className="kiosk-title" style={{ fontSize: 36 }}>Help & Support Centre</div>
-                    <div style={{ fontStyle: 'italic', fontSize: 24, color: '#666', marginBottom: 15 }}>सहायता एवं सहयोग केंद्र</div>
-                    <p style={{ fontSize: 20, color: '#666', fontWeight: 500 }}>
+                    <div className="kiosk-title" style={{ fontSize: 'var(--kiosk-subtitle-size)' }}>Help & Support Centre</div>
+                    <div style={{ fontStyle: 'italic', fontSize: 20, color: '#666', marginBottom: 15 }}>सहायता एवं सहयोग केंद्र</div>
+                    <p style={{ fontSize: 18, color: '#64748b', fontWeight: 500 }}>
                         Reach out to SUVIDHA Kiosk helpdesk or the concerned department directly.
                     </p>
                 </div>
 
                 {/* Office & Hours Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30, marginBottom: 40 }}>
+                <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-grid-2col)', gap: 'var(--kiosk-gap)', marginBottom: 40 }}>
 
                     {/* Office Address */}
                     <div className="kiosk-form" style={{ maxWidth: '100%', margin: 0, padding: 35 }}>
@@ -126,22 +126,22 @@ export default function ContactUs() {
 
                 {/* Helpline Grid */}
                 <div style={{ marginBottom: 40 }}>
-                    <div style={{ fontSize: 28, fontWeight: 900, color: 'var(--gov-navy)', marginBottom: 25, textAlign: 'center' }}>
+                    <div style={{ fontSize: 'var(--kiosk-subtitle-size)', fontWeight: 900, color: 'var(--gov-navy)', marginBottom: 25, textAlign: 'center' }}>
                         Emergency & Department Helplines
                     </div>
-                    <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
+                    <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
                         {HELPLINES.map(h => (
-                            <div key={h.dept} className="kiosk-tile" style={{ padding: '30px 25px', minHeight: 'auto', flexDirection: 'row', gap: 20, justifyContent: 'flex-start', textAlign: 'left' }}>
+                            <div key={h.dept} className="kiosk-tile" style={{ padding: '25px', minHeight: 'auto', flexDirection: 'row', gap: 20, justifyContent: 'flex-start', textAlign: 'left' }}>
                                 <div style={{
-                                    width: 60, height: 60, background: 'var(--gov-navy)',
-                                    borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                    width: 50, height: 50, background: 'var(--gov-navy)',
+                                    borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
                                 }}>
-                                    <Icon name={h.icon} size={32} color="#fff" />
+                                    <Icon name={h.icon} size={28} color="#fff" />
                                 </div>
                                 <div style={{ flex: 1 }}>
-                                    <div style={{ fontSize: 16, color: '#64748b', fontWeight: 700, textTransform: 'uppercase', marginBottom: 2 }}>{h.dept}</div>
-                                    <div style={{ fontSize: 26, fontWeight: 900, color: 'var(--gov-navy)', letterSpacing: 1 }}>{h.number}</div>
-                                    <div style={{ fontSize: 14, color: 'var(--gov-saffron)', fontWeight: 700 }}>{h.hours}</div>
+                                    <div style={{ fontSize: 13, color: '#64748b', fontWeight: 700, textTransform: 'uppercase', marginBottom: 2 }}>{h.dept}</div>
+                                    <div style={{ fontSize: 22, fontWeight: 900, color: 'var(--gov-navy)', letterSpacing: 0.5 }}>{h.number}</div>
+                                    <div style={{ fontSize: 12, color: 'var(--gov-saffron)', fontWeight: 700 }}>{h.hours}</div>
                                 </div>
                             </div>
                         ))}
@@ -171,17 +171,19 @@ export default function ContactUs() {
                         </div>
                     ) : (
                         <form onSubmit={submit}>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30 }}>
+                            <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-grid-2col)', gap: 30 }}>
                                 <div className="kiosk-input-group">
                                     <label className="kiosk-label">Full Name / पूर्ण नाम</label>
                                     <input className="kiosk-input" type="text"
                                         placeholder="As per records"
+                                        style={{ height: 'var(--kiosk-btn-h)' }}
                                         value={form.name} onChange={set('name')} required />
                                 </div>
                                 <div className="kiosk-input-group">
                                     <label className="kiosk-label">Mobile Number / मोबाइल</label>
                                     <input className="kiosk-input" type="tel"
                                         placeholder="10-digit number"
+                                        style={{ height: 'var(--kiosk-btn-h)' }}
                                         value={form.mobile} onChange={set('mobile')} maxLength={10} required />
                                 </div>
                             </div>
@@ -189,6 +191,7 @@ export default function ContactUs() {
                                 <label className="kiosk-label">Subject / विषय</label>
                                 <input className="kiosk-input" type="text"
                                     placeholder="Brief subject of your query"
+                                    style={{ height: 'var(--kiosk-btn-h)' }}
                                     value={form.subject} onChange={set('subject')} required />
                             </div>
                             <div className="kiosk-input-group">
@@ -209,12 +212,12 @@ export default function ContactUs() {
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', gap: 20 }}>
-                                <button type="button" className="kiosk-btn kiosk-btn--secondary" style={{ flex: 1 }} onClick={() => navigate('/dashboard')}>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
+                                <button type="button" className="kiosk-btn kiosk-btn--secondary" style={{ flex: '1 1 150px', height: 'var(--kiosk-btn-h)' }} onClick={() => navigate('/dashboard')}>
                                     <Icon name="arrow_back" size={20} />
                                     CANCEL
                                 </button>
-                                <button type="submit" className="kiosk-btn kiosk-btn--primary" style={{ flex: 2 }}>
+                                <button type="submit" className="kiosk-btn kiosk-btn--primary" style={{ flex: '2 1 250px', height: 'var(--kiosk-btn-h)' }}>
                                     SUBMIT QUERY
                                     <Icon name="send" size={20} />
                                 </button>

@@ -44,6 +44,38 @@
   --kiosk-otp-w: 65px;
   --kiosk-otp-h: 85px;
   --kiosk-btn-h: 90px;
+  --kiosk-grid-2col: repeat(2, 1fr);
+  --kiosk-grid-1col: 1fr;
+}
+
+/* ── Responsive Overrides ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --kiosk-p-xl: 40px 30px;
+    --kiosk-p-lg: 30px 20px;
+    --kiosk-gap: 24px;
+    --kiosk-title-size: 42px;
+    --kiosk-grid-main: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --kiosk-p-xl: 30px 20px;
+    --kiosk-p-lg: 24px 16px;
+    --kiosk-p-md: 20px 16px;
+    --kiosk-gap: 20px;
+    --kiosk-title-size: 32px;
+    --kiosk-subtitle-size: 24px;
+    --kiosk-icon-size: 70px;
+    --kiosk-grid-main: 1fr;
+    --kiosk-grid-2col: 1fr;
+    --kiosk-grid-side: 1fr;
+    --kiosk-auth-grid: 1fr;
+    --kiosk-otp-w: 50px;
+    --kiosk-otp-h: 70px;
+    --kiosk-btn-h: 70px;
+  }
 }
 
 /* Base utility for responsive hide/show */

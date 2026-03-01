@@ -198,35 +198,37 @@ export default function DepartmentDetail() {
                 <div style={{
                     background: dept.accentColor,
                     borderRadius: 24,
-                    padding: '40px 60px',
+                    padding: 'var(--kiosk-p-lg)',
                     marginBottom: 30,
                     display: 'flex',
+                    flexWrap: 'wrap',
                     alignItems: 'center',
-                    gap: 45,
+                    justifyContent: 'center',
+                    gap: 30,
                     boxShadow: '0 15px 35px rgba(0,0,0,0.15)',
                     borderBottom: '8px solid var(--gov-saffron)'
                 }}>
                     <div style={{
-                        width: 120, height: 120, borderRadius: '50%',
+                        width: 100, height: 100, borderRadius: '50%',
                         background: 'rgba(255,255,255,0.15)',
                         border: '4px solid rgba(255,255,255,0.3)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         flexShrink: 0,
                     }}>
-                        <Icon name={dept.icon} size={64} color="#fff" />
+                        <Icon name={dept.icon} size={48} color="#fff" />
                     </div>
-                    <div style={{ flex: 1 }}>
-                        <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: 20, marginBottom: 5, fontWeight: 700 }}>{dept.nameHi}</div>
-                        <div style={{ color: '#fff', fontSize: 48, fontWeight: 900, lineHeight: 1.1 }}>{dept.name}</div>
-                        <div style={{ display: 'flex', gap: 30, marginTop: 20, flexWrap: 'wrap' }}>
-                            <span style={{ color: '#fff', fontSize: 16, display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(255,255,255,0.1)', padding: '8px 20px', borderRadius: 50 }}>
-                                <Icon name="business" size={20} /> {dept.nodal}
+                    <div style={{ flex: 1, minWidth: 280, textAlign: 'center' }}>
+                        <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: 18, marginBottom: 5, fontWeight: 700 }}>{dept.nameHi}</div>
+                        <div style={{ color: '#fff', fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: 900, lineHeight: 1.1 }}>{dept.name}</div>
+                        <div style={{ display: 'flex', gap: 15, marginTop: 20, flexWrap: 'wrap', justifyContent: 'center' }}>
+                            <span style={{ color: '#fff', fontSize: 13, display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', padding: '6px 15px', borderRadius: 50 }}>
+                                <Icon name="business" size={16} /> {dept.nodal}
                             </span>
-                            <span style={{ color: '#fff', fontSize: 16, display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(255,255,255,0.1)', padding: '8px 20px', borderRadius: 50 }}>
-                                <Icon name="phone" size={20} /> Helpline: <strong>{dept.helpline}</strong>
+                            <span style={{ color: '#fff', fontSize: 13, display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', padding: '6px 15px', borderRadius: 50 }}>
+                                <Icon name="phone" size={16} /> Help: <strong>{dept.helpline}</strong>
                             </span>
-                            <span style={{ color: '#fff', fontSize: 16, display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(255,255,255,0.1)', padding: '8px 20px', borderRadius: 50 }}>
-                                <Icon name="schedule" size={20} /> SLA: {dept.sla}
+                            <span style={{ color: '#fff', fontSize: 13, display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', padding: '6px 15px', borderRadius: 50 }}>
+                                <Icon name="schedule" size={16} /> SLA: {dept.sla}
                             </span>
                         </div>
                     </div>
@@ -234,22 +236,26 @@ export default function DepartmentDetail() {
 
                 {/* ── Tabs ──────────────────────────────────────────── */}
                 <div style={{
-                    display: 'flex', gap: 15,
+                    display: 'flex',
+                    gap: 10,
                     marginBottom: 30,
                     background: '#f1f5f9',
-                    padding: 10,
-                    borderRadius: 20
+                    padding: 8,
+                    borderRadius: 20,
+                    overflowX: 'auto',
+                    whiteSpace: 'nowrap',
+                    scrollbarWidth: 'none'
                 }}>
                     {['services', 'faqs', 'notices'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => { setActiveTab(tab); setSearch(''); }}
                             style={{
-                                flex: 1,
-                                padding: '20px',
+                                flex: '1 0 auto',
+                                padding: '15px 25px',
                                 border: 'none',
                                 borderRadius: 15,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: 800,
                                 background: activeTab === tab ? '#fff' : 'transparent',
                                 color: activeTab === tab ? dept.accentColor : '#64748b',
@@ -257,7 +263,7 @@ export default function DepartmentDetail() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                gap: 12,
+                                gap: 10,
                                 transition: 'all 0.2s',
                                 cursor: 'pointer'
                             }}
@@ -271,12 +277,12 @@ export default function DepartmentDetail() {
                 {/* ── Search Bar (Only for services) ────────────────── */}
                 {activeTab === 'services' && (
                     <div style={{
-                        background: '#fff', border: '3px solid #e2e8f0',
-                        borderRadius: 24, padding: '20px 35px',
-                        marginBottom: 35, display: 'flex', alignItems: 'center', gap: 20,
+                        background: '#fff', border: '2px solid #e2e8f0',
+                        borderRadius: 24, padding: '15px 25px',
+                        marginBottom: 35, display: 'flex', alignItems: 'center', gap: 15,
                         boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
                     }}>
-                        <Icon name="search" size={32} color="#94a3b8" />
+                        <Icon name="search" size={24} color="#94a3b8" />
                         <input
                             type="text"
                             placeholder={`Search services in ${dept.name}...`}
@@ -284,7 +290,7 @@ export default function DepartmentDetail() {
                             onChange={e => setSearch(e.target.value)}
                             style={{
                                 flex: 1, border: 'none', outline: 'none',
-                                fontSize: 24, fontWeight: 600, color: 'var(--gov-navy)',
+                                fontSize: 18, fontWeight: 600, color: 'var(--gov-navy)',
                                 background: 'transparent',
                             }}
                         />
@@ -336,33 +342,33 @@ export default function DepartmentDetail() {
                                                         borderTop: `10px solid ${dept.accentColor}`,
                                                         transition: 'transform 0.2s',
                                                     }}>
-                                                        <div style={{ display: 'flex', gap: 20, marginBottom: 20 }}>
+                                                        <div style={{ display: 'flex', gap: 15, marginBottom: 15, flexWrap: 'wrap' }}>
                                                             <div style={{
-                                                                width: 60, height: 60, background: `${dept.accentColor}15`,
-                                                                borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                                                width: 50, height: 50, background: `${dept.accentColor}15`,
+                                                                borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center'
                                                                 , flexShrink: 0
                                                             }}>
-                                                                <Icon name={s.icon} size={36} color={dept.accentColor} />
+                                                                <Icon name={s.icon} size={28} color={dept.accentColor} />
                                                             </div>
-                                                            <div style={{ flex: 1 }}>
-                                                                <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)' }}>{s.name}</div>
-                                                                <div style={{ fontSize: 18, color: '#64748b', fontWeight: 600, marginTop: 4 }}>SLA: {s.sla}</div>
+                                                            <div style={{ flex: 1, minWidth: 200 }}>
+                                                                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--gov-navy)' }}>{s.name}</div>
+                                                                <div style={{ fontSize: 14, color: '#64748b', fontWeight: 600, marginTop: 4 }}>SLA: {s.sla}</div>
                                                             </div>
                                                         </div>
                                                         <div style={{ fontSize: 18, color: '#475569', lineHeight: 1.6, marginBottom: 30, height: 60, overflow: 'hidden' }}>
                                                             {s.desc}
                                                         </div>
-                                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderTop: '2px solid #f1f5f9', paddingTop: 20 }}>
-                                                            <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--gov-navy)' }}>
+                                                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderTop: '2px solid #f1f5f9', paddingTop: 20, gap: 15 }}>
+                                                            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gov-navy)' }}>
                                                                 {s.fee}
                                                             </div>
                                                             <button
                                                                 className="kiosk-btn kiosk-btn--primary"
-                                                                style={{ height: 60, padding: '0 30px', fontSize: 18, margin: 0, width: 'auto' }}
+                                                                style={{ height: 50, padding: '0 20px', fontSize: 16, margin: 0, width: 'auto' }}
                                                                 onClick={() => navigate('/service-request', { state: { deptName: dept.name, serviceName: s.name } })}
                                                             >
                                                                 APPLY NOW
-                                                                <Icon name="arrow_forward" size={20} />
+                                                                <Icon name="arrow_forward" size={18} />
                                                             </button>
                                                         </div>
                                                     </div>
@@ -421,10 +427,10 @@ export default function DepartmentDetail() {
                 </div>
 
                 {/* ── Bottom Actions ───────────────────────────────────── */}
-                <div style={{ display: 'flex', gap: 20, marginTop: 50, justifyContent: 'center' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, marginTop: 50, justifyContent: 'center' }}>
                     <button
                         className="kiosk-btn kiosk-btn--secondary"
-                        style={{ height: 80, padding: '0 60px', fontSize: 22 }}
+                        style={{ height: 'var(--kiosk-btn-h)', padding: '0 40px', fontSize: 18, flex: '1 1 250px' }}
                         onClick={() => navigate('/departments')}
                     >
                         <Icon name="arrow_back" size={24} />
@@ -432,7 +438,7 @@ export default function DepartmentDetail() {
                     </button>
                     <button
                         className="kiosk-btn kiosk-btn--primary"
-                        style={{ height: 80, padding: '0 60px', fontSize: 22, background: 'var(--gov-navy)' }}
+                        style={{ height: 'var(--kiosk-btn-h)', padding: '0 40px', fontSize: 18, background: 'var(--gov-navy)', flex: '1 1 200px' }}
                         onClick={() => navigate('/dashboard')}
                     >
                         <Icon name="home" size={24} />

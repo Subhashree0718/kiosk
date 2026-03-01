@@ -24,7 +24,7 @@ export default function App_LTSolarSchemeChange() {
         icon="published_with_changes"
         theme="teal"
     >
-        <form className="kiosk-form" onSubmit={handleSubmit} className="p-8">
+        <form className="kiosk-form p-8" onSubmit={handleSubmit}>
             <div className="form-grid">
 
               <div className="flex flex-col gap-2 relative group md:col-span-2">

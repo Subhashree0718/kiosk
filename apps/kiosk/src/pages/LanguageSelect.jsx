@@ -44,7 +44,16 @@ export default function LanguageSelect() {
                 </div>
 
                 {/* 2. GLASSMORPHISM LANGUAGE TILES */}
-                <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-grid-main)', gap: 'var(--kiosk-gap)', justifyContent: 'center', width: '100%', maxWidth: 1000 }}>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                    gap: 'var(--kiosk-gap)',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    maxWidth: 900,
+                    margin: '0 auto'
+                }}>
                     {LANGUAGES.slice(0, 2).map(lang => (
                         <div
                             key={lang.code}
@@ -53,50 +62,52 @@ export default function LanguageSelect() {
                                 padding: 'var(--kiosk-p-md)',
                                 borderRadius: 40,
                                 cursor: 'pointer',
-                                transition: 'all 0.3s ease',
+                                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: 20,
-                                border: '2px solid rgba(255,255,255,0.5)',
+                                gap: 25,
+                                border: '3px solid rgba(255,255,255,0.6)',
+                                background: 'rgba(255,255,255,0.95)',
+                                boxShadow: '0 15px 35px rgba(0,33,71,0.08)',
                                 width: '100%'
                             }}
                             onClick={() => select(lang.code)}
                             onMouseEnter={e => {
-                                e.currentTarget.style.transform = 'translateY(-5px)';
-                                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+                                e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)';
+                                e.currentTarget.style.boxShadow = '0 25px 50px rgba(0,33,71,0.15)';
                                 e.currentTarget.style.borderColor = 'var(--gov-saffron)';
                             }}
                             onMouseLeave={e => {
                                 e.currentTarget.style.transform = 'none';
-                                e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(31, 38, 135, 0.07)';
-                                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
+                                e.currentTarget.style.boxShadow = '0 15px 35px rgba(0,33,71,0.08)';
+                                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)';
                             }}
                         >
                             <div style={{
-                                width: 'calc(var(--kiosk-icon-size) * 0.8)', height: 'calc(var(--kiosk-icon-size) * 0.8)',
+                                width: 90, height: 90,
                                 background: 'linear-gradient(135deg, var(--gov-navy), var(--gov-navy-l))',
                                 color: '#fff',
-                                borderRadius: 20,
+                                borderRadius: 24,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: 'calc(var(--kiosk-icon-size) * 0.5)',
+                                fontSize: 44,
                                 fontWeight: 900,
                                 boxShadow: '0 10px 20px rgba(0,33,71,0.2)',
                                 flexShrink: 0
                             }}>
                                 {lang.script}
                             </div>
-                            <div style={{ textAlign: 'left' }}>
-                                <div style={{ fontSize: 'calc(var(--kiosk-subtitle-size) * 1.1)', fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1 }}>
+                            <div style={{ textAlign: 'left', flex: 1 }}>
+                                <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1.1 }}>
                                     {lang.name}
                                 </div>
-                                <div style={{ fontSize: 14, fontWeight: 700, color: '#64748b', marginTop: 8, textTransform: 'uppercase' }}>
-                                    {lang.name === 'हिन्दी' ? 'Hindi' : 'English'}
+                                <div style={{ fontSize: 16, fontWeight: 700, color: '#64748b', marginTop: 10, textTransform: 'uppercase', letterSpacing: 1 }}>
+                                    {lang.name === 'हिन्दी' ? 'Hindi Language' : 'English Language'}
                                 </div>
                             </div>
-                            <div style={{ marginLeft: 'auto' }} className="desktop-only">
-                                <span className="material-icons" style={{ fontSize: 30, color: 'var(--gov-saffron)' }}>arrow_forward_ios</span>
+                            <div className="desktop-only" style={{ marginLeft: 10 }}>
+                                <span className="material-icons" style={{ fontSize: 36, color: 'var(--gov-saffron)', opacity: 0.6 }}>chevron_right</span>
                             </div>
                         </div>
                     ))}

@@ -24,7 +24,7 @@ export default function App_MobileEmailUpdation() {
         icon="contact_phone"
         theme="blue"
     >
-        <form className="kiosk-form" onSubmit={handleSubmit} className="p-8">
+        <form className="kiosk-form p-8" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-6">
 
               <div className="flex flex-col gap-2 relative group md:col-span-2">

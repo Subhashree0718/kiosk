@@ -24,7 +24,7 @@ export default function App_LTServiceConnection() {
         icon="bolt"
         theme="blue"
     >
-        <form className="kiosk-form" onSubmit={handleSubmit} className="p-8">
+        <form className="kiosk-form p-8" onSubmit={handleSubmit}>
             <div className="form-grid">
               {/* Section 1: Location Details */}
               <div className="col-span-2">

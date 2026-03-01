@@ -24,7 +24,7 @@ export default function App_GiveFeedback() {
         icon="feedback"
         theme="blue"
     >
-        <form className="kiosk-form" onSubmit={handleSubmit} className="p-8">
+        <form className="kiosk-form p-8" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
 
               <div>

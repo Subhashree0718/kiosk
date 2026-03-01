@@ -94,15 +94,15 @@ export default function ElectricityDepartment() {
             </div>
 
             <div className="kiosk-container">
-                <div className="kiosk-header">
-                    <div className="kiosk-title" style={{ fontSize: 36 }}>Citizen Service Portal</div>
-                    <div style={{ fontStyle: 'italic', fontSize: 22, color: '#666', marginBottom: 10 }}>नागरिक सेवा पोर्टल</div>
-                    <p style={{ fontSize: 18, color: '#666', fontWeight: 500 }}>
+                <div className="kiosk-header" style={{ marginBottom: 30 }}>
+                    <div className="kiosk-title" style={{ fontSize: 'var(--kiosk-subtitle-size)' }}>Citizen Service Portal</div>
+                    <div style={{ fontStyle: 'italic', fontSize: 18, color: '#666', marginBottom: 10 }}>नागरिक सेवा पोर्टल</div>
+                    <p style={{ fontSize: 16, color: '#666', fontWeight: 500 }}>
                         Select a service category to proceed | सेवा श्रेणी चुनें
                     </p>
                 </div>
 
-                <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: 28 }}>
+                <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-grid-2col)', gap: 'var(--kiosk-gap)' }}>
                     {SERVICES.map(s => (
                         <div
                             key={s.path}
@@ -131,10 +131,10 @@ export default function ElectricityDepartment() {
                 </div>
 
                 <div style={{ textAlign: 'center', marginTop: 40 }}>
-                    <button className="kiosk-btn kiosk-btn--secondary" style={{ height: 80, padding: '0 60px' }} onClick={() => navigate('/departments')}>
+                    <button className="kiosk-btn kiosk-btn--secondary" style={{ width: '100%', maxWidth: 400, height: 'var(--kiosk-btn-h)', borderRadius: 24 }} onClick={() => navigate('/departments')}>
                         <div style={{ textAlign: 'left' }}>
                             <span className="kiosk-gov-btn-hi">विभाग सूची पर वापस जाएं</span>
-                            <div style={{ fontSize: 15, opacity: 0.8 }}>BACK TO DEPARTMENTS</div>
+                            <div style={{ fontSize: 13, opacity: 0.8 }}>BACK TO DEPARTMENTS</div>
                         </div>
                         <Icon name="arrow_back" size={30} color="#fff" />
                     </button>
