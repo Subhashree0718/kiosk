@@ -19,6 +19,17 @@ import WaterNewConnection from '../pages/WaterNewConnection.jsx';
 import WaterAccount from '../pages/WaterAccount.jsx';
 import Profile from '../pages/Profile.jsx';
 
+// ── Gas Department Portal ─────────────────────────────────────────────────────
+import GasDepartment from '../pages/GasDepartment.jsx';
+import GasMyConnection from '../pages/gas/GasMyConnection.jsx';
+import GasBookRefill from '../pages/gas/GasBookRefill.jsx';
+import GasTrackRefill from '../pages/gas/GasTrackRefill.jsx';
+import GasNewConnection from '../pages/gas/GasNewConnection.jsx';
+import GasChangeDistributor from '../pages/gas/GasChangeDistributor.jsx';
+import GasBillPayment from '../pages/gas/GasBillPayment.jsx';
+import GasSubsidyStatus from '../pages/gas/GasSubsidyStatus.jsx';
+import GasEmergencyHelp from '../pages/gas/GasEmergencyHelp.jsx';
+
 // ── Electricity Department Portal ────────────────────────────────────────────
 import ElectricityDepartment from '../pages/ElectricityDepartment.jsx';
 
@@ -111,7 +122,17 @@ export function AppRoutes() {
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/departments" element={<DepartmentsPage />} />
             <Route path="/departments/:slug" element={<DepartmentDetail />} />
-            <Route path="/gas" element={<DepartmentDetail />} />
+            {/* ── Gas Department Portal ───────────────────────────────── */}
+            <Route path="/gas" element={<GasDepartment />} />
+            <Route path="/gas/my-connection" element={<GasMyConnection />} />
+            <Route path="/gas/book-refill" element={<GasBookRefill />} />
+            <Route path="/gas/track-refill" element={<GasTrackRefill />} />
+            <Route path="/gas/new-connection" element={<GasNewConnection />} />
+            <Route path="/gas/change-distributor" element={<GasChangeDistributor />} />
+            <Route path="/gas/bill-payment" element={<GasBillPayment />} />
+            <Route path="/gas/subsidy-status" element={<GasSubsidyStatus />} />
+            <Route path="/gas/emergency" element={<GasEmergencyHelp />} />
+
             <Route path="/municipal" element={<DepartmentDetail />} />
 
             {/* ── Water Department Portal ──────────────────────────────── */}
