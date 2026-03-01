@@ -59,13 +59,13 @@ export default function ContactUs() {
                             Official Head Office
                         </div>
                         <p style={{ fontSize: 22, fontWeight: 800, color: 'var(--gov-navy)', marginBottom: 20 }}>
-                            SUVIDHA Kiosk Initiative HQ
+                            C-DAC (Centre for Development of Advanced Computing)
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 15 }}>
                             {[
-                                { icon: 'business', text: 'Ministry of Housing and Urban Affairs' },
+                                { icon: 'business', text: 'Ministry of Electronics and Information Technology (MeitY)' },
                                 { icon: 'flag', text: 'Government of India' },
-                                { icon: 'location_on', text: 'Nirman Bhavan, New Delhi – 110 001' },
+                                { icon: 'location_on', text: 'C-DAC Centers: Bangalore, Delhi, Hyderabad, and CINE' },
                             ].map(r => (
                                 <div key={r.icon} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                                     <Icon name={r.icon} size={20} color="var(--gov-saffron)" style={{ marginTop: 4 }} />
@@ -75,9 +75,9 @@ export default function ContactUs() {
                         </div>
                         <div style={{ marginTop: 30, paddingTop: 20, borderTop: '2px dashed #e2e8f0', display: 'flex', flexDirection: 'column', gap: 12 }}>
                             {[
-                                { icon: 'email', text: 'helpdesk@suvidha.gov.in' },
-                                { icon: 'language', text: 'www.suvidha.gov.in' },
-                                { icon: 'print', text: 'Fax: 011-2306-1234' },
+                                { icon: 'email', text: 'smartcities.challenges@cdac.in' },
+                                { icon: 'email', text: 'isc-smartcity2v0@cdac.in' },
+                                { icon: 'language', text: 'industrysupport.cdacb.in/hackthon' },
                             ].map(r => (
                                 <div key={r.icon} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                                     <Icon name={r.icon} size={18} color="var(--gov-navy)" />
@@ -227,7 +227,7 @@ export default function ContactUs() {
                 </div>
 
                 <div style={{ textAlign: 'center', marginTop: 50, color: '#94a3b8', fontSize: 16 }}>
-                    🏢 Official Kiosk Interface v2.0 | Digital India Initiative
+                    🏢 SUVIDHA 2026 Hackathon | Smart City 2.0 Initiative
                 </div>
             </div>
         </GovLayout>

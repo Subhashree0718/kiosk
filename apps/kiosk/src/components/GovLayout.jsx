@@ -165,7 +165,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                         <div className="gov-footer__heading">About SUVIDHA</div>
                         <p style={{ fontSize: 12.5, lineHeight: 1.7, color: '#b0bec5' }}>
                             SUVIDHA (Smart Urban Virtual Interactive Digital Helpdesk Assistant) is a
-                            citizen services kiosk initiative under the Ministry of Housing &amp; Urban Affairs,
+                            citizen services kiosk initiative organized by C-DAC for the SUVIDHA Hackathon 2026 under the Ministry of Electronics &amp; Information Technology (MeitY),
                             Government of India, providing easy access to civic services for all citizens.
                         </p>
                         <div style={{ marginTop: 14, display: 'flex', gap: 10, alignItems: 'center' }}>
@@ -229,10 +229,10 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                         <div className="gov-footer__heading">Contact Us</div>
                         <div style={{ fontSize: 12.5, color: '#b0bec5', lineHeight: 2 }}>
                             {[
-                                { icon: 'location_on', text: 'Nirman Bhavan, New Delhi — 110 001' },
+                                { icon: 'location_on', text: 'C-DAC Centers: Bangalore, Delhi, Hyderabad, and CINE' },
                                 { icon: 'phone', text: '1800-11-0001 (Toll Free)' },
-                                { icon: 'print', text: '011-2306-1234' },
-                                { icon: 'email', text: 'helpdesk@suvidha.gov.in' },
+                                { icon: 'email', text: 'smartcities.challenges@cdac.in' },
+                                { icon: 'email', text: 'isc-smartcity2v0@cdac.in' },
                             ].map(r => (
                                 <div key={r.icon} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
                                     <Icon name={r.icon} size={14} color="#78909c" style={{ marginTop: 3, flexShrink: 0 }} />
@@ -249,7 +249,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                 {/* Bottom strip */}
                 <div className="gov-footer__bottom">
                     <div>
-                        &copy; {new Date().getFullYear()} SUVIDHA Kiosk Initiative, Government of India.
+                        &copy; {new Date().getFullYear()} SUVIDHA Hackathon 2026, C-DAC &amp; MeitY. Government of India.
                         &nbsp;|&nbsp;<a href="/">Terms</a>
                         &nbsp;|&nbsp;<a href="/">Privacy</a>
                         &nbsp;|&nbsp;<a href="/">Disclaimer</a>
