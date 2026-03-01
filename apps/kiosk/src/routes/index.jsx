@@ -56,6 +56,8 @@ import App_DynamicReduction from '../pages/electricity/apps/App_DynamicReduction
 import App_CalculateCharges from '../pages/electricity/apps/App_CalculateCharges.jsx';
 import App_ApplicationStatus from '../pages/electricity/apps/App_ApplicationStatus.jsx';
 import App_ModifyApplication from '../pages/electricity/apps/App_ModifyApplication.jsx';
+import App_PrintApplication from '../pages/electricity/apps/App_PrintApplication.jsx';
+import App_UploadCompletionCertificate from '../pages/electricity/apps/App_UploadCompletionCertificate.jsx';
 import App_EnterGrievance from '../pages/electricity/apps/App_EnterGrievance.jsx';
 import App_GrievanceStatus from '../pages/electricity/apps/App_GrievanceStatus.jsx';
 import App_GiveFeedback from '../pages/electricity/apps/App_GiveFeedback.jsx';
@@ -70,7 +72,8 @@ import App_LTSolarToNormal from '../pages/electricity/apps/App_LTSolarToNormal.j
 import App_SolarGroundMounted from '../pages/electricity/apps/App_SolarGroundMounted.jsx';
 
 // LT Solar Service Tracking – sub-service app pages
-import App_SolarApplicationStatus from '../pages/electricity/apps/App_SolarApplicationStatus.jsx';
+import App_SolarApplicationStatusAck from '../pages/electricity/apps/App_SolarApplicationStatusAck.jsx';
+import App_SolarApplicationStatusMobile from '../pages/electricity/apps/App_SolarApplicationStatusMobile.jsx';
 import App_SolarModifyApplication from '../pages/electricity/apps/App_SolarModifyApplication.jsx';
 
 // Services & Complaints – sub-service app pages
@@ -155,6 +158,8 @@ export function AppRoutes() {
             <Route path="/electricity/lt-application-tracking/calculate-charges" element={<App_CalculateCharges />} />
             <Route path="/electricity/lt-application-tracking/application-status" element={<App_ApplicationStatus />} />
             <Route path="/electricity/lt-application-tracking/modify-application" element={<App_ModifyApplication />} />
+            <Route path="/electricity/lt-application-tracking/print-application" element={<App_PrintApplication />} />
+            <Route path="/electricity/lt-application-tracking/upload-completion-certificate" element={<App_UploadCompletionCertificate />} />
             <Route path="/electricity/lt-application-tracking/enter-grievance" element={<App_EnterGrievance />} />
             <Route path="/electricity/lt-application-tracking/grievance-status" element={<App_GrievanceStatus />} />
             <Route path="/electricity/lt-application-tracking/give-feedback" element={<App_GiveFeedback />} />
@@ -169,7 +174,8 @@ export function AppRoutes() {
             <Route path="/electricity/solar-service-connections/online-solar-ground-mounted" element={<App_SolarGroundMounted />} />
 
             {/* LT Solar Service Tracking */}
-            <Route path="/electricity/lt-solar-service-tracking/application-status" element={<App_SolarApplicationStatus />} />
+            <Route path="/electricity/lt-solar-service-tracking/application-status-ack" element={<App_SolarApplicationStatusAck />} />
+            <Route path="/electricity/lt-solar-service-tracking/application-status-mobile" element={<App_SolarApplicationStatusMobile />} />
             <Route path="/electricity/lt-solar-service-tracking/modify-application" element={<App_SolarModifyApplication />} />
 
             {/* Services & Complaints */}

@@ -32,9 +32,9 @@ export default function ShiftingOfServices() {
                     <div className="kiosk-title" style={{ fontSize: 32 }}>Select Sub-Service</div>
                     <p style={{ fontSize: 18, color: '#666' }}>Choose the type of shifting work you wish to apply for</p>
                 </div>
-                <div className="kiosk-grid" style={{ gridTemplateColumns: '1fr', gap: 24, maxWidth: 800, margin: '0 auto' }}>
+                <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
                     {SERVICES.map(s => (
-                        <div key={s.path} className="kiosk-tile" style={{ borderLeft: `8px solid ${COLOR}`, padding: '28px 24px', cursor: 'pointer', minHeight: 100, alignItems: 'flex-start', gap: 12 }} onClick={() => navigate(s.path)}>
+                        <div key={s.path} className="kiosk-tile" style={{ borderLeft: `8px solid ${COLOR}`, padding: '28px 24px', cursor: 'pointer', minHeight: 120, alignItems: 'flex-start', gap: 12 }} onClick={() => navigate(s.path)}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 16, width: '100%' }}>
                                 <div style={{ width: 52, height: 52, borderRadius: 14, background: COLOR + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                                     <Icon name={s.icon} size={28} color={COLOR} />
