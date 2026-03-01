@@ -88,9 +88,17 @@ export default function ComplaintForm() {
                                 value={form.dept}
                                 onChange={e => setForm(f => ({ ...f, dept: e.target.value }))}
                                 required
+                                style={{ fontSize: 22, height: 75 }}
                             >
-                                <option value="">-- Select Department --</option>
-                                {depts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+                                <option value="">-- Select Department / विभाग चुनें --</option>
+                                {depts
+                                    .filter(d => ['ELEC', 'WATER', 'GAS', 'MUNI'].includes(d.code))
+                                    .map(d => (
+                                        <option key={d.id} value={d.id}>
+                                            {d.name}
+                                        </option>
+                                    ))
+                                }
                             </select>
                         </div>
 

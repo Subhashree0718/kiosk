@@ -39,6 +39,7 @@ const KIOSK_SERVICES = [
 
 /* ────────── Quick Pay ────────── */
 function QuickPay({ sessionMobile, initialPropertyId = '' }) {
+    const { t } = useT();
     const [propertyId, setPropertyId] = useState(initialPropertyId);
     const [bill, setBill] = useState(null);
     const [noBill, setNoBill] = useState(null);
@@ -100,17 +101,16 @@ function QuickPay({ sessionMobile, initialPropertyId = '' }) {
         <div className="kiosk-form kiosk-gov-card" style={{ textAlign: 'center' }}>
             <Icon name="check_circle" size={100} color="var(--gov-green)" />
             <h2 className="kiosk-title" style={{ color: 'var(--gov-green)', marginTop: 20 }}>
-                <span className="kiosk-gov-label-hi" style={{ fontSize: 32 }}>भुगतान सफल!</span>
-                Payment Successful!
+                {t('Payment Successful!', 'भुगतान सफल!')}
             </h2>
             <div style={{ background: '#f8f9fa', padding: 30, borderRadius: 15, margin: '20px 0', border: '2px solid #ddd' }}>
-                <div style={{ fontSize: 18, color: '#666' }}>Receipt Number / रसीद संख्या</div>
+                <div style={{ fontSize: 18, color: '#666' }}>{t('Receipt Number', 'रसीद संख्या')}</div>
                 <div style={{ fontSize: 36, fontWeight: 800, color: 'var(--gov-navy)' }}>{receipt.receiptNo}</div>
-                <div style={{ fontSize: 24, marginTop: 10, fontWeight: 700 }}>Amount Paid: ₹{receipt.amount}</div>
-                <div style={{ fontSize: 14, color: '#888', marginTop: 8 }}>Please keep this receipt for your records.</div>
+                <div style={{ fontSize: 24, marginTop: 10, fontWeight: 700 }}>{t('Amount Paid', 'भुगतान की गई राशि')}: ₹{receipt.amount}</div>
+                <div style={{ fontSize: 14, color: '#888', marginTop: 8 }}>{t('Please keep this receipt for your records.', 'कृपया इस रसीद को अपने रिकॉर्ड के लिए रखें।')}</div>
             </div>
             <button className="kiosk-btn kiosk-btn--primary" style={{ width: '100%' }} onClick={() => { setReceipt(null); setPropertyId(''); }}>
-                <span className="kiosk-gov-btn-hi">समाप्त</span> | FINISH
+                {t('FINISH', 'समाप्त')}
             </button>
         </div>
     );
@@ -118,8 +118,7 @@ function QuickPay({ sessionMobile, initialPropertyId = '' }) {
     return (
         <div className="kiosk-form kiosk-gov-card">
             <h2 style={{ textAlign: 'center', marginBottom: 20, fontSize: 24, color: 'var(--gov-navy)' }}>
-                <span className="kiosk-gov-label-hi" style={{ fontSize: 28 }}>त्वरित बिल भुगतान</span>
-                Quick Bill Payment
+                {t('Quick Bill Payment', 'त्वरित बिल भुगतान')}
             </h2>
             <SessionBadge sessionMobile={sessionMobile} />
             {error && <div className="gov-alert gov-alert--error" style={{ fontSize: 18, padding: 20, marginBottom: 20 }}>{error}</div>}
@@ -136,7 +135,7 @@ function QuickPay({ sessionMobile, initialPropertyId = '' }) {
                     {myProperties && myProperties.properties?.length > 0 && (
                         <div style={{ background: '#f0f4ff', border: '1px solid #aac', borderRadius: 12, padding: 16, marginBottom: 20 }}>
                             <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 10, color: 'var(--gov-navy)' }}>
-                                <Icon name="home" size={18} color="var(--gov-navy)" /> Your Registered Properties
+                                <Icon name="home" size={18} color="var(--gov-navy)" /> {t('Your Registered Properties', 'आपकी पंजीकृत संपत्तियां')}
                             </div>
                             {myProperties.properties.map((p, i) => (
                                 <div key={i}
@@ -160,8 +159,7 @@ function QuickPay({ sessionMobile, initialPropertyId = '' }) {
 
                     <div className="kiosk-input-group">
                         <label className="kiosk-label">
-                            <span className="kiosk-gov-label-hi">संपत्ति आईडी दर्ज करें</span>
-                            Property ID / Consumer ID
+                            {t('Property ID / Consumer ID', 'संपत्ति आईडी / उपभोक्ता आईडी')}
                         </label>
                         <input className="kiosk-input" type="text" value={propertyId}
                             onChange={e => setPropertyId(e.target.value)} placeholder="e.g. PROP-12345" />
@@ -180,8 +178,8 @@ function QuickPay({ sessionMobile, initialPropertyId = '' }) {
 
                     <button className="kiosk-btn kiosk-btn--primary" style={{ width: '100%' }} onClick={handleFetch} disabled={loading || !propertyId}>
                         <div style={{ textAlign: 'left' }}>
-                            <span className="kiosk-gov-btn-hi">{loading ? 'बिल खोज रहे हैं...' : 'मेरा बिल देखें'}</span>
-                            <div style={{ fontSize: 14, opacity: 0.8 }}>FETCH MY BILL</div>
+                            <span style={{ fontSize: 20, fontWeight: 800 }}>{loading ? t('Searching...', 'खोज रहे हैं...') : t('View My Bill', 'मेरा बिल देखें')}</span>
+                            <div style={{ fontSize: 13, opacity: 0.8, textTransform: 'uppercase' }}>{t('Fetch My Bill', 'बिल प्राप्त करें')}</div>
                         </div>
                     </button>
                 </>
@@ -189,41 +187,40 @@ function QuickPay({ sessionMobile, initialPropertyId = '' }) {
                 <div style={{ textAlign: 'center' }}>
                     <Icon name="check_circle_outline" size={80} color="#27ae60" />
                     <h3 style={{ fontSize: 24, margin: '16px 0 8px', color: '#27ae60' }}>
-                        <span className="kiosk-gov-label-hi" style={{ display: 'block', fontSize: 26 }}>कोई लंबित बिल नहीं</span>
-                        No Pending Bill
+                        {t('No Pending Bill', 'कोई लंबित बिल नहीं')}
                     </h3>
                     <div style={{ background: '#f0f9f4', border: '1px solid #a8e6c1', borderRadius: 12, padding: 24, margin: '16px 0', textAlign: 'left' }}>
-                        <div style={{ marginBottom: 8 }}><strong>Consumer:</strong> {noBill.consumerName}</div>
-                        <div style={{ marginBottom: 8 }}><strong>Property ID:</strong> {noBill.propertyId}</div>
+                        <div style={{ marginBottom: 8 }}><strong>{t('Consumer', 'उपभोक्ता')}:</strong> {noBill.consumerName}</div>
+                        <div style={{ marginBottom: 8 }}><strong>{t('Property ID', 'संपत्ति आईडी')}:</strong> {noBill.propertyId}</div>
                         <div style={{ marginTop: 12, color: '#555', fontSize: 15, lineHeight: 1.7 }}>ℹ️ {noBill.details}</div>
                     </div>
                     <button className="kiosk-btn kiosk-btn--secondary" style={{ width: '100%' }} onClick={() => setNoBill(null)}>
-                        <span className="kiosk-gov-btn-hi">वापस जाएं</span> | BACK
+                        {t('BACK', 'वापस जाएं')}
                     </button>
                 </div>
             ) : (
                 <div className="kiosk-card">
-                    <div className="kiosk-card__header">बिल सारांश | Bill Summary</div>
+                    <div className="kiosk-card__header">{t('Bill Summary', 'बिल सारांश')}</div>
                     <div className="kiosk-card__body">
                         <table className="kiosk-result-table">
                             <tbody>
-                                <tr><td>उपभोक्ता का नाम | Consumer Name</td><td>{bill.consumerName}</td></tr>
-                                <tr><td>संपत्ति आईडी | Property ID</td><td>{bill.propertyId}</td></tr>
-                                {bill.units && <tr><td>उपयोग (KL) | Units Consumed</td><td>{bill.units} KL</td></tr>}
-                                <tr><td>बिल का महीना | Bill Month</td><td>{bill.billMonth}</td></tr>
-                                <tr><td>देय तिथि | Due Date</td><td style={{ color: '#c0392b' }}>{bill.dueDate}</td></tr>
-                                {bill.arrears > 0 && <tr><td>बकाया | Arrears</td><td>₹{bill.arrears}</td></tr>}
-                                <tr><td>कुल देय राशि | Total Payable</td><td style={{ color: '#c0392b', fontWeight: 800, fontSize: 28 }}>₹{bill.total}</td></tr>
+                                <tr><td>{t('Consumer Name', 'उपभोक्ता का नाम')}</td><td>{bill.consumerName}</td></tr>
+                                <tr><td>{t('Property ID', 'संपत्ति आईडी')}</td><td>{bill.propertyId}</td></tr>
+                                {bill.units && <tr><td>{t('Units Consumed (KL)', 'खपत इकाइयां (KL)')}</td><td>{bill.units} KL</td></tr>}
+                                <tr><td>{t('Bill Month', 'बिल का महीना')}</td><td>{bill.billMonth}</td></tr>
+                                <tr><td>{t('Due Date', 'देय तिथि')}</td><td style={{ color: '#c0392b' }}>{bill.dueDate}</td></tr>
+                                {bill.arrears > 0 && <tr><td>{t('Arrears', 'बकाया')}</td><td>₹{bill.arrears}</td></tr>}
+                                <tr><td>{t('Total Payable', 'कुल देय राशि')}</td><td style={{ color: '#c0392b', fontWeight: 800, fontSize: 28 }}>₹{bill.total}</td></tr>
                             </tbody>
                         </table>
                         <div style={{ display: 'flex', gap: 20, marginTop: 30 }}>
                             <button className="kiosk-btn kiosk-btn--secondary" style={{ flex: 1 }} onClick={() => setBill(null)}>
-                                <span className="kiosk-gov-btn-hi">रद्द करें</span> | CANCEL
+                                {t('CANCEL', 'रद्द करें')}
                             </button>
                             <button className="kiosk-btn kiosk-btn--primary" style={{ flex: 2 }} onClick={handlePay} disabled={loading}>
                                 <div style={{ textAlign: 'left' }}>
-                                    <span className="kiosk-gov-btn-hi">{loading ? 'प्रक्रिया जारी है...' : `₹${bill.total} का भुगतान करें`}</span>
-                                    <div style={{ fontSize: 14, opacity: 0.8 }}>PAY NOW</div>
+                                    <span style={{ fontSize: 20, fontWeight: 800 }}>{loading ? t('Processing...', 'प्रक्रिया जारी है...') : t(`Pay ₹${bill.total}`, `₹${bill.total} का भुगतान करें`)}</span>
+                                    <div style={{ fontSize: 13, opacity: 0.8, textTransform: 'uppercase' }}>{t('Pay Now', 'अभी भुगतान करें')}</div>
                                 </div>
                             </button>
                         </div>
@@ -236,6 +233,7 @@ function QuickPay({ sessionMobile, initialPropertyId = '' }) {
 
 /* ────────── Find Property (5 Search Modes) ────────── */
 function FindProperty({ onPayNow }) {
+    const { t } = useT();
     const MODES = [
         { id: 'billNumber', icon: 'receipt', label: 'Bill Number', labelHi: 'बिल नंबर से', fields: ['zone', 'ward', 'address'] },
         { id: 'existingBill', icon: 'assignment', label: 'Existing Bill No', labelHi: 'मौजूदा बिल नंबर', fields: ['zone', 'ward', 'billNumber', 'subCode'] },
@@ -298,11 +296,10 @@ function FindProperty({ onPayNow }) {
     return (
         <div className="kiosk-form kiosk-gov-card" style={{ maxWidth: 1000 }}>
             <h2 style={{ textAlign: 'center', marginBottom: 6, fontSize: 24, color: 'var(--gov-navy)' }}>
-                <span className="kiosk-gov-label-hi" style={{ fontSize: 28 }}>अपनी संपत्ति खोजें</span>
-                Find My Property
+                {t('Find My Property', 'अपनी संपत्ति खोजें')}
             </h2>
             <p style={{ textAlign: 'center', color: '#777', marginBottom: 24, fontSize: 15 }}>
-                Search using any of the 5 methods below | नीचे दिए किसी भी तरीके से खोजें
+                {t('Search using any of the 5 methods below', 'नीचे दिए किसी भी तरीके से खोजें')}
             </p>
 
             {/* Mode selector tabs */}
@@ -366,8 +363,8 @@ function FindProperty({ onPayNow }) {
 
             <button className="kiosk-btn kiosk-btn--primary" style={{ width: '100%', height: 80 }} onClick={handleSearch} disabled={loading}>
                 <div style={{ textAlign: 'left' }}>
-                    <span className="kiosk-gov-btn-hi">{loading ? 'खोज जारी है...' : 'संपत्ति खोजें'}</span>
-                    <div style={{ fontSize: 14, opacity: 0.8 }}>{loading ? 'Please wait...' : 'SEARCH REGISTERED CONSUMERS'}</div>
+                    <span style={{ fontSize: 22, fontWeight: 900 }}>{loading ? t('Searching...', 'खोज जारी है...') : t('Find Property', 'संपत्ति खोजें')}</span>
+                    <div style={{ fontSize: 14, opacity: 0.8, textTransform: 'uppercase' }}>{loading ? t('Please wait...', 'कृपया प्रतीक्षा करें...') : t('SEARCH REGISTERED CONSUMERS', 'पंजीकृत उपभोक्ताओं की खोज करें')}</div>
                 </div>
                 <span className="material-icons" style={{ fontSize: 32, marginLeft: 'auto' }}>{loading ? 'hourglass_top' : 'search'}</span>
             </button>
@@ -441,6 +438,7 @@ function FindProperty({ onPayNow }) {
 
 /* ────────── Registration ────────── */
 function Registration({ onGoToPay, onGoToLogin, sessionMobile }) {
+    const { t } = useT();
     const [step, setStep] = useState(1); // 1=name-only, 2=otp, 4=success
     const [name, setName] = useState('');
     const [otp, setOtp] = useState('');
@@ -500,7 +498,7 @@ function Registration({ onGoToPay, onGoToLogin, sessionMobile }) {
                     {alreadyRegistered && (
                         <button className="kiosk-btn kiosk-btn--primary" style={{ marginTop: 16, width: '100%' }}
                             onClick={() => onGoToLogin && onGoToLogin()}>
-                            <span className="kiosk-gov-btn-hi">लॉगिन करें</span> | VIEW YOUR BILL INSTEAD
+                            {t('VIEW YOUR BILL INSTEAD', 'इसके बजाय अपना बिल देखें')}
                         </button>
                     )}
                 </div>
@@ -525,15 +523,14 @@ function Registration({ onGoToPay, onGoToLogin, sessionMobile }) {
 
                     <div className="kiosk-input-group">
                         <label className="kiosk-label">
-                            <span className="kiosk-gov-label-hi">पूरा नाम *</span>
-                            Full Name *
+                            {t('Full Name *', 'पूरा नाम *')}
                         </label>
                         <input className="kiosk-input" type="text" value={name}
-                            onChange={e => setName(e.target.value)} placeholder="Enter your full name" />
+                            onChange={e => setName(e.target.value)} placeholder={t('Enter your full name', 'अपना पूरा नाम दर्ज करें')} />
                     </div>
 
                     <button className="kiosk-btn kiosk-btn--primary" style={{ width: '100%' }} onClick={handleSend} disabled={loading || !sessionMobile}>
-                        <span className="kiosk-gov-btn-hi">{loading ? 'भेज रहे हैं...' : 'ओटीपी भेजें'}</span> | SEND OTP TO VERIFY
+                        {loading ? t('Sending...', 'भेज रहे हैं...') : t('SEND OTP TO VERIFY', 'सत्यापन के लिए ओटीपी भेजें')}
                     </button>
                 </>
             )}
@@ -541,8 +538,7 @@ function Registration({ onGoToPay, onGoToLogin, sessionMobile }) {
             {step === 2 && !alreadyRegistered && (
                 <>
                     <label className="kiosk-label" style={{ textAlign: 'center' }}>
-                        <span className="kiosk-gov-label-hi">ओटीपी दर्ज करें (+91-XXXXXX{sessionMobile?.slice(-4)} पर भेजा गया)</span>
-                        Enter 6-Digit OTP sent to your registered mobile
+                        {t(`Enter 6-Digit OTP sent to your registered mobile (+91-XXXXXX${sessionMobile?.slice(-4)})`, `पंजीकृत मोबाइल (+91-XXXXXX${sessionMobile?.slice(-4)}) पर भेजा गया 6-अंकीय ओटीपी दर्ज करें`)}
                     </label>
                     <OtpHint otp={otpHint} />
                     <input
@@ -550,14 +546,14 @@ function Registration({ onGoToPay, onGoToLogin, sessionMobile }) {
                         type="number"
                         value={otp}
                         onChange={e => setOtp(e.target.value.slice(0, 6))}
-                        placeholder="Enter 6-digit OTP"
+                        placeholder={t('Enter 6-digit OTP', '6-अंकीय ओटीपी दर्ज करें')}
                         style={{ textAlign: 'center', fontSize: 32, fontWeight: 800, letterSpacing: 12 }}
                     />
                     <button className="kiosk-btn kiosk-btn--primary" style={{ width: '100%' }} onClick={handleVerifyAndRegister} disabled={loading}>
-                        <span className="kiosk-gov-btn-hi">{loading ? 'प्रक्रिया जारी है...' : 'पंजीकरण करें'}</span> | REGISTER
+                        {loading ? t('Processing...', 'प्रक्रिया जारी है...') : t('REGISTER', 'पंजीकरण करें')}
                     </button>
                     <button className="kiosk-btn kiosk-btn--secondary" style={{ width: '100%', marginTop: 15 }} onClick={() => { setStep(1); setOtp(''); setOtpHint(''); }}>
-                        <span className="kiosk-gov-btn-hi">वापस जाएं</span> | BACK
+                        {t('BACK', 'वापस जाएं')}
                     </button>
                 </>
             )}
@@ -593,12 +589,12 @@ function Registration({ onGoToPay, onGoToLogin, sessionMobile }) {
 
 /* ────────── Customer Login — Already Authenticated ────────── */
 function CustomerLogin({ sessionMobile }) {
+    const { t } = useT();
     return (
         <div className="kiosk-form kiosk-gov-card" style={{ textAlign: 'center' }}>
             <Icon name="verified_user" size={80} color="var(--gov-green)" />
             <h2 style={{ fontSize: 28, margin: '20px 0', color: 'var(--gov-green)' }}>
-                <span className="kiosk-gov-label-hi" style={{ fontSize: 32, display: 'block' }}>आप पहले से लॉगिन हैं</span>
-                You Are Already Authenticated
+                {t('You Are Already Authenticated', 'आप पहले से लॉगिन हैं')}
             </h2>
             <p style={{ fontSize: 18, color: '#555', marginBottom: 20 }}>
                 Your session is active for mobile{' '}
@@ -618,29 +614,27 @@ function CustomerLogin({ sessionMobile }) {
 
 /* ────────── Help Contact ────────── */
 function HelpContact() {
+    const { t } = useT();
     return (
         <div className="kiosk-grid">
             <div className="kiosk-tile" style={{ minHeight: 180 }}>
                 <Icon name="call" size={60} color="#27ae60" />
                 <div className="kiosk-tile__label">
-                    <span className="kiosk-gov-tile-hi">डायल 1916</span>
-                    Dial 1916
+                    {t('Dial 1916', 'डायल 1916')}
                 </div>
-                <div className="kiosk-tile__desc">Toll-Free (24x7)</div>
+                <div className="kiosk-tile__desc">{t('Toll-Free (24x7)', 'टोल-फ्री (24x7)')}</div>
             </div>
             <div className="kiosk-tile" style={{ minHeight: 180 }}>
                 <Icon name="support_agent" size={60} color="#2980b9" />
                 <div className="kiosk-tile__label">
-                    <span className="kiosk-gov-tile-hi">सहायता डेस्क</span>
-                    Help Desk
+                    {t('Help Desk', 'सहायता डेस्क')}
                 </div>
-                <div className="kiosk-tile__desc">Counter #4 at HQ</div>
+                <div className="kiosk-tile__desc">{t('Counter #4 at HQ', 'मुख्यालय पर काउंटर नंबर 4')}</div>
             </div>
             <div className="kiosk-tile" style={{ minHeight: 180 }}>
                 <Icon name="email" size={60} color="#e67e22" />
                 <div className="kiosk-tile__label">
-                    <span className="kiosk-gov-tile-hi">ईमेल सहायता</span>
-                    Email Support
+                    {t('Email Support', 'ईमेल सहायता')}
                 </div>
                 <div className="kiosk-tile__desc">help@waterboard.gov.in</div>
             </div>
@@ -653,6 +647,7 @@ export default function WaterTaxCharges() {
     const navigate = useNavigate();
     const location = useLocation();
     const sessionMobile = useKioskStore(s => s.sessionMobile);
+    const { t } = useT();
 
     // If coming from WaterDepartment registration prompt, open 'reg' directly
     const [activeService, setActiveService] = useState(
@@ -671,8 +666,9 @@ export default function WaterTaxCharges() {
             <div className="kiosk-gov-header">
                 <Icon name="receipt_long" size={50} color="#fff" />
                 <div className="kiosk-gov-title-group">
-                    <div className="kiosk-gov-text-hi">जल कर एवं बिल सेवाएं</div>
-                    <div className="kiosk-gov-text-en">Water Tax & Bill Services</div>
+                    <div style={{ fontSize: 32, fontWeight: 900 }}>
+                        {t('Water Tax & Bill Services', 'जल कर एवं बिल सेवाएं')}
+                    </div>
                 </div>
             </div>
 
@@ -718,7 +714,7 @@ export default function WaterTaxCharges() {
 
                         <div style={{ textAlign: 'center', marginTop: 40 }}>
                             <button className="kiosk-btn kiosk-btn--secondary" onClick={() => { setActiveService(null); setInitialPropertyId(''); }}>
-                                <Icon name="arrow_back" size={24} color="#fff" /> BACK TO MENU | वापस जाएं
+                                <Icon name="arrow_back" size={24} color="#fff" /> {t('BACK TO MENU', 'वापस जाएं')}
                             </button>
                         </div>
                     </div>
@@ -727,7 +723,7 @@ export default function WaterTaxCharges() {
                 {!activeService && (
                     <div style={{ textAlign: 'center', marginTop: 20 }}>
                         <button className="kiosk-btn kiosk-btn--secondary" style={{ height: 60 }} onClick={() => navigate('/water')}>
-                            <Icon name="home" size={24} color="#fff" /> EXIT BOARD | बाहर निकलें
+                            <Icon name="home" size={24} color="#fff" /> {t('EXIT BOARD', 'बाहर निकलें')}
                         </button>
                     </div>
                 )}

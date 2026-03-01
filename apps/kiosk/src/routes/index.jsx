@@ -17,6 +17,7 @@ import WaterComplaints from '../pages/WaterComplaints.jsx';
 import WaterTaxCharges from '../pages/WaterTaxCharges.jsx';
 import WaterNewConnection from '../pages/WaterNewConnection.jsx';
 import WaterAccount from '../pages/WaterAccount.jsx';
+import Profile from '../pages/Profile.jsx';
 
 // ── Electricity Department Portal ────────────────────────────────────────────
 import ElectricityDepartment from '../pages/ElectricityDepartment.jsx';
@@ -101,6 +102,7 @@ export function AppRoutes() {
             <Route path="/" element={<LanguageSelect />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/bill-payment" element={<ProtectedRoute><BillPayment /></ProtectedRoute>} />
             <Route path="/service-request" element={<ProtectedRoute><ServiceRequest /></ProtectedRoute>} />
             <Route path="/complaint" element={<ProtectedRoute><ComplaintForm /></ProtectedRoute>} />

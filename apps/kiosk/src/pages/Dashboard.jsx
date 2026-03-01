@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
 import { useKioskStore } from '../store/index.js';
+import { useT } from '../hooks/useT.js';
 
 const Icon = ({ name, size = 24, color, style = {} }) => (
     <span className="material-icons" style={{ fontSize: size, color, lineHeight: 1, verticalAlign: 'middle', ...style }}>
@@ -152,8 +153,10 @@ export default function Dashboard() {
     const navigate = useNavigate();
     const logout = useKioskStore(s => s.logout);
     const user = useKioskStore(s => s.user);
+    const { t } = useT();
 
     const [slide, setSlide] = useState(0);
+    const [trackId, setTrackId] = useState('');
     const timerRef = useRef(null);
 
     useEffect(() => {
@@ -207,17 +210,17 @@ export default function Dashboard() {
                                 </span>
                             </h1>
                         </div>
-                        <div style={{ textAlign: 'right', display: 'flex', gap: 30, alignItems: 'center' }}>
+                        <div style={{ textAlign: 'right', display: 'flex', gap: 40, alignItems: 'center' }}>
                             <div style={{ textAlign: 'right' }}>
-                                <div style={{ fontSize: 56, fontWeight: 900, color: 'var(--gov-navy)', fontFamily: 'monospace', lineHeight: 1 }}>
+                                <div style={{ fontSize: 48, fontWeight: 900, color: 'var(--gov-navy)', fontFamily: 'monospace', lineHeight: 1 }}>
                                     {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </div>
-                                <div style={{ fontSize: 20, color: '#64748b', fontWeight: 700, marginTop: 5 }}>
+                                <div style={{ fontSize: 16, color: '#64748b', fontWeight: 700, marginTop: 5 }}>
                                     {new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })}
                                 </div>
                             </div>
-                            <div style={{ padding: '25px', background: 'rgba(255,255,255,0.5)', borderRadius: 30, border: '1.5px solid #fff' }}>
-                                <Icon name="wifi_tethering" size={48} color="var(--gov-navy)" />
+                            <div style={{ padding: '20px', background: 'rgba(255,255,255,0.5)', borderRadius: 28, border: '1.5px solid #fff' }}>
+                                <Icon name="wifi_tethering" size={40} color="var(--gov-navy)" />
                             </div>
                         </div>
                     </div>
@@ -231,11 +234,11 @@ export default function Dashboard() {
                                 padding: '60px 80px', color: '#fff', display: 'flex', alignItems: 'center', pointerEvents: slide === i ? 'auto' : 'none'
                             }}>
                                 <div style={{ flex: 1 }}>
-                                    <div style={{ background: 'rgba(255,255,255,0.25)', padding: '10px 25px', borderRadius: 100, fontSize: 16, fontWeight: 900, width: 'fit-content', marginBottom: 20, backdropFilter: 'blur(10px)', textTransform: 'uppercase', letterSpacing: 1.5 }}>
+                                    <div style={{ background: 'rgba(255,255,255,0.25)', padding: '6px 16px', borderRadius: 100, fontSize: 12, fontWeight: 900, width: 'fit-content', marginBottom: 12, backdropFilter: 'blur(10px)', textTransform: 'uppercase', letterSpacing: 1.5 }}>
                                         {s.tag}
                                     </div>
-                                    <h2 style={{ fontSize: 56, fontWeight: 900, margin: '0 0 15px 0', textShadow: '0 4px 15px rgba(0,0,0,0.3)' }}>{s.title}</h2>
-                                    <p style={{ fontSize: 26, opacity: 0.9, maxWidth: 800, fontWeight: 600, lineHeight: 1.4 }}>{s.subtitle}</p>
+                                    <h2 style={{ fontSize: 42, fontWeight: 900, margin: '0 0 10px 0', textShadow: '0 4px 15px rgba(0,0,0,0.3)', lineHeight: 1.1 }}>{s.title}</h2>
+                                    <p style={{ fontSize: 18, opacity: 0.8, maxWidth: 700, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>{s.subtitle}</p>
                                 </div>
                                 <div style={{ width: 180, height: 180, background: 'rgba(255,255,255,0.2)', borderRadius: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(20px)', border: '2px solid rgba(255,255,255,0.4)', boxShadow: '0 15px 35px rgba(0,0,0,0.2)' }}>
                                     <Icon name={s.icon} size={90} color="#fff" />
@@ -356,8 +359,15 @@ export default function Dashboard() {
                                         placeholder="SVDH-0000-0000"
                                         className="kiosk-input-elite"
                                         style={{ flex: 1, background: 'rgba(255,255,255,0.1)', border: '3.5px solid rgba(255,255,255,0.2)', padding: '30px 40px', borderRadius: 28, color: '#fff', fontSize: 32, fontWeight: 900, fontFamily: 'monospace', outline: 'none', textAlign: 'center' }}
+                                        value={trackId}
+                                        onChange={e => setTrackId(e.target.value.toUpperCase())}
                                     />
-                                    <button className="kiosk-btn-premium" style={{ width: 280, background: 'var(--gov-saffron)', color: '#fff', fontSize: 24 }} onClick={() => navigate('/status')}>
+                                    <button
+                                        className="kiosk-btn-premium"
+                                        style={{ width: 280, background: 'var(--gov-saffron)', color: '#fff', fontSize: 24 }}
+                                        onClick={() => navigate(`/status?id=${trackId}`)}
+                                        disabled={!trackId.trim()}
+                                    >
                                         TRACK NOW
                                     </button>
                                 </div>

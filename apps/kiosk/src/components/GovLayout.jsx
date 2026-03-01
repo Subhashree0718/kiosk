@@ -17,6 +17,7 @@ const NAV_DEFS = [
     { en: 'DEPARTMENTS', hi: 'विभाग', path: '/departments', icon: 'business' },
     { en: 'TRACK STATUS', hi: 'स्थिति ट्रैक करें', path: '/status', icon: 'track_changes' },
     { en: 'GRIEVANCES', hi: 'शिकायतें', path: '/complaint', icon: 'campaign' },
+    { en: 'PROFILE', hi: 'प्रोफ़ाइल', path: '/profile', icon: 'account_circle' },
     { en: 'CONTACT US', hi: 'संपर्क करें', path: '/contact', icon: 'support_agent' },
 ];
 
