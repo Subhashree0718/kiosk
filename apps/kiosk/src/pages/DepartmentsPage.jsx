@@ -50,7 +50,7 @@ const STATIC_DEPTS = [
         icon: 'location_city',
         helpline: '1800-425-0101',
         accentColor: '#6c3483',
-        services: ['Property Tax', 'Birth / Death Certificate', 'Sanitation & Sewage', 'Road & Drainage'],
+        services: ['Property Tax Payment', 'Birth / Death Certificate', 'Trade License', 'Town Planning', 'Professional Tax', 'Pet Licensing'],
         sla: '7 working days',
         nodal: 'Urban Local Body',
     },

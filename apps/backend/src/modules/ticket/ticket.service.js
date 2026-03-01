@@ -15,6 +15,25 @@ export async function getTicketByIdService(ticketId) {
     return ticket;
 }
 
+export async function getUserTicketsService(userId) {
+    return await db.ticket.findMany({
+        where: {
+            OR: [
+                { complaint: { userId } },
+                { serviceRequest: { userId } },
+                { payment: { userId } },
+            ]
+        },
+        include: {
+            complaint: { include: { department: true } },
+            serviceRequest: { include: { department: true } },
+            payment: true,
+            statusHistory: { orderBy: { changedAt: 'desc' }, take: 1 }
+        },
+        orderBy: { createdAt: 'desc' }
+    });
+}
+
 export async function updateTicketStatusService(id, status, note, changedBy) {
     const ticket = await db.ticket.findUnique({ where: { id } });
     if (!ticket) throw createError('Ticket not found.', 404);

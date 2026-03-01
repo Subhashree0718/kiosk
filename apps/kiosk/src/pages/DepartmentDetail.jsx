@@ -113,21 +113,50 @@ const DEPT_DATA = {
             'The Municipal Corporation handles property records, sanitation, roads, birth/death registration, ' +
             'building permits, trade licences, and solid waste management for the urban local body area.',
         services: [
-            { id: 's1', icon: 'home_work', name: 'Property Tax Payment', desc: 'Pay your annual property tax with receipt.', fee: 'Tax amount + 1%', sla: 'Instant' },
-            { id: 's2', icon: 'baby_changing_station', name: 'Birth Certificate', desc: 'Apply for a birth certificate (within 1 year free).', fee: 'Free / Rs. 15', sla: '7 days' },
-            { id: 's3', icon: 'sentiment_very_dissatisfied', name: 'Death Certificate', desc: 'Apply for a death certificate after official registration.', fee: 'Rs. 10', sla: '3 days' },
-            { id: 's4', icon: 'cleaning_services', name: 'Sanitation Complaint', desc: 'Report garbage piling, drain blockage, or open defecation.', fee: 'Free', sla: '48 hours' },
-            { id: 's5', icon: 'construction', name: 'Road / Pothole Repair', desc: 'Report a damaged road, pothole, or broken street light.', fee: 'Free', sla: '15 days' },
-            { id: 's6', icon: 'store', name: 'Trade Licence', desc: 'Obtain or renew a trade licence for your shop/business.', fee: 'Rs. 500 onwards', sla: '30 days' },
+            // Birth & Death
+            { id: 'm1', category: 'Birth & Death / जन्म और मृत्यु', icon: 'baby_changing_station', name: 'Birth Certificate Download', desc: 'Search and download official birth certificates by registration number/details.', fee: 'Rs. 15', sla: 'Instant' },
+            { id: 'm2', category: 'Birth & Death / जन्म और मृत्यु', icon: 'sentiment_very_dissatisfied', name: 'Death Certificate Download', desc: 'Search and download official death certificates.', fee: 'Rs. 10', sla: 'Instant' },
+            { id: 'm3', category: 'Birth & Death / जन्म और मृत्यु', icon: 'person_add', name: 'Child Name Inclusion', desc: 'Apply to add a child\'s name to an existing birth record.', fee: 'Rs. 200', sla: '7 days' },
+            { id: 'm4', category: 'Birth & Death / जन्म और मृत्यु', icon: 'local_hospital', name: 'Hospital Registration Tracking', desc: 'Track birth/death registrations forwarded by hospitals.', fee: 'Free', sla: 'Instant' },
+
+            // Property Tax
+            { id: 'm5', category: 'Property Tax / संपत्ति कर', icon: 'account_balance_wallet', name: 'Property Tax Payment', desc: 'Check balance and pay property tax online instantly.', fee: 'Tax Amount', sla: 'Instant' },
+            { id: 'm6', category: 'Property Tax / संपत्ति कर', icon: 'calculate', name: 'Property Tax Calculator', desc: 'Estimate your property or cellphone tower tax based on area and usage.', fee: 'Free', sla: 'Instant' },
+            { id: 'm7', category: 'Property Tax / संपत्ति कर', icon: 'receipt_long', name: 'Payment Receipt Download', desc: 'Download your previous property tax payment receipts.', fee: 'Free', sla: 'Instant' },
+            { id: 'm8', category: 'Property Tax / संपत्ति कर', icon: 'app_registration', name: 'New Assessment Request', desc: 'Apply for assessment of a new property for taxation.', fee: 'Varies', sla: '15 days' },
+            { id: 'm9', category: 'Property Tax / संपत्ति कर', icon: 'swap_horiz', name: 'Property Name Transfer', desc: 'Apply for ownership name transfer or sub-division of property.', fee: 'Rs. 500', sla: '30 days' },
+
+            // Professional & Company Tax
+            { id: 'm10', category: 'Professional & Company Tax / व्यावसायिक और कंपनी कर', icon: 'business_center', name: 'Professional Tax Registration', desc: 'Register your business or profession for professional tax.', fee: 'Rs. 1000', sla: '7 days' },
+            { id: 'm11', category: 'Professional & Company Tax / व्यावसायिक और कंपनी कर', icon: 'payments', name: 'Professional Tax Payment', desc: 'Pay your half-yearly professional tax online.', fee: 'Tax Amount', sla: 'Instant' },
+            { id: 'm12', category: 'Professional & Company Tax / व्यावसायिक और कंपनी कर', icon: 'corporate_fare', name: 'Company Tax Payment', desc: 'Check and pay company tax for your organization.', fee: 'Tax Amount', sla: 'Instant' },
+
+            // Trade & Business
+            { id: 'm13', category: 'Trade & Business / व्यापार और व्यवसाय', icon: 'storefront', name: 'New Trade License', desc: 'Application for new business/trade license in corporation limits.', fee: 'Rs. 500+', sla: '30 days' },
+            { id: 'm14', category: 'Trade & Business / व्यापार और व्यवसाय', icon: 'history', name: 'Trade License Renewal', desc: 'Renew your existing trade license for the next financial year.', fee: 'Varies', sla: '15 days' },
+            { id: 'm15', category: 'Trade & Business / व्यापार और व्यवसाय', icon: 'request_quote', name: 'Trade Fee Calculator', desc: 'Calculate the license fee for your trade category.', fee: 'Free', sla: 'Instant' },
+
+            // Town Planning
+            { id: 'm16', category: 'Town Planning / नगर नियोजन', icon: 'architecture', name: 'Building Plan Submission', desc: 'Apply for online building plan scrutiny and sanction.', fee: 'Varies', sla: '45 days' },
+            { id: 'm17', category: 'Town Planning / नगर नियोजन', icon: 'foundation', name: 'Small Plot Sanction', desc: 'Fast-track building approval for plots under 80 Sq.m.', fee: 'Reduced Fee', sla: '7 days' },
+            { id: 'm18', category: 'Town Planning / नगर नियोजन', icon: 'groups', name: 'Surveyor/Architect Registry', desc: 'View list of licensed surveyors and architects.', fee: 'Free', sla: 'Instant' },
+
+            // Essential Services
+            { id: 'm19', category: 'Essential Services / आवश्यक सेवाएं', icon: 'pets', name: 'Pet Animal Licence', desc: 'Apply for or renew license for pet dogs and cats.', fee: 'Rs. 50', sla: '3 days' },
+            { id: 'm20', category: 'Essential Services / आवश्यक सेवाएं', icon: 'meeting_room', name: 'Community Hall Booking', desc: 'Check availability and book corporation community halls.', fee: 'Varies', sla: '2 days' },
+            { id: 'm21', category: 'Essential Services / आवश्यक सेवाएं', icon: 'pool', name: 'Swimming Pool Membership', desc: 'Apply for membership at corporation-run swimming pools.', fee: 'Rs. 500', sla: '1 day' },
+            { id: 'm22', category: 'Essential Services / आवश्यक सेवाएं', icon: 'verified', name: 'Sanitary Certificate', desc: 'Apply for sanitary fitness certificate for institutions.', fee: 'Rs. 100', sla: '7 days' },
+            { id: 'm23', category: 'Essential Services / आवश्यक सेवाएं', icon: 'ad_units', name: 'Hoardings Approval', desc: 'Permission for digital and physical outdoor advertisements.', fee: 'Varies', sla: '15 days' },
+            { id: 'm24', category: 'Essential Services / आवश्यक सेवाएं', icon: 'delete_sweep', name: 'C & D Dump Registration', desc: 'Register for Construction & Demolition waste dumping.', fee: 'Rs. 200', sla: '2 days' },
         ],
         faqs: [
             { q: 'When is the property tax last date?', a: 'Usually 31 March every year. Pay before 31 January for a 5% rebate.' },
-            { q: 'How do I get a birth certificate?', a: 'Visit this kiosk, Choose Municipal → Birth Certificate. Upload hospital discharge slip and proceed.' },
-            { q: 'How do I report garbage not being collected?', a: 'Use the Sanitation Complaint service or call 14420. Guarantee resolution in 48 hours.' },
+            { q: 'How do I get a birth certificate?', a: 'Visit this kiosk, Choose Municipal → Birth Certificate Download. Search by date and registration number.' },
+            { q: 'How do I report garbage not being collected?', a: 'Use the Public Grievance service on the dashboard or call 1913. Resolution guaranteed in 48 hours.' },
         ],
         notices: [
             { date: '21 Feb', text: 'Property tax last date extended to 31 March. Pay now to avail 5% early-bird rebate.' },
-            { date: '14 Feb', text: 'Ward-level cleanliness drive on 2nd and 4th Saturday. Residents requested to cooperate.' },
+            { date: '14 Feb', text: 'New Building Rules 2024: Applications for plots under 80sqm now processed in 7 days.' },
         ],
     },
 };
@@ -272,42 +301,72 @@ export default function DepartmentDetail() {
                                     <div style={{ fontSize: 24, fontWeight: 700 }}>No services match "{search}"</div>
                                 </div>
                             ) : (
-                                <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', gap: 30 }}>
-                                    {filteredServices.map(s => (
-                                        <div key={s.id} className="kiosk-tile" style={{
-                                            alignItems: 'flex-start',
-                                            textAlign: 'left',
-                                            padding: '40px',
-                                            minHeight: 'auto',
-                                            borderTop: `10px solid ${dept.accentColor}`
-                                        }}>
-                                            <div style={{ display: 'flex', gap: 20, marginBottom: 20 }}>
-                                                <div style={{
-                                                    width: 60, height: 60, background: `${dept.accentColor}15`,
-                                                    borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center'
-                                                }}>
-                                                    <Icon name={s.icon} size={36} color={dept.accentColor} />
-                                                </div>
-                                                <div style={{ flex: 1 }}>
-                                                    <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)' }}>{s.name}</div>
-                                                    <div style={{ fontSize: 18, color: '#64748b', fontWeight: 600, marginTop: 4 }}>SLA: {s.sla}</div>
-                                                </div>
+                                <div>
+                                    {/* Grouping logic */}
+                                    {Object.entries(
+                                        filteredServices.reduce((groups, service) => {
+                                            const cat = service.category || 'General / सामान्य';
+                                            if (!groups[cat]) groups[cat] = [];
+                                            groups[cat].push(service);
+                                            return groups;
+                                        }, {})
+                                    ).map(([category, services]) => (
+                                        <div key={category} style={{ marginBottom: 60 }}>
+                                            <div style={{
+                                                fontSize: 28,
+                                                fontWeight: 900,
+                                                color: 'var(--gov-navy)',
+                                                marginBottom: 30,
+                                                paddingBottom: 15,
+                                                borderBottom: `4px solid ${dept.accentColor}40`,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: 15
+                                            }}>
+                                                <div style={{ width: 12, height: 40, background: dept.accentColor, borderRadius: 4 }}></div>
+                                                {category}
                                             </div>
-                                            <div style={{ fontSize: 18, color: '#475569', lineHeight: 1.6, marginBottom: 30, height: 60, overflow: 'hidden' }}>
-                                                {s.desc}
-                                            </div>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderTop: '2px solid #f1f5f9', paddingTop: 20 }}>
-                                                <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--gov-navy)' }}>
-                                                    {s.fee}
-                                                </div>
-                                                <button
-                                                    className="kiosk-btn kiosk-btn--primary"
-                                                    style={{ height: 60, padding: '0 30px', fontSize: 18 }}
-                                                    onClick={() => navigate('/service-request', { state: { deptName: dept.name, serviceName: s.name } })}
-                                                >
-                                                    APPLY NOW
-                                                    <Icon name="arrow_forward" size={20} />
-                                                </button>
+                                            <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', gap: 30 }}>
+                                                {services.map(s => (
+                                                    <div key={s.id} className="kiosk-tile" style={{
+                                                        alignItems: 'flex-start',
+                                                        textAlign: 'left',
+                                                        padding: '40px',
+                                                        minHeight: 'auto',
+                                                        borderTop: `10px solid ${dept.accentColor}`,
+                                                        transition: 'transform 0.2s',
+                                                    }}>
+                                                        <div style={{ display: 'flex', gap: 20, marginBottom: 20 }}>
+                                                            <div style={{
+                                                                width: 60, height: 60, background: `${dept.accentColor}15`,
+                                                                borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                                                , flexShrink: 0
+                                                            }}>
+                                                                <Icon name={s.icon} size={36} color={dept.accentColor} />
+                                                            </div>
+                                                            <div style={{ flex: 1 }}>
+                                                                <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)' }}>{s.name}</div>
+                                                                <div style={{ fontSize: 18, color: '#64748b', fontWeight: 600, marginTop: 4 }}>SLA: {s.sla}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div style={{ fontSize: 18, color: '#475569', lineHeight: 1.6, marginBottom: 30, height: 60, overflow: 'hidden' }}>
+                                                            {s.desc}
+                                                        </div>
+                                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderTop: '2px solid #f1f5f9', paddingTop: 20 }}>
+                                                            <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--gov-navy)' }}>
+                                                                {s.fee}
+                                                            </div>
+                                                            <button
+                                                                className="kiosk-btn kiosk-btn--primary"
+                                                                style={{ height: 60, padding: '0 30px', fontSize: 18, margin: 0, width: 'auto' }}
+                                                                onClick={() => navigate('/service-request', { state: { deptName: dept.name, serviceName: s.name } })}
+                                                            >
+                                                                APPLY NOW
+                                                                <Icon name="arrow_forward" size={20} />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                ))}
                                             </div>
                                         </div>
                                     ))}

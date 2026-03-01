@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
 import api from '../services/api.js';
 
@@ -11,21 +12,51 @@ const STATUS_COLORS = {
 };
 
 export default function StatusTracker() {
+    const [searchParams] = useSearchParams();
     const [ticketId, setTicketId] = useState('');
     const [result, setResult] = useState(null);
+    const [userTickets, setUserTickets] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [fetchingUsers, setFetchingUsers] = useState(false);
     const [error, setError] = useState('');
 
-    async function search(e) {
-        e.preventDefault();
-        if (!ticketId.trim()) { setError('Please enter a ticket ID.'); return; }
+    useEffect(() => {
+        fetchUserTickets();
+        const id = searchParams.get('id');
+        if (id) {
+            setTicketId(id.toUpperCase());
+            trackTicket(id.toUpperCase());
+        }
+    }, [searchParams]);
+
+    async function fetchUserTickets() {
+        setFetchingUsers(true);
+        try {
+            const { data } = await api.get('/tickets/user/me');
+            setUserTickets(data.data || []);
+        } catch (err) {
+            console.error('Failed to fetch user tickets', err);
+        } finally {
+            setFetchingUsers(false);
+        }
+    }
+
+    async function trackTicket(id) {
+        if (!id.trim()) { setError('Please enter a ticket ID.'); return; }
         setError(''); setResult(null); setLoading(true);
         try {
-            const { data } = await api.get(`/tickets/${ticketId.toUpperCase().trim()}`);
-            setResult(data);
+            const { data } = await api.get(`/tickets/${id.toUpperCase().trim()}`);
+            setResult(data.data);
+            setTicketId(id.toUpperCase());
+            window.scrollTo({ top: 400, behavior: 'smooth' });
         } catch (err) {
             setError(err.response?.data?.message || 'Ticket not found. Please check the ID.');
         } finally { setLoading(false); }
+    }
+
+    async function search(e) {
+        e.preventDefault();
+        trackTicket(ticketId);
     }
 
     return (
@@ -75,6 +106,57 @@ export default function StatusTracker() {
                         </div>
                     )}
                 </div>
+
+                {userTickets.length > 0 && !result && (
+                    <div style={{ maxWidth: 850, margin: '40px auto 0' }}>
+                        <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--gov-navy)', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
+                            <span className="material-icons" style={{ color: 'var(--gov-saffron)' }}>assignment</span>
+                            Your Recent Applications / आपके आवेदन
+                        </div>
+                        <div style={{ display: 'grid', gap: 15 }}>
+                            {userTickets.map((t) => (
+                                <div
+                                    key={t.id}
+                                    className="kiosk-glass"
+                                    style={{
+                                        padding: '20px 30px',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        cursor: 'pointer',
+                                        borderRadius: 20,
+                                        border: '2px solid rgba(0,0,0,0.05)',
+                                        transition: 'all 0.2s'
+                                    }}
+                                    onClick={() => trackTicket(t.ticketId)}
+                                    onMouseEnter={e => {
+                                        e.currentTarget.style.transform = 'translateX(10px)';
+                                        e.currentTarget.style.borderColor = 'var(--gov-navy)';
+                                        e.currentTarget.style.background = '#f8fafc';
+                                    }}
+                                    onMouseLeave={e => {
+                                        e.currentTarget.style.transform = 'none';
+                                        e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
+                                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.7)';
+                                    }}
+                                >
+                                    <div>
+                                        <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--gov-navy)' }}>{t.ticketId}</div>
+                                        <div style={{ fontSize: 16, color: '#64748b', fontWeight: 600 }}>
+                                            {t.serviceType?.replace(/_/g, ' ')} • {new Date(t.createdAt).toLocaleDateString('en-IN')}
+                                        </div>
+                                    </div>
+                                    <div style={{ textAlign: 'right' }}>
+                                        <span className={`gov-badge ${STATUS_COLORS[t.status] || ''}`} style={{ fontSize: 14 }}>
+                                            {t.status?.replace(/_/g, ' ')}
+                                        </span>
+                                        <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 5 }}>Click to view details</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {result && (
                     <div className="kiosk-form" style={{ maxWidth: 850, marginTop: 40, background: '#fff' }}>
