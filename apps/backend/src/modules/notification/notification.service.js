@@ -5,20 +5,23 @@ import { logger } from '../../config/logger.js';
  * Send an SMS via the configured gateway.
  * Falls back to console log in development.
  */
-const isDevStub = process.env.NODE_ENV !== 'production' ||
-    !process.env.SMS_API_KEY ||
+const isDevStub = !process.env.SMS_API_KEY ||
     process.env.SMS_API_KEY.startsWith('your_');
 
-export async function sendSms(mobile, message) {
+export async function sendSms(mobile, code) {
     if (isDevStub) {
-        logger.info(`[DEV SMS] To: +91${mobile} | ${message}`);
+        logger.info(`[DEV SMS] To: +91${mobile} | OTP: ${code}`);
         return { stub: true };
     }
     try {
         const res = await axios.post(process.env.SMS_GATEWAY_URL, {
-            apiKey: process.env.SMS_API_KEY,
-            to: mobile,
-            message,
+            variables_values: code,
+            route: 'otp',
+            numbers: mobile,
+        }, {
+            headers: {
+                authorization: process.env.SMS_API_KEY
+            }
         });
         logger.info(`SMS sent to ${mobile} | Status: ${res.status}`);
         return res.data;
