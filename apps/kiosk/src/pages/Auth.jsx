@@ -69,12 +69,12 @@ export default function Auth() {
                     <div style={{ background: '#fff', padding: '15px 30px', borderRadius: 20, display: 'inline-flex', alignItems: 'center', gap: 15, boxShadow: '0 10px 30px rgba(0,0,0,0.05)', marginBottom: 20 }}>
                         <span className="material-icons" style={{ fontSize: 32, color: 'var(--gov-navy)' }}>lock</span>
                         <div style={{ textAlign: 'left' }}>
-                            <div style={{ fontSize: 13, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Secure Authentication</div>
-                            <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--gov-navy)' }}>SUVIDHA Portal Access</div>
+                            <div style={{ fontSize: 13, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>{t('Secure Authentication', 'सुरक्षित प्रमाणीकरण')}</div>
+                            <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--gov-navy)' }}>{t('SUVIDHA Portal Access', 'सुविधा पोर्टल एक्सेस')}</div>
                         </div>
                     </div>
                     <h1 className="kiosk-text-display" style={{ fontSize: 42, color: 'var(--gov-navy)', margin: 0 }}>
-                        {step === 1 ? 'Enter Mobile Number' : 'Verify Identity'}
+                        {step === 1 ? t('Enter Mobile Number', 'मोबाइल नंबर दर्ज करें') : t('Verify Identity', 'पहचान सत्यापित करें')}
                     </h1>
                 </div>
 
@@ -92,7 +92,7 @@ export default function Auth() {
 
                         {step === 1 ? (
                             <div>
-                                <label className="kiosk-gov-label-hi" style={{ fontSize: 22, color: '#64748b' }}>मोबाइल नंबर दर्ज करें</label>
+                                <label style={{ fontSize: 22, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 15 }}>{t('Enter Mobile Number', 'मोबाइल नंबर दर्ज करें')}</label>
                                 <div style={{ display: 'flex', gap: 15, background: '#fff', padding: 15, borderRadius: 24, border: '3px solid var(--gov-navy)', alignItems: 'center', marginBottom: 20 }}>
                                     <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--gov-navy)', paddingRight: 15, borderRight: '2px solid #e2e8f0' }}>+91</div>
                                     <input
@@ -101,16 +101,16 @@ export default function Auth() {
                                         value={mobile} readOnly placeholder="00000 00000"
                                     />
                                 </div>
-                                <p style={{ fontSize: 18, color: '#64748b', fontWeight: 600 }}>We will send an OTP for verification. / हम सत्यापन के लिए एक ओटीपी भेजेंगे।</p>
+                                <p style={{ fontSize: 18, color: '#64748b', fontWeight: 600 }}>{t('We will send an OTP for verification.', 'हम सत्यापन के लिए एक ओटीपी भेजेंगे।')}</p>
 
                                 <button className="kiosk-btn-premium" style={{ width: '100%', background: 'var(--gov-navy)', color: '#fff', marginTop: 40, height: 90 }} onClick={sendOtp} disabled={loading || mobile.length < 10}>
-                                    {loading ? 'SENDING...' : 'SEND OTP'}
+                                    {loading ? t('SENDING...', 'भेज रहे हैं...') : t('SEND OTP', 'ओटीपी भेजें')}
                                     <span className="material-icons" style={{ fontSize: 32 }}>arrow_forward</span>
                                 </button>
                             </div>
                         ) : (
                             <div>
-                                <label className="kiosk-gov-label-hi" style={{ fontSize: 22, color: '#64748b' }}>ओटीपी दर्ज करें</label>
+                                <label style={{ fontSize: 22, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 15 }}>{t('Enter OTP', 'ओटीपी दर्ज करें')}</label>
                                 <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 30 }}>
                                     {[0, 1, 2, 3, 4, 5].map(i => (
                                         <div key={i} style={{
@@ -123,14 +123,14 @@ export default function Auth() {
                                         </div>
                                     ))}
                                 </div>
-                                <p style={{ textAlign: 'center', fontSize: 18, color: '#64748b' }}>Sent to <strong>+91-XXXXXX{mobile.slice(-4)}</strong></p>
+                                <p style={{ textAlign: 'center', fontSize: 18, color: '#64748b' }}>{t('Sent to', 'भेजा गया')} <strong>+91-XXXXXX{mobile.slice(-4)}</strong></p>
 
                                 <div style={{ display: 'flex', gap: 20, marginTop: 40 }}>
                                     <button className="kiosk-btn-premium" style={{ flex: 1, background: '#f1f5f9', color: 'var(--gov-navy)', height: 90 }} onClick={() => { setStep(1); setOtp(''); }}>
-                                        BACK
+                                        {t('BACK', 'वापस')}
                                     </button>
                                     <button className="kiosk-btn-premium" style={{ flex: 2, background: 'var(--gov-saffron)', color: '#fff', height: 90 }} onClick={verifyOtp} disabled={loading || otp.length < 6}>
-                                        {loading ? 'VERIFYING...' : 'LOGIN NOW'}
+                                        {loading ? t('VERIFYING...', 'सत्यापित कर रहे हैं...') : t('LOGIN NOW', 'अभी लॉगिन करें')}
                                         <span className="material-icons" style={{ fontSize: 32 }}>verified</span>
                                     </button>
                                 </div>
@@ -139,7 +139,7 @@ export default function Auth() {
 
                         <div style={{ marginTop: 40, padding: '20px', background: 'rgba(0,0,0,0.03)', borderRadius: 20, display: 'flex', gap: 15, alignItems: 'center' }}>
                             <span className="material-icons" style={{ color: '#16a34a' }}>privacy_tip</span>
-                            <div style={{ fontSize: 14, color: '#64748b', fontWeight: 600 }}>This session is protected with 256-bit encryption. Do not disclose OTP to anyone.</div>
+                            <div style={{ fontSize: 14, color: '#64748b', fontWeight: 600 }}>{t('This session is protected with 256-bit encryption. Do not disclose OTP to anyone.', 'यह सत्र 256-बिट एन्क्रिप्शन के साथ सुरक्षित है। किसी को भी ओटीपी न बताएं।')}</div>
                         </div>
                     </div>
 

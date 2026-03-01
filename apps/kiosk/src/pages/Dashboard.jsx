@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
 import { useKioskStore } from '../store/index.js';
+import { useT } from '../hooks/useT.js';
 
 const Icon = ({ name, size = 24, color, style = {} }) => (
     <span className="material-icons" style={{ fontSize: size, color, lineHeight: 1, verticalAlign: 'middle', ...style }}>
@@ -152,6 +153,7 @@ export default function Dashboard() {
     const navigate = useNavigate();
     const logout = useKioskStore(s => s.logout);
     const user = useKioskStore(s => s.user);
+    const { t } = useT();
 
     const [slide, setSlide] = useState(0);
     const timerRef = useRef(null);
@@ -208,6 +210,20 @@ export default function Dashboard() {
                             </h1>
                         </div>
                         <div style={{ textAlign: 'right', display: 'flex', gap: 30, alignItems: 'center' }}>
+                            <div
+                                style={{ cursor: 'pointer', textAlign: 'right' }}
+                                onClick={() => navigate('/profile')}
+                                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                            >
+                                <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gov-saffron)', marginBottom: 5 }}>
+                                    <Icon name="person" size={20} style={{ marginRight: 8 }} />
+                                    {user?.name || t('Citizen User', 'नागरिक उपयोगकर्ता')}
+                                </div>
+                                <div style={{ fontSize: 13, color: 'var(--gov-navy)', fontWeight: 800 }}>
+                                    {t('VIEW PROFILE & HISTORY', 'प्रोफ़ाइल और इतिहास देखें')}
+                                </div>
+                            </div>
                             <div style={{ textAlign: 'right' }}>
                                 <div style={{ fontSize: 56, fontWeight: 900, color: 'var(--gov-navy)', fontFamily: 'monospace', lineHeight: 1 }}>
                                     {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
