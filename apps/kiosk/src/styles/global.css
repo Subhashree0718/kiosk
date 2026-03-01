@@ -29,6 +29,30 @@
   --gov-shadow: 0 8px 24px rgba(0, 51, 102, 0.15);
   --gov-glass-bg: rgba(255, 255, 255, 0.85);
   --gov-glass-border: rgba(255, 255, 255, 0.6);
+
+  /* Kiosk Responsive Variables */
+  --kiosk-p-xl: 60px 80px;
+  --kiosk-p-lg: 40px 60px;
+  --kiosk-p-md: 32px 24px;
+  --kiosk-gap: 40px;
+  --kiosk-title-size: 56px;
+  --kiosk-subtitle-size: 36px;
+  --kiosk-icon-size: 100px;
+  --kiosk-grid-main: repeat(4, 1fr);
+  --kiosk-grid-side: 2.5fr 1fr;
+  --kiosk-auth-grid: 500px 420px;
+  --kiosk-otp-w: 65px;
+  --kiosk-otp-h: 85px;
+  --kiosk-btn-h: 90px;
+}
+
+/* Base utility for responsive hide/show */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -1888,6 +1912,15 @@ button {
 
 /* ── TABLET BREAKPOINT (max-width: 1024px) ────────────────────────── */
 @media (max-width: 1024px) {
+  :root {
+    --kiosk-p-xl: 32px 40px;
+    --kiosk-p-lg: 24px 32px;
+    --kiosk-gap: 24px;
+    --kiosk-title-size: 42px;
+    --kiosk-subtitle-size: 28px;
+    --kiosk-grid-main: repeat(2, 1fr);
+  }
+
   .gov-container {
     padding: 16px;
   }
@@ -1904,40 +1937,61 @@ button {
 
 /* ── MOBILE BREAKPOINT (max-width: 768px) ─────────────────────────── */
 @media (max-width: 768px) {
+  :root {
+    --kiosk-p-xl: 24px 16px;
+    --kiosk-p-lg: 16px 12px;
+    --kiosk-gap: 15px;
+    --kiosk-title-size: 24px;
+    --kiosk-subtitle-size: 18px;
+    --kiosk-icon-size: 60px;
+    --kiosk-grid-main: 1fr;
+    --kiosk-grid-side: 1fr;
+    --kiosk-auth-grid: 1fr;
+    --kiosk-otp-w: 45px;
+    --kiosk-otp-h: 60px;
+    --kiosk-btn-h: 70px;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
 
   /* Site Header */
   .kiosk-gov-header {
     flex-direction: column;
-    padding: 20px 16px;
-    gap: 15px;
+    padding: 20px 16px !important;
+    gap: 15px !important;
     text-align: center;
   }
 
   .kiosk-gov-emblem {
-    height: 70px;
+    height: 70px !important;
   }
 
   .kiosk-gov-text-hi {
-    font-size: 24px;
+    font-size: 24px !important;
     line-height: 1.2;
   }
 
   .kiosk-gov-text-en {
-    font-size: 14px;
+    font-size: 14px !important;
     letter-spacing: 0.5px;
   }
 
   /* Utility Bar */
   .gov-utility-bar {
-    height: auto;
-    padding: 8px 16px;
+    height: auto !important;
+    padding: 8px 16px !important;
     flex-direction: column;
     gap: 8px;
   }
 
   .gov-utility-bar__left {
-    display: none;
-    /* Hide for mobile to save space */
+    display: none !important;
   }
 
   /* Navigation Bar - Horizontal Scroll */
@@ -1949,36 +2003,35 @@ button {
   }
 
   .gov-navbar__item {
-    padding: 12px 16px;
-    font-size: 13px;
+    padding: 12px 16px !important;
+    font-size: 13px !important;
     flex: 0 0 auto;
-    /* Prevent items from shrinking */
   }
 
   /* Layout Containers */
   .gov-main-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 20px;
   }
 
   .gov-container {
-    padding: 12px;
+    padding: 12px !important;
   }
 
   /* Content Grids */
   .gov-service-grid {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
     gap: 8px;
     padding: 4px;
   }
 
   .gov-gallery,
   .gov-scheme-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   .gov-stats-strip {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .gov-stat-item {
@@ -1987,76 +2040,75 @@ button {
   }
 
   .gov-footer__main {
-    grid-template-columns: 1fr;
-    padding: 20px 16px;
+    grid-template-columns: 1fr !important;
+    padding: 20px 16px !important;
   }
 
   /* Forms */
   .gov-form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 10px;
   }
 
   /* Kiosk Specific Adjustments */
   .kiosk-container {
-    padding: 20px 12px;
-    gap: 15px;
+    padding: 20px 12px !important;
+    gap: 15px !important;
   }
 
   .kiosk-title {
-    font-size: 20px;
+    font-size: 20px !important;
   }
 
   .kiosk-tile {
-    padding: 24px 16px;
-    min-height: 200px;
-    gap: 15px;
-    border-radius: 16px;
+    padding: 24px 16px !important;
+    min-height: 200px !important;
+    gap: 15px !important;
+    border-radius: 16px !important;
   }
 
   .kiosk-tile__icon {
-    font-size: 44px;
+    font-size: 44px !important;
   }
 
   .kiosk-tile__label {
-    font-size: 16px;
+    font-size: 16px !important;
   }
 
   .kiosk-tile__desc {
-    font-size: 13px;
-    max-width: 100%;
+    font-size: 13px !important;
+    max-width: 100% !important;
   }
 
   .kiosk-form {
-    padding: 20px;
-    border-radius: 12px;
+    padding: 20px !important;
+    border-radius: 12px !important;
   }
 
   .kiosk-input {
-    height: 60px;
-    padding: 0 20px;
-    font-size: 18px;
-    border-radius: 12px;
+    height: 60px !important;
+    padding: 0 20px !important;
+    font-size: 18px !important;
+    border-radius: 12px !important;
   }
 
   .kiosk-btn {
-    height: 60px;
-    padding: 0 30px;
-    font-size: 16px;
-    border-radius: 12px;
-    width: 100%;
-    /* Make buttons full-width for mobile */
+    height: 60px !important;
+    padding: 0 30px !important;
+    font-size: 16px !important;
+    border-radius: 12px !important;
+    width: 100% !important;
   }
 
   .kiosk-otp-box {
-    width: 45px;
-    height: 55px;
-    font-size: 24px;
+    width: 45px !important;
+    height: 55px !important;
+    font-size: 24px !important;
   }
 
   .kiosk-result-table td {
-    padding: 12px;
-    font-size: 14px;
+    padding: 12px !important;
+    font-size: 14px !important;
   }
 
   /* Status Tracker / Tables */
@@ -2066,12 +2118,12 @@ button {
   }
 
   .gov-ticker {
-    font-size: 11px;
-    padding: 4px 12px;
+    font-size: 11px !important;
+    padding: 4px 12px !important;
   }
 
   .gov-breadcrumb {
-    font-size: 11px;
-    padding: 6px 0;
+    font-size: 11px !important;
+    padding: 6px 0 !important;
   }
 }

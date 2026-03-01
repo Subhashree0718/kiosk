@@ -78,88 +78,87 @@ export default function Auth() {
                     </h1>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '500px 420px', gap: 40, alignItems: 'start' }}>
+                <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-auth-grid)', gap: 'var(--kiosk-gap)', alignItems: 'start', width: '100%', maxWidth: 1000 }}>
 
                     {/* LEFT PANEL: INPUT & INFO */}
-                    <div className="kiosk-glass" style={{ padding: 50, borderRadius: 40, border: '2px solid rgba(255,255,255,0.6)' }}>
+                    <div className="kiosk-glass" style={{ padding: 'var(--kiosk-p-md)', borderRadius: 24, border: '2px solid rgba(255,255,255,0.6)' }}>
 
                         {error && (
-                            <div style={{ background: '#fee2e2', borderLeft: '8px solid #ef4444', padding: '20px', borderRadius: 16, color: '#991b1b', fontSize: 18, fontWeight: 700, marginBottom: 30, display: 'flex', gap: 12 }}>
-                                <span className="material-icons">report</span>
+                            <div style={{ background: '#fee2e2', borderLeft: '6px solid #ef4444', padding: '15px', borderRadius: 12, color: '#991b1b', fontSize: 14, fontWeight: 700, marginBottom: 20, display: 'flex', gap: 10 }}>
+                                <span className="material-icons" style={{ fontSize: 20 }}>report</span>
                                 {error}
                             </div>
                         )}
 
                         {step === 1 ? (
                             <div>
-                                <label style={{ fontSize: 22, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 15 }}>{t('Enter Mobile Number', 'मोबाइल नंबर दर्ज करें')}</label>
-                                <div style={{ display: 'flex', gap: 15, background: '#fff', padding: 15, borderRadius: 24, border: '3px solid var(--gov-navy)', alignItems: 'center', marginBottom: 20 }}>
-                                    <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--gov-navy)', paddingRight: 15, borderRight: '2px solid #e2e8f0' }}>+91</div>
+                                <label style={{ fontSize: 16, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 10 }}>{t('Enter Mobile Number', 'मोबाइल नंबर दर्ज करें')}</label>
+                                <div style={{ display: 'flex', gap: 10, background: '#fff', padding: 10, borderRadius: 16, border: '2px solid var(--gov-navy)', alignItems: 'center', marginBottom: 15 }}>
+                                    <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--gov-navy)', paddingRight: 10, borderRight: '2px solid #e2e8f0' }}>+91</div>
                                     <input
                                         className="kiosk-input-elite"
-                                        style={{ flex: 1, border: 'none', fontSize: 44, fontWeight: 900, color: 'var(--gov-navy)', background: 'transparent', letterSpacing: 4, width: '100%' }}
+                                        style={{ flex: 1, border: 'none', fontSize: 28, fontWeight: 900, color: 'var(--gov-navy)', background: 'transparent', letterSpacing: 2, width: '100%' }}
                                         value={mobile} readOnly placeholder="00000 00000"
                                     />
                                 </div>
-                                <p style={{ fontSize: 18, color: '#64748b', fontWeight: 600 }}>{t('We will send an OTP for verification.', 'हम सत्यापन के लिए एक ओटीपी भेजेंगे।')}</p>
+                                <p style={{ fontSize: 14, color: '#64748b', fontWeight: 600 }}>{t('We will send an OTP for verification.', 'हम सत्यापन के लिए एक ओटीपी भेजेंगे।')}</p>
 
-                                <button className="kiosk-btn-premium" style={{ width: '100%', background: 'var(--gov-navy)', color: '#fff', marginTop: 40, height: 90 }} onClick={sendOtp} disabled={loading || mobile.length < 10}>
+                                <button className="kiosk-btn-premium" style={{ width: '100%', background: 'var(--gov-navy)', color: '#fff', marginTop: 25, height: 'var(--kiosk-btn-h)' }} onClick={sendOtp} disabled={loading || mobile.length < 10}>
                                     {loading ? t('SENDING...', 'भेज रहे हैं...') : t('SEND OTP', 'ओटीपी भेजें')}
-                                    <span className="material-icons" style={{ fontSize: 32 }}>arrow_forward</span>
+                                    <span className="material-icons" style={{ fontSize: 24 }}>arrow_forward</span>
                                 </button>
                             </div>
                         ) : (
                             <div>
-                                <label style={{ fontSize: 22, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 15 }}>{t('Enter OTP', 'ओटीपी दर्ज करें')}</label>
-                                <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 30 }}>
+                                <label style={{ fontSize: 16, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 10 }}>{t('Enter OTP', 'ओटीपी दर्ज करें')}</label>
+                                <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 25 }}>
                                     {[0, 1, 2, 3, 4, 5].map(i => (
                                         <div key={i} style={{
-                                            width: 65, height: 85, border: `3px solid ${otp.length > i ? 'var(--gov-navy)' : '#e2e8f0'}`,
-                                            borderRadius: 16, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            fontSize: 36, fontWeight: 900, color: 'var(--gov-navy)',
-                                            boxShadow: otp.length === i ? '0 0 0 4px rgba(0,51,102,0.1)' : 'none'
+                                            width: 'var(--kiosk-otp-w)', height: 'var(--kiosk-otp-h)', border: `2.5px solid ${otp.length > i ? 'var(--gov-navy)' : '#e2e8f0'}`,
+                                            borderRadius: 12, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            fontSize: 24, fontWeight: 900, color: 'var(--gov-navy)',
+                                            boxShadow: otp.length === i ? '0 0 0 3px rgba(0,51,102,0.1)' : 'none'
                                         }}>
                                             {otp[i] || ''}
                                         </div>
                                     ))}
                                 </div>
-                                <p style={{ textAlign: 'center', fontSize: 18, color: '#64748b' }}>{t('Sent to', 'भेजा गया')} <strong>+91-XXXXXX{mobile.slice(-4)}</strong></p>
+                                <p style={{ textAlign: 'center', fontSize: 14, color: '#64748b' }}>{t('Sent to', 'भेजा गया')} <strong>+91-XX{mobile.slice(-4)}</strong></p>
 
-                                <div style={{ display: 'flex', gap: 20, marginTop: 40 }}>
-                                    <button className="kiosk-btn-premium" style={{ flex: 1, background: '#f1f5f9', color: 'var(--gov-navy)', height: 90 }} onClick={() => { setStep(1); setOtp(''); }}>
+                                <div style={{ display: 'flex', gap: 15, marginTop: 30 }}>
+                                    <button className="kiosk-btn-premium" style={{ flex: 1, background: '#f1f5f9', color: 'var(--gov-navy)', height: 'var(--kiosk-btn-h)' }} onClick={() => { setStep(1); setOtp(''); }}>
                                         {t('BACK', 'वापस')}
                                     </button>
-                                    <button className="kiosk-btn-premium" style={{ flex: 2, background: 'var(--gov-saffron)', color: '#fff', height: 90 }} onClick={verifyOtp} disabled={loading || otp.length < 6}>
-                                        {loading ? t('VERIFYING...', 'सत्यापित कर रहे हैं...') : t('LOGIN NOW', 'अभी लॉगिन करें')}
-                                        <span className="material-icons" style={{ fontSize: 32 }}>verified</span>
+                                    <button className="kiosk-btn-premium" style={{ flex: 2, background: 'var(--gov-saffron)', color: '#fff', height: 'var(--kiosk-btn-h)' }} onClick={verifyOtp} disabled={loading || otp.length < 6}>
+                                        {loading ? t('VERIFYING...', 'सत्यापित कर रहे हैं...') : t('LOGIN', 'लॉगिन')}
                                     </button>
                                 </div>
                             </div>
                         )}
 
-                        <div style={{ marginTop: 40, padding: '20px', background: 'rgba(0,0,0,0.03)', borderRadius: 20, display: 'flex', gap: 15, alignItems: 'center' }}>
-                            <span className="material-icons" style={{ color: '#16a34a' }}>privacy_tip</span>
-                            <div style={{ fontSize: 14, color: '#64748b', fontWeight: 600 }}>{t('This session is protected with 256-bit encryption. Do not disclose OTP to anyone.', 'यह सत्र 256-बिट एन्क्रिप्शन के साथ सुरक्षित है। किसी को भी ओटीपी न बताएं।')}</div>
+                        <div style={{ marginTop: 30, padding: '15px', background: 'rgba(0,0,0,0.03)', borderRadius: 15, display: 'flex', gap: 10, alignItems: 'center' }}>
+                            <span className="material-icons" style={{ color: '#16a34a', fontSize: 18 }}>privacy_tip</span>
+                            <div style={{ fontSize: 11, color: '#64748b', fontWeight: 600 }}>{t('Protected with 256-bit encryption.', '256-बिट एन्क्रिप्शन के साथ सुरक्षित।')}</div>
                         </div>
                     </div>
 
                     {/* RIGHT PANEL: NUMERIC PAD */}
-                    <div className="kiosk-glass" style={{ padding: 40, borderRadius: 40, border: '2px solid rgba(255,255,255,0.6)' }}>
-                        <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: 15 }}>
+                    <div className="kiosk-glass" style={{ padding: 'var(--kiosk-p-md)', borderRadius: 24, border: '2px solid rgba(255,255,255,0.6)' }}>
+                        <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
                             {NUM_PAD.map(val => (
                                 <button
                                     key={val}
                                     className="kiosk-btn-premium"
                                     style={{
-                                        height: 90, padding: 0, borderRadius: 25,
+                                        height: 'var(--kiosk-btn-h)', padding: 0, borderRadius: 16,
                                         background: val === 'CLR' || val === 'DEL' ? '#fee2e2' : '#fff',
                                         color: val === 'CLR' || val === 'DEL' ? '#dc2626' : 'var(--gov-navy)',
-                                        fontSize: val === 'CLR' || val === 'DEL' ? 20 : 32,
-                                        boxShadow: '0 5px 15px rgba(0,0,0,0.05)'
+                                        fontSize: val === 'CLR' || val === 'DEL' ? 14 : 24,
+                                        boxShadow: '0 4px 10px rgba(0,0,0,0.05)'
                                     }}
                                     onClick={() => handleNumPad(val)}
                                 >
-                                    {val === 'DEL' ? <span className="material-icons" style={{ fontSize: 32 }}>backspace</span> : val}
+                                    {val === 'DEL' ? <span className="material-icons" style={{ fontSize: 24 }}>backspace</span> : val}
                                 </button>
                             ))}
                         </div>

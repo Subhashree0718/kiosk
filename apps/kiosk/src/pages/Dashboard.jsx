@@ -173,102 +173,103 @@ export default function Dashboard() {
     return (
         <GovLayout breadcrumbs={[]} showSidebar={false}>
             {/* 1. ELITE TOP TICKER (UPGRADED) */}
-            <div className="kiosk-ticker-elite" style={{ height: 60, display: 'flex', alignItems: 'center', position: 'relative', zIndex: 100 }}>
-                <div style={{ background: 'var(--gov-saffron)', color: '#fff', padding: '0 30px', height: '100%', display: 'flex', alignItems: 'center', fontWeight: 900, fontSize: 16, zIndex: 10, boxShadow: '10px 0 20px rgba(0,0,0,0.3)', whiteSpace: 'nowrap' }}>
-                    <Icon name="campaign" size={24} style={{ marginRight: 10 }} />
-                    LATEST UPDATES / नवीनतम अपडेट
+            <div className="kiosk-ticker-elite" style={{ height: 'var(--kiosk-ticker-h, 60px)', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 100 }}>
+                <div style={{ background: 'var(--gov-saffron)', color: '#fff', padding: '0 20px', height: '100%', display: 'flex', alignItems: 'center', fontWeight: 900, fontSize: 13, zIndex: 10, boxShadow: '10px 0 20px rgba(0,0,0,0.3)', whiteSpace: 'nowrap' }}>
+                    <Icon name="campaign" size={18} style={{ marginRight: 8 }} />
+                    <span className="desktop-only">LATEST UPDATES / नवीनतम अपडेट</span>
+                    <span className="mobile-only">UPDATES</span>
                 </div>
-                <div className="gov-ticker" style={{ flex: 1, whiteSpace: 'nowrap', color: '#fff', fontSize: 18, fontWeight: 700 }}>
+                <div className="gov-ticker" style={{ flex: 1, whiteSpace: 'nowrap', color: '#fff', fontSize: 14, fontWeight: 700 }}>
                     {NEWS_ITEMS.map((n, i) => (
-                        <span key={i} style={{ margin: '0 50px', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-                            <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--gov-saffron)', boxShadow: '0 0 10px var(--gov-saffron)' }}></div>
+                        <span key={i} style={{ margin: '0 30px', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+                            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }}></div>
                             {n.text}
                         </span>
                     ))}
                 </div>
             </div>
 
-            <div className="kiosk-gradient-patriotic" style={{ padding: '40px 0', minHeight: '100vh' }}>
+            <div className="kiosk-gradient-patriotic" style={{ padding: '20px 0', minHeight: '100vh' }}>
                 <div className="kiosk-container">
 
                     {/* 2. PREMIUM WELCOME HEADER */}
-                    <div className="kiosk-glass" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 50, padding: '40px 60px', borderRadius: 40, border: '2px solid rgba(255,255,255,0.5)' }}>
-                        <div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 15, marginBottom: 10 }}>
-                                <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#10b981', boxShadow: '0 0 15px #10b981' }}></div>
-                                <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--gov-navy)', textTransform: 'uppercase', letterSpacing: 2 }}>
+                    <div className="kiosk-glass" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--kiosk-gap)', padding: 'var(--kiosk-p-md)', borderRadius: 24, border: '2px solid rgba(255,255,255,0.5)', flexWrap: 'wrap', gap: 20 }}>
+                        <div style={{ minWidth: 280, flex: 1 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#10b981', boxShadow: '0 0 10px #10b981' }}></div>
+                                <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--gov-navy)', textTransform: 'uppercase', letterSpacing: 1 }}>
                                     <span className="lang-en">KIOSK UNIT SVDH-001 — ACTIVE</span>
                                     <span className="lang-hi">किओस्क इकाई SVDH-001 — सक्रिय</span>
                                 </div>
                             </div>
-                            <h1 className="kiosk-text-display" style={{ fontSize: 50, color: 'var(--gov-navy)', margin: 0, lineHeight: 1.15 }}>
+                            <h1 className="kiosk-text-display" style={{ fontSize: 'var(--kiosk-title-size)', color: 'var(--gov-navy)', margin: 0, lineHeight: 1.15 }}>
                                 <span className="lang-en" style={{ display: 'block' }}>SUVIDHA Gateway</span>
                                 <span className="lang-hi" style={{ display: 'block' }}>सुविधा पोर्टल</span>
-                                <span style={{ display: 'block', fontSize: 30, color: 'var(--gov-saffron)', fontWeight: 800, marginTop: 6 }}>
+                                <span style={{ display: 'block', fontSize: 'calc(var(--kiosk-subtitle-size) * 0.8)', color: 'var(--gov-saffron)', fontWeight: 800, marginTop: 6 }}>
                                     <span className="lang-en">Welcome to the Citizen Service Centre</span>
                                     <span className="lang-hi">जन सेवा केंद्र में आपका स्वागत है</span>
                                 </span>
                             </h1>
                         </div>
-                        <div style={{ textAlign: 'right', display: 'flex', gap: 40, alignItems: 'center' }}>
-                            <div style={{ textAlign: 'right' }}>
-                                <div style={{ fontSize: 48, fontWeight: 900, color: 'var(--gov-navy)', fontFamily: 'monospace', lineHeight: 1 }}>
+                        <div style={{ textAlign: 'right', display: 'flex', gap: 20, alignItems: 'center', marginLeft: 'auto' }}>
+                            <div className="desktop-only" style={{ textAlign: 'right' }}>
+                                <div style={{ fontSize: 42, fontWeight: 900, color: 'var(--gov-navy)', fontFamily: 'monospace', lineHeight: 1 }}>
                                     {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </div>
-                                <div style={{ fontSize: 16, color: '#64748b', fontWeight: 700, marginTop: 5 }}>
-                                    {new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })}
+                                <div style={{ fontSize: 14, color: '#64748b', fontWeight: 700, marginTop: 5 }}>
+                                    {new Date().toLocaleDateString([], { weekday: 'short', day: 'numeric', month: 'short' })}
                                 </div>
                             </div>
-                            <div style={{ padding: '20px', background: 'rgba(255,255,255,0.5)', borderRadius: 28, border: '1.5px solid #fff' }}>
-                                <Icon name="wifi_tethering" size={40} color="var(--gov-navy)" />
+                            <div style={{ padding: '15px', background: 'rgba(255,255,255,0.5)', borderRadius: 20, border: '1.5px solid #fff' }}>
+                                <Icon name="wifi_tethering" size={32} color="var(--gov-navy)" />
                             </div>
                         </div>
                     </div>
 
                     {/* 3. HERO SHOWCASE CAROUSEL (UPGRADED) */}
-                    <div style={{ marginBottom: 60, position: 'relative', height: 320, borderRadius: 50, overflow: 'hidden', boxShadow: '0 30px 60px -12px rgba(0,0,0,0.25)' }}>
+                    <div style={{ marginBottom: 'var(--kiosk-gap)', position: 'relative', height: 'var(--kiosk-hero-h, 320px)', borderRadius: 24, overflow: 'hidden', boxShadow: '0 20px 40px -12px rgba(0,0,0,0.2)' }}>
                         {BANNER_SLIDES.map((s, i) => (
                             <div key={s.id} style={{
                                 position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
                                 background: s.bg, opacity: slide === i ? 1 : 0, transition: 'opacity 1s cubic-bezier(0.4, 0, 0.2, 1)',
-                                padding: '60px 80px', color: '#fff', display: 'flex', alignItems: 'center', pointerEvents: slide === i ? 'auto' : 'none'
+                                padding: 'var(--kiosk-p-lg)', color: '#fff', display: 'flex', alignItems: 'center', pointerEvents: slide === i ? 'auto' : 'none'
                             }}>
                                 <div style={{ flex: 1 }}>
-                                    <div style={{ background: 'rgba(255,255,255,0.25)', padding: '6px 16px', borderRadius: 100, fontSize: 12, fontWeight: 900, width: 'fit-content', marginBottom: 12, backdropFilter: 'blur(10px)', textTransform: 'uppercase', letterSpacing: 1.5 }}>
+                                    <div style={{ background: 'rgba(255,255,255,0.25)', padding: '4px 12px', borderRadius: 100, fontSize: 10, fontWeight: 900, width: 'fit-content', marginBottom: 10, backdropFilter: 'blur(10px)', textTransform: 'uppercase', letterSpacing: 1 }}>
                                         {s.tag}
                                     </div>
-                                    <h2 style={{ fontSize: 42, fontWeight: 900, margin: '0 0 10px 0', textShadow: '0 4px 15px rgba(0,0,0,0.3)', lineHeight: 1.1 }}>{s.title}</h2>
-                                    <p style={{ fontSize: 18, opacity: 0.8, maxWidth: 700, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>{s.subtitle}</p>
+                                    <h2 style={{ fontSize: 'calc(var(--kiosk-title-size) * 0.7)', fontWeight: 900, margin: '0 0 10px 0', textShadow: '0 4px 15px rgba(0,0,0,0.3)', lineHeight: 1.1 }}>{s.title}</h2>
+                                    <p className="desktop-only" style={{ fontSize: 16, opacity: 0.8, maxWidth: 600, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>{s.subtitle}</p>
                                 </div>
-                                <div style={{ width: 180, height: 180, background: 'rgba(255,255,255,0.2)', borderRadius: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(20px)', border: '2px solid rgba(255,255,255,0.4)', boxShadow: '0 15px 35px rgba(0,0,0,0.2)' }}>
-                                    <Icon name={s.icon} size={90} color="#fff" />
+                                <div className="desktop-only" style={{ width: 140, height: 140, background: 'rgba(255,255,255,0.2)', borderRadius: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(20px)', border: '2px solid rgba(255,255,255,0.4)' }}>
+                                    <Icon name={s.icon} size={70} color="#fff" />
                                 </div>
                             </div>
                         ))}
-                        <div style={{ position: 'absolute', bottom: 40, right: 80, display: 'flex', gap: 15 }}>
+                        <div style={{ position: 'absolute', bottom: 20, right: 20, display: 'flex', gap: 10 }}>
                             {BANNER_SLIDES.map((_, i) => (
                                 <button key={i} onClick={() => goSlide(i)} style={{
-                                    width: slide === i ? 60 : 16, height: 16, borderRadius: 10, background: slide === i ? '#fff' : 'rgba(255,255,255,0.4)',
-                                    border: 'none', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)', cursor: 'pointer'
+                                    width: slide === i ? 40 : 10, height: 10, borderRadius: 10, background: slide === i ? '#fff' : 'rgba(255,255,255,0.4)',
+                                    border: 'none', transition: 'all 0.4s ease', cursor: 'pointer'
                                 }} />
                             ))}
                         </div>
                     </div>
 
                     {/* 4. MAIN SERVICE CORE */}
-                    <div style={{ marginBottom: 60 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
-                            <div style={{ borderLeft: '12px solid var(--gov-saffron)', paddingLeft: 25 }}>
-                                <h2 className="kiosk-text-display" style={{ fontSize: 38, color: 'var(--gov-navy)', margin: 0 }}>
+                    <div style={{ marginBottom: 'var(--kiosk-gap)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, flexWrap: 'wrap', gap: 20 }}>
+                            <div style={{ borderLeft: '8px solid var(--gov-saffron)', paddingLeft: 20 }}>
+                                <h2 className="kiosk-text-display" style={{ fontSize: 'calc(var(--kiosk-subtitle-size) * 0.9)', color: 'var(--gov-navy)', margin: 0 }}>
                                     <span className="lang-en">Citizen Services Center</span>
                                     <span className="lang-hi">नागरिक सेवा केंद्र</span>
                                 </h2>
-                                <p style={{ fontSize: 18, color: '#334155', margin: '6px 0 0 0', fontWeight: 600 }}>
-                                    <span className="lang-en">Select a category to begin your application.</span>
-                                    <span className="lang-hi">आवेदन शुरू करने हेतु श्रेणी चुनें।</span>
+                                <p style={{ fontSize: 15, color: '#334155', margin: '4px 0 0 0', fontWeight: 600 }}>
+                                    <span className="lang-en">Select a category to begin.</span>
+                                    <span className="lang-hi">शुरू करने हेतु श्रेणी चुनें।</span>
                                 </p>
                             </div>
-                            <button className="kiosk-btn-premium" style={{ background: 'var(--gov-navy)', color: '#fff', height: 72, padding: '0 36px', fontSize: 15 }} onClick={() => navigate('/departments')}>
+                            <button className="kiosk-btn-premium" style={{ background: 'var(--gov-navy)', color: '#fff', height: 60, padding: '0 24px', fontSize: 14 }} onClick={() => navigate('/departments')}>
                                 <span className="lang-en">ALL DEPARTMENTS</span>
                                 <span className="lang-hi">सभी विभाग</span>
                                 <span className="material-icons">apps</span>
@@ -276,54 +277,51 @@ export default function Dashboard() {
                         </div>
 
                         {/* Equal-height tiles — grid uses align-items:stretch */}
-                        <div className="kiosk-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: 28, alignItems: 'stretch' }}>
+                        <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-grid-main)', gap: 'var(--kiosk-gap)', alignItems: 'stretch' }}>
                             {CITIZEN_SERVICES.map(svc => (
                                 <div key={svc.label}
                                     className="kiosk-glass"
                                     style={{
-                                        padding: '32px 20px 24px', borderRadius: 32, position: 'relative',
+                                        padding: '24px 16px', borderRadius: 24, position: 'relative',
                                         display: 'flex', flexDirection: 'column', alignItems: 'center',
                                         cursor: svc.comingSoon ? 'default' : 'pointer',
                                         transition: 'all 0.3s ease', textAlign: 'center',
                                         opacity: svc.comingSoon ? 0.72 : 1,
-                                        minHeight: 260,
+                                        minHeight: 'var(--kiosk-tile-min-h, 220px)',
                                     }}
                                     onClick={() => !svc.comingSoon && svc.path && navigate(svc.path)}
                                     onMouseEnter={e => {
                                         if (svc.comingSoon) return;
-                                        e.currentTarget.style.transform = 'translateY(-10px)';
-                                        e.currentTarget.style.boxShadow = `0 30px 60px ${svc.color}22`;
+                                        e.currentTarget.style.transform = 'translateY(-5px)';
                                         e.currentTarget.style.borderColor = svc.color;
                                     }}
                                     onMouseLeave={e => {
                                         e.currentTarget.style.transform = 'none';
-                                        e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(31, 38, 135, 0.07)';
                                         e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
                                     }}
                                 >
                                     {svc.comingSoon && (
-                                        <div style={{ position: 'absolute', top: 14, right: 14, background: '#f39c12', color: '#fff', fontSize: 9, fontWeight: 900, padding: '3px 9px', borderRadius: 20, letterSpacing: 1, textTransform: 'uppercase' }}>
-                                            <span className="lang-en">COMING SOON</span>
-                                            <span className="lang-hi">जल्द आएगा</span>
+                                        <div style={{ position: 'absolute', top: 10, right: 10, background: '#f39c12', color: '#fff', fontSize: 8, fontWeight: 900, padding: '2px 6px', borderRadius: 10 }}>
+                                            SOON
                                         </div>
                                     )}
                                     {/* Icon */}
                                     <div style={{
-                                        color: svc.color, background: `${svc.color}15`, width: 100, height: 100,
-                                        borderRadius: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                        marginBottom: 16, flexShrink: 0,
-                                        boxShadow: `0 10px 24px ${svc.color}20`, border: `2px solid ${svc.color}25`
+                                        color: svc.color, background: `${svc.color}15`, width: 70, height: 70,
+                                        borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        marginBottom: 12, flexShrink: 0,
+                                        border: `2px solid ${svc.color}25`
                                     }}>
-                                        <Icon name={svc.icon} size={56} color={svc.color} />
+                                        <Icon name={svc.icon} size={40} color={svc.color} />
                                     </div>
                                     {/* Label — language-switching */}
-                                    <div style={{ fontWeight: 900, fontSize: 17, color: 'var(--gov-navy)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+                                    <div style={{ fontWeight: 900, fontSize: 16, color: 'var(--gov-navy)', textTransform: 'uppercase', marginBottom: 4 }}>
                                         <span className="lang-en">{svc.label}</span>
-                                        <span className="lang-hi kiosk-gov-tile-hi" style={{ textTransform: 'none', fontSize: 20 }}>{svc.labelHi}</span>
+                                        <span className="lang-hi kiosk-gov-tile-hi" style={{ textTransform: 'none', fontSize: 18 }}>{svc.labelHi}</span>
                                     </div>
                                     {/* Desc — pinned to bottom via flex-grow spacer */}
                                     <div style={{ flex: 1 }} />
-                                    <div style={{ fontSize: 12, color: '#64748b', fontWeight: 600, lineHeight: 1.55, marginTop: 4 }}>
+                                    <div style={{ fontSize: 11, color: '#64748b', fontWeight: 600, lineHeight: 1.4 }}>
                                         <span className="lang-en">{svc.desc}</span>
                                         <span className="lang-hi">{svc.descHi}</span>
                                     </div>
@@ -333,96 +331,85 @@ export default function Dashboard() {
                     </div>
 
                     {/* 5. QUICK TRACK & EMERGENCY */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '2.5fr 1fr', gap: 36, marginBottom: 60 }}>
+                    <div className="kiosk-grid" style={{ gridTemplateColumns: 'var(--kiosk-grid-side)', gap: 'var(--kiosk-gap)', marginBottom: 'var(--kiosk-gap)' }}>
                         {/* Quick Track Card */}
-                        <div className="kiosk-glass-dark" style={{ borderRadius: 40, padding: '48px 52px', position: 'relative', overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,33,71,0.3)' }}>
-                            <div style={{ position: 'absolute', top: -150, right: -150, width: 500, height: 500, background: 'rgba(255,255,255,0.05)', borderRadius: '50%' }}></div>
+                        <div className="kiosk-glass-dark" style={{ borderRadius: 24, padding: 'var(--kiosk-p-lg)', position: 'relative', overflow: 'hidden' }}>
+                            <div className="desktop-only" style={{ position: 'absolute', top: -150, right: -150, width: 400, height: 400, background: 'rgba(255,255,255,0.05)', borderRadius: '50%' }}></div>
                             <div style={{ position: 'relative', zIndex: 1 }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 15 }}>
-                                    <div style={{ padding: 15, background: 'rgba(255,255,255,0.15)', borderRadius: 20, flexShrink: 0 }}>
-                                        <Icon name="track_changes" size={44} color="var(--gov-saffron)" />
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 15, marginBottom: 15 }}>
+                                    <div style={{ padding: 10, background: 'rgba(255,255,255,0.15)', borderRadius: 15 }}>
+                                        <Icon name="track_changes" size={32} color="var(--gov-saffron)" />
                                     </div>
                                     <div>
-                                        <div className="kiosk-text-display" style={{ fontSize: 32, color: '#fff', lineHeight: 1.2 }}>
-                                            <span className="lang-en">Track Application Status</span>
-                                            <span className="lang-hi">आवेदन स्थिति जाँचें</span>
+                                        <div className="kiosk-text-display" style={{ fontSize: 'calc(var(--kiosk-subtitle-size) * 0.9)', color: '#fff', lineHeight: 1.2 }}>
+                                            <span className="lang-en">Track Application</span>
+                                            <span className="lang-hi">आवेदन स्थिति</span>
                                         </div>
-                                        <p style={{ fontSize: 17, opacity: 0.75, margin: '6px 0 0', fontWeight: 600 }}>
-                                            <span className="lang-en">Enter your Ticket ID for real-time update.</span>
-                                            <span className="lang-hi">रियल-टाइम अपडेट के लिए टिकट ID दर्ज करें।</span>
-                                        </p>
                                     </div>
                                 </div>
-                                <div style={{ display: 'flex', gap: 20, marginTop: 40 }}>
+                                <div style={{ display: 'flex', gap: 15, marginTop: 25, flexWrap: 'wrap' }}>
                                     <input
                                         type="text"
-                                        placeholder="SVDH-0000-0000"
+                                        placeholder="SVDH-0000"
                                         className="kiosk-input-elite"
-                                        style={{ flex: 1, background: 'rgba(255,255,255,0.1)', border: '3.5px solid rgba(255,255,255,0.2)', padding: '30px 40px', borderRadius: 28, color: '#fff', fontSize: 32, fontWeight: 900, fontFamily: 'monospace', outline: 'none', textAlign: 'center' }}
+                                        style={{ flex: 1, minWidth: 200, background: 'rgba(255,255,255,0.1)', border: '2px solid rgba(255,255,255,0.2)', padding: '15px 20px', borderRadius: 16, color: '#fff', fontSize: 24, fontWeight: 900, fontFamily: 'monospace', outline: 'none' }}
                                         value={trackId}
                                         onChange={e => setTrackId(e.target.value.toUpperCase())}
                                     />
                                     <button
                                         className="kiosk-btn-premium"
-                                        style={{ width: 280, background: 'var(--gov-saffron)', color: '#fff', fontSize: 24 }}
+                                        style={{ width: 'var(--kiosk-btn-w, 200px)', background: 'var(--gov-saffron)', color: '#fff', fontSize: 18, height: 60 }}
                                         onClick={() => navigate(`/status?id=${trackId}`)}
                                         disabled={!trackId.trim()}
                                     >
-                                        TRACK NOW
+                                        TRACK
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         {/* Emergency Contact */}
-                        <div className="kiosk-glass" style={{ border: '4px solid #fee2e2', borderRadius: 40, padding: '48px 36px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                            <div style={{ width: 90, height: 90, background: '#fee2e2', color: '#ef4444', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', boxShadow: '0 15px 30px rgba(239, 68, 68, 0.2)' }}>
-                                <Icon name="emergency" size={50} color="#ef4444" />
-                            </div>
-                            <div style={{ fontSize: 17, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 4 }}>
+                        <div className="kiosk-glass" style={{ border: '3px solid #fee2e2', borderRadius: 24, padding: 'var(--kiosk-p-md)', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <div style={{ fontSize: 13, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase', marginBottom: 4 }}>
                                 <span className="lang-en">Emergency</span>
                                 <span className="lang-hi">आपातकाल</span>
                             </div>
-                            <div style={{ fontSize: 68, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1 }}>112</div>
-                            <p style={{ fontSize: 15, color: '#64748b', fontWeight: 700, marginTop: 8 }}>
-                                <span className="lang-en">Toll-free Central Line</span>
-                                <span className="lang-hi">टोल-फ्री केंद्रीय हेल्पलाइन</span>
-                            </p>
+                            <div style={{ fontSize: 48, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1 }}>112</div>
                         </div>
                     </div>
 
                     {/* 6. ELITE FOOTER BAR (GLASSMORPHISM) */}
-                    <div className="kiosk-glass" style={{ padding: '60px 80px', borderRadius: 50, border: '2.5px dashed rgba(0,0,0,0.1)', textAlign: 'center', marginBottom: 40 }}>
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: 80, marginBottom: 50 }}>
+                    <div className="kiosk-glass" style={{ padding: 'var(--kiosk-p-lg)', borderRadius: 24, border: '2px dashed rgba(0,0,0,0.1)', textAlign: 'center', marginBottom: 40 }}>
+                        <div className="desktop-only" style={{ display: 'flex', justifyContent: 'center', gap: 60, marginBottom: 40 }}>
                             {STATS.map(s => (
                                 <div key={s.label} style={{ textAlign: 'left' }}>
-                                    <div style={{ fontSize: 48, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1 }}>{s.num}</div>
-                                    <div style={{ fontSize: 16, color: '#64748b', fontWeight: 800, textTransform: 'uppercase', marginTop: 10 }}>{s.label}</div>
+                                    <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1 }}>{s.num}</div>
+                                    <div style={{ fontSize: 12, color: '#64748b', fontWeight: 800, textTransform: 'uppercase', marginTop: 5 }}>{s.label}</div>
                                 </div>
                             ))}
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: 30 }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}>
                             <button
                                 className="kiosk-btn-premium"
                                 onClick={() => { logout(); navigate('/login'); }}
-                                style={{ width: 450, height: 100, background: '#fff', border: '3.5px solid #fee2e2', borderRadius: 30 }}
+                                style={{ width: '100%', maxWidth: 400, height: 80, background: '#fff', border: '2px solid #fee2e2', borderRadius: 20 }}
                             >
                                 <div style={{ textAlign: 'left', flex: 1 }}>
-                                    <span className="kiosk-gov-btn-hi" style={{ color: '#ef4444', fontSize: 24 }}>लॉगआउट करें</span>
-                                    <div style={{ fontSize: 18, fontWeight: 700, color: '#64748b', textTransform: 'uppercase' }}>SECURE LOGOUT ({user?.mobile || '99XXXXXX'})</div>
+                                    <span className="kiosk-gov-btn-hi" style={{ color: '#ef4444', fontSize: 18 }}>लॉगआउट करें</span>
+                                    <div style={{ fontSize: 14, fontWeight: 700, color: '#64748b' }}>SECURE LOGOUT</div>
                                 </div>
-                                <Icon name="logout" size={42} color="#ef4444" />
+                                <Icon name="logout" size={32} color="#ef4444" />
                             </button>
                         </div>
 
-                        <div style={{ marginTop: 60, display: 'flex', justifyContent: 'center', gap: 40, opacity: 0.6 }}>
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png" alt="Digital India" style={{ height: 50 }} />
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png" alt="Emblem" style={{ height: 60 }} />
+                        <div style={{ marginTop: 40, display: 'flex', justifyContent: 'center', gap: 20, opacity: 0.6, flexWrap: 'wrap' }}>
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png" alt="Digital India" style={{ height: 40 }} />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png" alt="Emblem" style={{ height: 50 }} />
                         </div>
 
-                        <div style={{ marginTop: 30, fontSize: 16, color: '#64748b', fontWeight: 700 }}>
-                            Official SUVIDHA Digital Platform v4.2.0 | Ministry of Electronics & IT | Digital India Initiative
+                        <div style={{ marginTop: 20, fontSize: 13, color: '#64748b', fontWeight: 700 }}>
+                            SUVIDHA Platform v4.2.0 | Ministry of Electronics & IT
                         </div>
                     </div>
 

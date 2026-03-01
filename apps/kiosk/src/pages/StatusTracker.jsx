@@ -63,21 +63,21 @@ export default function StatusTracker() {
         <GovLayout breadcrumbs={['Citizen Services', 'Track Complaint / Status']}>
             <div className="kiosk-container">
 
-                <div className="kiosk-header">
-                    <div className="kiosk-title" style={{ fontSize: 36 }}>Track Your Application</div>
-                    <div style={{ fontStyle: 'italic', fontSize: 24, color: '#666', marginBottom: 15 }}>आवेदन की स्थिति जांचें</div>
-                    <p style={{ fontSize: 20, color: '#666', fontWeight: 500 }}>
+                <div className="kiosk-header" style={{ textAlign: 'center', marginBottom: 'var(--kiosk-gap)' }}>
+                    <div className="kiosk-title" style={{ fontSize: 'var(--kiosk-subtitle-size)', color: 'var(--gov-navy)' }}>Track Your Application</div>
+                    <div style={{ fontStyle: 'italic', fontSize: 'calc(var(--kiosk-subtitle-size) * 0.7)', color: '#666', marginBottom: 10 }}>आवेदन की स्थिति जांचें</div>
+                    <p className="desktop-only" style={{ fontSize: 18, color: '#666', fontWeight: 500 }}>
                         Enter your Ticket ID to know the current status and activity log.
                     </p>
                 </div>
 
-                <div className="kiosk-form" style={{ maxWidth: 850 }}>
+                <div className="kiosk-form" style={{ maxWidth: 850, width: '100%', margin: '0 auto' }}>
                     <div className="kiosk-input-group">
-                        <label className="kiosk-label">Ticket ID / शिकायत संख्या</label>
-                        <form onSubmit={search} style={{ display: 'flex', gap: 15 }}>
+                        <label className="kiosk-label" style={{ fontSize: 16 }}>Ticket ID / शिकायत संख्या</label>
+                        <form onSubmit={search} style={{ display: 'flex', gap: 15, flexWrap: 'wrap' }}>
                             <input
                                 className="kiosk-input"
-                                style={{ flex: 1, letterSpacing: '0.15em', fontSize: 32, textTransform: 'uppercase' }}
+                                style={{ flex: 1, minWidth: 280, letterSpacing: '0.1em', fontSize: 24, textTransform: 'uppercase', height: 60 }}
                                 type="text"
                                 placeholder="SVDH-XXXXXXXX"
                                 value={ticketId}
@@ -85,23 +85,23 @@ export default function StatusTracker() {
                                 maxLength={20}
                                 required
                             />
-                            <button className="kiosk-btn kiosk-btn--primary" type="submit" disabled={loading} style={{ height: 75 }}>
+                            <button className="kiosk-btn kiosk-btn--primary" type="submit" disabled={loading} style={{ height: 60, flex: '1 0 150px' }}>
                                 <span className="material-icons">{loading ? 'sync' : 'search'}</span>
                                 {loading ? 'Wait...' : 'Track'}
                             </button>
                         </form>
-                        <div style={{ marginTop: 10, fontSize: 16, color: '#666' }}>
-                            * You can find the Ticket ID in the SMS sent to your registered mobile number.
+                        <div style={{ marginTop: 10, fontSize: 13, color: '#666' }}>
+                            * Ticket ID is mentioned in the SMS sent to your mobile.
                         </div>
                     </div>
 
                     {error && (
                         <div style={{
                             background: '#fef2f2', border: '2px solid #ef4444',
-                            padding: '15px 20px', borderRadius: 12, color: '#b91c1c',
-                            marginTop: 20, display: 'flex', alignItems: 'center', gap: 10, fontSize: 18, fontWeight: 600
+                            padding: '12px 16px', borderRadius: 12, color: '#b91c1c',
+                            marginTop: 15, display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 600
                         }}>
-                            <span className="material-icons">error</span>
+                            <span className="material-icons" style={{ fontSize: 20 }}>error</span>
                             {error}
                         </div>
                     )}
@@ -159,39 +159,39 @@ export default function StatusTracker() {
                 )}
 
                 {result && (
-                    <div className="kiosk-form" style={{ maxWidth: 850, marginTop: 40, background: '#fff' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30, borderBottom: '3px solid #f0f0f0', paddingBottom: 20 }}>
-                            <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--gov-navy)' }}>
+                    <div className="kiosk-form" style={{ maxWidth: 850, width: '100%', margin: '40px auto 0', background: '#fff', padding: 'var(--kiosk-p-md)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, borderBottom: '2px solid #f0f0f0', paddingBottom: 15, flexWrap: 'wrap', gap: 10 }}>
+                            <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--gov-navy)' }}>
                                 Ticket Details
                             </div>
-                            <span className={`gov-badge ${STATUS_COLORS[result.status] || ''}`} style={{ fontSize: 18, padding: '10px 20px' }}>
+                            <span className={`gov-badge ${STATUS_COLORS[result.status] || ''}`} style={{ fontSize: 13, padding: '6px 12px' }}>
                                 {result.status?.replace(/_/g, ' ')}
                             </span>
                         </div>
 
                         <div style={{
-                            background: '#f8fafc', border: '2px solid #e2e8f0',
-                            borderRadius: 16, padding: '30px', marginBottom: 30
+                            background: '#f8fafc', border: '1.5px solid #e2e8f0',
+                            borderRadius: 12, padding: '20px', marginBottom: 25
                         }}>
-                            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 20 }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 15 }}>
                                 <tbody>
                                     <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                                        <td style={{ padding: '15px 0', color: '#64748b' }}>Ticket ID</td>
-                                        <td style={{ padding: '15px 0', fontWeight: 800, textAlign: 'right', color: 'var(--gov-navy)' }}>{result.ticketId}</td>
+                                        <td style={{ padding: '12px 0', color: '#64748b' }}>Ticket ID</td>
+                                        <td style={{ padding: '12px 0', fontWeight: 800, textAlign: 'right', color: 'var(--gov-navy)', wordBreak: 'break-all' }}>{result.ticketId}</td>
                                     </tr>
                                     <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                                        <td style={{ padding: '15px 0', color: '#64748b' }}>Service Type</td>
-                                        <td style={{ padding: '15px 0', fontWeight: 800, textAlign: 'right' }}>{result.serviceType?.replace(/_/g, ' ')}</td>
+                                        <td style={{ padding: '12px 0', color: '#64748b' }}>Service Type</td>
+                                        <td style={{ padding: '12px 0', fontWeight: 800, textAlign: 'right' }}>{result.serviceType?.replace(/_/g, ' ')}</td>
                                     </tr>
                                     <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                                        <td style={{ padding: '15px 0', color: '#64748b' }}>SLA Deadline</td>
-                                        <td style={{ padding: '15px 0', fontWeight: 800, color: '#c2410c', textAlign: 'right' }}>
+                                        <td style={{ padding: '12px 0', color: '#64748b' }}>SLA Deadline</td>
+                                        <td style={{ padding: '12px 0', fontWeight: 800, color: '#c2410c', textAlign: 'right' }}>
                                             {result.slaDeadline ? new Date(result.slaDeadline).toLocaleString('en-IN') : '—'}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style={{ padding: '15px 0', color: '#64748b' }}>Created On</td>
-                                        <td style={{ padding: '15px 0', fontWeight: 800, textAlign: 'right' }}>
+                                        <td style={{ padding: '12px 0', color: '#64748b' }}>Created On</td>
+                                        <td style={{ padding: '12px 0', fontWeight: 800, textAlign: 'right' }}>
                                             {result.createdAt ? new Date(result.createdAt).toLocaleString('en-IN') : '—'}
                                         </td>
                                     </tr>
@@ -201,24 +201,24 @@ export default function StatusTracker() {
 
                         {result.statusHistory?.length > 0 && (
                             <div style={{ marginTop: 20 }}>
-                                <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--gov-navy)', marginBottom: 25, display: 'flex', alignItems: 'center', gap: 10 }}>
-                                    <span className="material-icons">history</span>
-                                    Resolution Timeline / गतिविधि इतिहास
+                                <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gov-navy)', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
+                                    <span className="material-icons" style={{ fontSize: 20 }}>history</span>
+                                    Timeline / इतिहास
                                 </div>
-                                <div style={{ borderLeft: '5px solid var(--gov-navy)', paddingLeft: 30, marginLeft: 15 }}>
+                                <div style={{ borderLeft: '3px solid var(--gov-navy)', paddingLeft: 20, marginLeft: 10 }}>
                                     {result.statusHistory.map((h, i) => (
-                                        <div key={i} style={{ marginBottom: 30, position: 'relative' }}>
+                                        <div key={i} style={{ marginBottom: 25, position: 'relative' }}>
                                             <div style={{
-                                                position: 'absolute', left: -42, top: 4,
-                                                width: 18, height: 18, borderRadius: '50%',
+                                                position: 'absolute', left: -28, top: 4,
+                                                width: 14, height: 14, borderRadius: '50%',
                                                 background: i === 0 ? 'var(--gov-saffron)' : 'var(--gov-navy)',
-                                                border: '4px solid #fff', boxShadow: '0 0 0 4px var(--gov-navy)'
+                                                border: '3px solid #fff', boxShadow: '0 0 0 3px var(--gov-navy)'
                                             }} />
-                                            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--gov-navy)' }}>
+                                            <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--gov-navy)' }}>
                                                 {h.status?.replace(/_/g, ' ')}
                                             </div>
-                                            {h.note && <div style={{ fontSize: 16, color: '#4b5563', marginTop: 5, background: '#f3f4f6', padding: '10px 15px', borderRadius: 8 }}>{h.note}</div>}
-                                            <div style={{ fontSize: 14, color: '#9ca3af', marginTop: 5, fontWeight: 600 }}>
+                                            {h.note && <div style={{ fontSize: 14, color: '#4b5563', marginTop: 4, background: '#f3f4f6', padding: '8px 12px', borderRadius: 8 }}>{h.note}</div>}
+                                            <div style={{ fontSize: 12, color: '#9ca3af', marginTop: 4, fontWeight: 600 }}>
                                                 {new Date(h.changedAt).toLocaleString('en-IN')}
                                             </div>
                                         </div>
@@ -229,9 +229,9 @@ export default function StatusTracker() {
                     </div>
                 )}
 
-                <div style={{ textAlign: 'center', marginTop: 40 }}>
-                    <button className="kiosk-btn kiosk-btn--secondary" onClick={() => window.history.back()}>
-                        <span className="material-icons">arrow_back</span>
+                <div style={{ textAlign: 'center', marginTop: 30 }}>
+                    <button className="kiosk-btn kiosk-btn--secondary" onClick={() => window.history.back()} style={{ height: 50, padding: '0 25px' }}>
+                        <span className="material-icons" style={{ fontSize: 20 }}>arrow_back</span>
                         Go Back / पीछे जाएं
                     </button>
                 </div>
