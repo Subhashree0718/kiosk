@@ -168,7 +168,7 @@ export default function Auth() {
 
                 {/* LOGOS STRIP */}
                 <div style={{ marginTop: 'auto', paddingTop: 60, display: 'flex', gap: 60, opacity: 0.6, grayscale: 1 }}>
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png" alt="Digital India" style={{ height: 60 }} />
+                    <img src="/digital-india.svg" alt="Digital India" style={{ height: 60 }} />
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png" alt="Emblem" style={{ height: 70 }} />
                 </div>
             </div>

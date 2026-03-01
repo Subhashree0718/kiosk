@@ -175,7 +175,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                                 onError={e => e.target.style.display = 'none'}
                             />
                             <img
-                                src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png"
+                                src="/digital-india.svg"
                                 alt="Digital India" style={{ height: 32, filter: 'brightness(0.65) grayscale(0.3)' }}
                                 onError={e => e.target.style.display = 'none'}
                             />

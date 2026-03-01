@@ -404,7 +404,7 @@ export default function Dashboard() {
                         </div>
 
                         <div style={{ marginTop: 40, display: 'flex', justifyContent: 'center', gap: 20, opacity: 0.6, flexWrap: 'wrap' }}>
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png" alt="Digital India" style={{ height: 40 }} />
+                            <img src="/digital-india.svg" alt="Digital India" style={{ height: 40 }} />
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png" alt="Emblem" style={{ height: 50 }} />
                         </div>
 

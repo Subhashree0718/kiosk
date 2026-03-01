@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
+  <!-- Small icon/emblem representation -->
+  <circle cx="40" cy="40" r="30" fill="none" stroke="#2c3e50" stroke-width="4" />
+  <circle cx="40" cy="40" r="22" fill="#e74c3c" />
+  <path d="M 40 18 L 40 62 M 18 40 L 62 40 M 25 25 L 55 55 M 25 55 L 55 25" stroke="#fff" stroke-width="3" />
+  
+  <!-- Text Content -->
+  <text x="85" y="42" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="#2c3e50">
+    Digital <tspan fill="#e74c3c">India</tspan>
+  </text>
+  <text x="88" y="65" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="normal" fill="#7f8c8d" letter-spacing="1.5">
+    Power To Empower
+  </text>
+</svg>

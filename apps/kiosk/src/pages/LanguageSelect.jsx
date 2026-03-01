@@ -31,7 +31,7 @@ export default function LanguageSelect() {
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png"
                             alt="Emblem" style={{ height: 'var(--kiosk-icon-size)' }} />
                         <div className="desktop-only" style={{ width: 2, background: 'rgba(0,0,0,0.1)' }}></div>
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Digital_India_Logo.svg/320px-Digital_India_Logo.svg.png"
+                        <img src="/digital-india.svg"
                             alt="Digital India" style={{ height: 'calc(var(--kiosk-icon-size) * 0.8)', marginTop: 10 }} />
                     </div>
 
@@ -128,7 +128,6 @@ export default function LanguageSelect() {
                 </div>
 
                 <div style={{ marginTop: 40, maxWidth: 800, textAlign: 'center', color: '#64748b', fontSize: 16, fontWeight: 600 }}>
-                    Ministry of Electronics & Information Technology | Government of India<br />
                     <span style={{ opacity: 0.7, fontSize: 14 }}>System ID: KSK-DL-0982-SVDH | Location: New Delhi Central</span>
                 </div>
             </div>
