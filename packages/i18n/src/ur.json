@@ -1,0 +1,114 @@
+{
+    "common": {
+        "select_language": "زبان منتخب کریں",
+        "continue": "جاری رکھیں",
+        "back": "واپس",
+        "submit": "جمع کریں",
+        "cancel": "منسوخ کریں",
+        "loading": "لوڈ ہو رہا ہے...",
+        "logout": "لاگ آؤٹ",
+        "home": "ہوم"
+    },
+    "auth": {
+        "title": "شہری لاگ ان",
+        "mobile_label": "موبائل نمبر درج کریں",
+        "otp_label": "OTP درج کریں",
+        "send_otp": "OTP بھیجیں",
+        "verify_otp": "OTP کی تصدیق کریں",
+        "otp_sent": "OTP آپ کے موبائل پر بھیج دیا گیا ہے",
+        "resend_otp": "OTP دوبارہ بھیجیں"
+    },
+    "dashboard": {
+        "welcome": "خوش آمدید، شہری",
+        "select_service": "سروس منتخب کریں",
+        "departments": "محکمے"
+    },
+    "services": {
+        "bill_payment": "بل ادائیگی",
+        "service_request": "سروس کی درخواست",
+        "complaint": "شکایت درج کریں",
+        "status": "حالت ٹریک کریں"
+    },
+    "complaint": {
+        "title": "شکایت درج کریں",
+        "department": "محکمہ منتخب کریں",
+        "description": "مسئلے کی وضاحت کریں",
+        "location": "جگہ",
+        "attach": "تصویر منسلک کریں (اختیاری)",
+        "success": "شکایت کامیابی سے درج ہو گئی",
+        "ticket_id": "آپ کا ٹکٹ ID"
+    },
+    "payment": {
+        "title": "بل ادائیگی",
+        "consumer_no": "کنزیومر نمبر",
+        "fetch_bill": "بل حاصل کریں",
+        "amount_due": "واجب الادا رقم",
+        "pay_now": "ابھی ادا کریں",
+        "success": "ادائیگی کامیاب",
+        "receipt": "رسید ڈاؤن لوڈ کریں"
+    },
+    "status": {
+        "title": "اپنی درخواست ٹریک کریں",
+        "enter_ticket": "ٹکٹ ID درج کریں",
+        "search": "تلاش کریں",
+        "status_label": "حالت",
+        "last_update": "آخری اپ ڈیٹ"
+    },
+    "session": {
+        "timeout_warning": "آپ کا سیشن 60 سیکنڈ میں ختم ہو جائے گا",
+        "timeout_message": "سیشن ختم ہو گیا۔ براہ کرم دوبارہ لاگ ان کریں۔"
+    },
+    "layout": {
+        "header": {
+            "suvidhaTitle": "سہولیت \u2013 ڈیجیٹل ہیلپ ڈیسک",
+            "tagline": "اسمارٹ اربن ورچوئل انٹرایکٹو ڈیجیٹل ہیلپ ڈیسک اسسٹنٹ",
+            "govOfIndia": "حکومت ہند"
+        },
+        "nav": {
+            "home": "ہوم",
+            "services": "سروسز",
+            "departments": "محکمے",
+            "trackStatus": "اسٹیٹس ٹریک کریں",
+            "grievances": "شکایات",
+            "profile": "پروفائل",
+            "contactUs": "رابطہ کریں"
+        },
+        "ticker": {
+            "label": "اطلاع",
+            "text": "سہولیت کیوسک — شہری خدمات پورٹل۔ ای شرم رجسٹریشن اب تمام کیوسک مراکز پر دستیاب ہے۔ نیا: گیس سبسڈی ٹرانسفر آن لائن — گیس سروس محکمہ کے ذریعے درخواست دیں۔ پراپرٹی ٹیکس واجبات اس کیوسک پر جمع کیے جا سکتے ہیں۔ شکایت کی حیثیت جاننے کے لیے اپنا ٹکٹ ID استعمال کریں۔"
+        },
+        "breadcrumb": {
+            "home": "ہوم"
+        },
+        "footer": {
+            "aboutTitle": "سہولیت کے بارے میں",
+            "quickLinksTitle": "فوری لنکس",
+            "policiesTitle": "پالیسیز",
+            "contactTitle": "رابطہ کریں",
+            "quickLinks": {
+                "dashboard": "ڈیش بورڈ",
+                "departments": "محکمے",
+                "trackStatus": "اسٹیٹس ٹریک کریں",
+                "lodgeComplaint": "شکایت درج کریں",
+                "serviceRequest": "سروس کی درخواست",
+                "contactUs": "رابطہ کریں"
+            },
+            "policies": {
+                "terms": "شرائط و ضوابط",
+                "privacy": "پرائیویسی پالیسی",
+                "disclaimer": "ڈسکلیمر",
+                "accessibility": "رسائی کا بیان",
+                "websitePolicy": "ویب سائٹ پالیسی",
+                "copyright": "کاپی رائٹ پالیسی"
+            },
+            "bottom": {
+                "copyright": "سہولیت ہیکاتھون 2026، C-DAC اور MeitY، حکومت ہند.",
+                "terms": "شرائط",
+                "privacy": "پرائیویسی",
+                "disclaimer": "ڈسکلیمر",
+                "visitors": "وزیٹرز",
+                "lastUpdated": "آخری اپ ڈیٹ"
+            }
+        }
+    }
+}

@@ -1,0 +1,114 @@
+{
+    "common": {
+        "select_language": "भाषा निवडा",
+        "continue": "पुढे जा",
+        "back": "मागे",
+        "submit": "सबमिट करा",
+        "cancel": "रद्द करा",
+        "loading": "लोड होत आहे...",
+        "logout": "लॉगआउट",
+        "home": "मुख्यपृष्ठ"
+    },
+    "auth": {
+        "title": "नागरिक लॉगिन",
+        "mobile_label": "मोबाइल क्रमांक टाका",
+        "otp_label": "OTP टाका",
+        "send_otp": "OTP पाठवा",
+        "verify_otp": "OTP पडताळा",
+        "otp_sent": "तुमच्या मोबाईलवर OTP पाठवला आहे",
+        "resend_otp": "OTP पुन्हा पाठवा"
+    },
+    "dashboard": {
+        "welcome": "स्वागत आहे, नागरिक",
+        "select_service": "सेवा निवडा",
+        "departments": "विभाग"
+    },
+    "services": {
+        "bill_payment": "बिल भरणा",
+        "service_request": "सेवा विनंती",
+        "complaint": "तक्रार नोंदवा",
+        "status": "स्थिती ट्रॅक करा"
+    },
+    "complaint": {
+        "title": "तक्रार नोंदवा",
+        "department": "विभाग निवडा",
+        "description": "समस्येचे वर्णन करा",
+        "location": "ठिकाण",
+        "attach": "फोटो जोडा (ऐच्छिक)",
+        "success": "तक्रार यशस्वीरित्या नोंदवली गेली",
+        "ticket_id": "तुमचा तिकिट ID"
+    },
+    "payment": {
+        "title": "बिल भरणा",
+        "consumer_no": "ग्राहक क्रमांक",
+        "fetch_bill": "बिल मिळवा",
+        "amount_due": "देय रक्कम",
+        "pay_now": "आता भरा",
+        "success": "भरणा यशस्वी",
+        "receipt": "पावती डाउनलोड करा"
+    },
+    "status": {
+        "title": "तुमची विनंती ट्रॅक करा",
+        "enter_ticket": "तिकिट ID टाका",
+        "search": "शोधा",
+        "status_label": "स्थिती",
+        "last_update": "शेवटचे अद्यतन"
+    },
+    "session": {
+        "timeout_warning": "तुमचे सत्र 60 सेकंदांत संपेल",
+        "timeout_message": "सत्र संपले. कृपया पुन्हा लॉगिन करा."
+    },
+    "layout": {
+        "header": {
+            "suvidhaTitle": "सुविधा – डिजिटल सहाय्य डेस्क",
+            "tagline": "स्मार्ट अर्बन व्हर्च्युअल इंटरॅक्टिव डिजिटल हेल्पडेस्क असिस्टंट",
+            "govOfIndia": "भारत सरकार"
+        },
+        "nav": {
+            "home": "मुख्यपृष्ठ",
+            "services": "सेवा",
+            "departments": "विभाग",
+            "trackStatus": "स्थिती ट्रॅक करा",
+            "grievances": "तक्रारी",
+            "profile": "प्रोफाइल",
+            "contactUs": "संपर्क करा"
+        },
+        "ticker": {
+            "label": "सूचना",
+            "text": "सुविधा किओस्क — नागरिक सेवा पोर्टल. ई-श्रम नोंदणी आता सर्व किओस्क केंद्रांमध्ये उपलब्ध आहे. नवे: गॅस अनुदान हस्तांतरण ऑनलाइन — गॅस सेवा विभागाद्वारे अर्ज करा. मालमत्ता कर थकबाकी या किओस्कवर भरता येते. तक्रारीची स्थिती पाहण्यासाठी तुमचा तिकिट ID वापरा."
+        },
+        "breadcrumb": {
+            "home": "मुख्यपृष्ठ"
+        },
+        "footer": {
+            "aboutTitle": "सुविधा विषयी",
+            "quickLinksTitle": "जलद दुवे",
+            "policiesTitle": "धोरणे",
+            "contactTitle": "संपर्क करा",
+            "quickLinks": {
+                "dashboard": "डॅशबोर्ड",
+                "departments": "विभाग",
+                "trackStatus": "स्थिती ट्रॅक करा",
+                "lodgeComplaint": "तक्रार नोंदवा",
+                "serviceRequest": "सेवा विनंती",
+                "contactUs": "संपर्क करा"
+            },
+            "policies": {
+                "terms": "नियम व अटी",
+                "privacy": "गोपनीयता धोरण",
+                "disclaimer": "अस्वीकरण",
+                "accessibility": "सुलभता विधान",
+                "websitePolicy": "वेबसाइट धोरण",
+                "copyright": "प्रताधिकार धोरण"
+            },
+            "bottom": {
+                "copyright": "सुविधा हॅकाथॉन 2026, C-DAC व MeitY, भारत सरकार.",
+                "terms": "नियम",
+                "privacy": "गोपनीयता",
+                "disclaimer": "अस्वीकरण",
+                "visitors": "भेट देणारे",
+                "lastUpdated": "शेवटचे अद्यतन"
+            }
+        }
+    }
+}

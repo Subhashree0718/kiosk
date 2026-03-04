@@ -1,0 +1,114 @@
+{
+    "common": {
+        "select_language": "ભાષા પસંદ કરો",
+        "continue": "આગળ વધો",
+        "back": "પાછળ",
+        "submit": "સબમિટ કરો",
+        "cancel": "રદ કરો",
+        "loading": "લોડ થઈ રહ્યું છે...",
+        "logout": "લોગઆઉટ",
+        "home": "હોમ"
+    },
+    "auth": {
+        "title": "નાગરિક લોગિન",
+        "mobile_label": "મોબાઈલ નંબર દાખલ કરો",
+        "otp_label": "OTP દાખલ કરો",
+        "send_otp": "OTP મોકલો",
+        "verify_otp": "OTP ચકાસો",
+        "otp_sent": "તમારા મોબાઈલ પર OTP મોકલવામાં આવ્યો છે",
+        "resend_otp": "OTP ફરી મોકલો"
+    },
+    "dashboard": {
+        "welcome": "સ્વાગત છે, નાગરિક",
+        "select_service": "સેવા પસંદ કરો",
+        "departments": "વિભાગો"
+    },
+    "services": {
+        "bill_payment": "બિલ પેમેન્ટ",
+        "service_request": "સેવા વિનંતી",
+        "complaint": "ફરિયાદ નોંધાવો",
+        "status": "સ્થિતિ ટ્રેક કરો"
+    },
+    "complaint": {
+        "title": "ફરિયાદ નોંધાવો",
+        "department": "વિભાગ પસંદ કરો",
+        "description": "સમસ્યાનું વર્ણન કરો",
+        "location": "સ્થાન",
+        "attach": "ફોટો જોડો (વૈકલ્પિક)",
+        "success": "ફરિયાદ સફળતાપૂર્વક નોંધાઈ",
+        "ticket_id": "તમારો ટિકિટ ID"
+    },
+    "payment": {
+        "title": "બિલ પેમેન્ટ",
+        "consumer_no": "કંઝ્યુમર નંબર",
+        "fetch_bill": "બિલ મેળવો",
+        "amount_due": "બાકી રકમ",
+        "pay_now": "હમણાં ચૂકવો",
+        "success": "પેમેન્ટ સફળ",
+        "receipt": "રસીદ ડાઉનલોડ કરો"
+    },
+    "status": {
+        "title": "તમારી વિનંતી ટ્રેક કરો",
+        "enter_ticket": "ટિકિટ ID દાખલ કરો",
+        "search": "શોધો",
+        "status_label": "સ્થિતિ",
+        "last_update": "છેલ્લું અપડેટ"
+    },
+    "session": {
+        "timeout_warning": "તમારું સેશન 60 સેકન્ડમાં સમાપ્ત થશે",
+        "timeout_message": "સેશન સમાપ્ત. કૃપા કરીને ફરી લોગિન કરો."
+    },
+    "layout": {
+        "header": {
+            "suvidhaTitle": "સુવિધા – ડિજિટલ સહાય ડેસ્ક",
+            "tagline": "સ્માર્ટ અર્બન વર્ચ્યુઅલ ઇન્ટરેક્ટિવ ડિજિટલ હેલ્પડેસ્ક અસિસ્ટન્ટ",
+            "govOfIndia": "ભારત સરકાર"
+        },
+        "nav": {
+            "home": "હોમ",
+            "services": "સેવાઓ",
+            "departments": "વિભાગો",
+            "trackStatus": "સ્થિતિ ટ્રેક કરો",
+            "grievances": "ફરિયાદો",
+            "profile": "પ્રોફાઇલ",
+            "contactUs": "સંપર્ક કરો"
+        },
+        "ticker": {
+            "label": "જાહેરાત",
+            "text": "સુવિધા કિયોસ્ક — નાગરિક સેવા પોર્ટલ. ઇ-શ્રમ રજીસ્ટ્રેશન હવે બધા કિયોસ્ક કેન્દ્રોમાં ઉપલબ્ધ છે. નવું: ગેસ સબસિડી ટ્રાન્સફર ઓનલાઇન — ગેસ સેવા વિભાગ મારફતે અરજી કરો. પ્રોપર્ટી ટેક્સ બાકી રકમ આ કિયોસ્ક પર ચુકવી શકાય છે. ફરિયાદની સ્થિતિ જાણવા માટે તમારો ટિકિટ ID ઉપયોગ કરો."
+        },
+        "breadcrumb": {
+            "home": "હોમ"
+        },
+        "footer": {
+            "aboutTitle": "સુવિધા વિશે",
+            "quickLinksTitle": "ઝડપી લિંક્સ",
+            "policiesTitle": "નીતિઓ",
+            "contactTitle": "સંપર્ક કરો",
+            "quickLinks": {
+                "dashboard": "ડેશબોર્ડ",
+                "departments": "વિભાગો",
+                "trackStatus": "સ્થિતિ ટ્રેક કરો",
+                "lodgeComplaint": "ફરિયાદ નોંધાવો",
+                "serviceRequest": "સેવા વિનંતી",
+                "contactUs": "સંપર્ક કરો"
+            },
+            "policies": {
+                "terms": "નિયમો અને શરતો",
+                "privacy": "ગોપનીયતા નીતિ",
+                "disclaimer": "ડિસ્ક્લેમર",
+                "accessibility": "સુલભતા નિવેદન",
+                "websitePolicy": "વેબસાઇટ નીતિ",
+                "copyright": "કૉપિરાઇટ નીતિ"
+            },
+            "bottom": {
+                "copyright": "સુવિધા હેકાથોન 2026, C-DAC અને MeitY, ભારત સરકાર.",
+                "terms": "નિયમો",
+                "privacy": "ગોપનીયતા",
+                "disclaimer": "ડિસ્ક્લેમર",
+                "visitors": "મુલાકાતીઓ",
+                "lastUpdated": "છેલ્લે અપડેટ"
+            }
+        }
+    }
+}

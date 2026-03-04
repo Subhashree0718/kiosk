@@ -1,0 +1,114 @@
+{
+    "common": {
+        "select_language": "ভাষা বাছনি কৰক",
+        "continue": "আগবাঢ়ক",
+        "back": "ফিৰি যাওক",
+        "submit": "জমা কৰক",
+        "cancel": "বাতিল কৰক",
+        "loading": "ল'ড হৈ আছে...",
+        "logout": "লগআউট",
+        "home": "হোম"
+    },
+    "auth": {
+        "title": "চহৰবাশীৰ লগইন",
+        "mobile_label": "মোবাইল নম্বৰ সুমুৱাওক",
+        "otp_label": "OTP সুমুৱাওক",
+        "send_otp": "OTP পঠিওৱা",
+        "verify_otp": "OTP যাচাই কৰক",
+        "otp_sent": "আপোনাৰ মোবাইলত OTP পঠিওৱা হৈছে",
+        "resend_otp": "OTP পুনৰ পঠিওৱা"
+    },
+    "dashboard": {
+        "welcome": "স্বাগতম, নাগৰিক",
+        "select_service": "এটা সেৱা বাছনি কৰক",
+        "departments": "বিভাগসমূহ"
+    },
+    "services": {
+        "bill_payment": "বিল পেমেণ্ট",
+        "service_request": "সেৱা অনুৰোধ",
+        "complaint": "অভিযোগ নথিভুক্ত কৰক",
+        "status": "স্থিতি ট্ৰেক কৰক"
+    },
+    "complaint": {
+        "title": "অভিযোগ নথিভুক্ত কৰক",
+        "department": "বিভাগ বাছনি কৰক",
+        "description": "সমস্যাটোৰ বিৱৰণ দিয়ক",
+        "location": "স্থান",
+        "attach": "ফটো সংলগ্ন কৰক (বিকল্প)",
+        "success": "অভিযোগ সফলতাৰে নথিভুক্ত হ'ল",
+        "ticket_id": "আপোনাৰ টিকেট ID"
+    },
+    "payment": {
+        "title": "বিল পেমেণ্ট",
+        "consumer_no": "ভোক্তা নম্বৰ",
+        "fetch_bill": "বিল আনক",
+        "amount_due": "দেবাকুৰা ৰাশি",
+        "pay_now": "এতিয়াই পে কৰক",
+        "success": "পেমেণ্ট সফল হ'ল",
+        "receipt": "ৰচিদ ডাউনল'ড কৰক"
+    },
+    "status": {
+        "title": "আপোনাৰ অনুৰোধ ট্ৰেক কৰক",
+        "enter_ticket": "টিকেট ID সুমুৱাওক",
+        "search": "বিচাৰক",
+        "status_label": "স্থিতি",
+        "last_update": "সর্বশেষ আপডেট"
+    },
+    "session": {
+        "timeout_warning": "আপোনাৰ ছেছন 60 ছেকেণ্ডত অন্ত হ'ব",
+        "timeout_message": "ছেছন শেষ। অনুগ্ৰহ কৰি পুনৰ লগইন কৰক।"
+    },
+    "layout": {
+        "header": {
+            "suvidhaTitle": "সুবিধা – ডিজিটেল সহায়তা ডেস্ক",
+            "tagline": "স্মাৰ্ট আৰ্বান ভাৰ্চুৱেল ইন্টাৰেক্টিভ ডিজিটেল হেল্পডেস্ক সহায়ক",
+            "govOfIndia": "ভাৰত চৰকাৰ"
+        },
+        "nav": {
+            "home": "হোম",
+            "services": "সেৱাসমূহ",
+            "departments": "বিভাগ",
+            "trackStatus": "স্থিতি ট্ৰেক কৰক",
+            "grievances": "অভিযোগসমূহ",
+            "profile": "প্ৰফাইল",
+            "contactUs": "যোগাযোগ কৰক"
+        },
+        "ticker": {
+            "label": "জাননী",
+            "text": "সুবিধা কিয়স্ক — নাগৰিক সেৱা প'ৰ্টেল। ই-শ্ৰম ৰেজিষ্ট্ৰেচন এতিয়া সকলো কিয়স্ক কেন্দ্ৰত উপলভ্য। নতুন: গেছছ ভৰ্তুকি স্থানান্তৰ অনলাইন — গেছ সেৱা বিভাগৰ জৰিয়তে আবেদনৰ সুবিধা। সম্পত্তি কৰ বকেয়া এই কিয়স্কত জমা কৰিব পাৰি। অভিযোগৰ স্থিতি জানিবলৈ আপোনাৰ টিকেট ID ব্যৱহাৰ কৰক।"
+        },
+        "breadcrumb": {
+            "home": "হোম"
+        },
+        "footer": {
+            "aboutTitle": "সুবিধা বিষয়ে",
+            "quickLinksTitle": "দ্ৰুত লিংক",
+            "policiesTitle": "নীতিসমূহ",
+            "contactTitle": "যোগাযোগ কৰক",
+            "quickLinks": {
+                "dashboard": "ডেশ্বব'ৰ্ড",
+                "departments": "বিভাগ",
+                "trackStatus": "স্থিতি ট্ৰেক কৰক",
+                "lodgeComplaint": "অভিযোগ নথিভুক্ত কৰক",
+                "serviceRequest": "সেৱা অনুৰোধ",
+                "contactUs": "যোগাযোগ কৰক"
+            },
+            "policies": {
+                "terms": "নীতিমালা আৰু শর্তাবলী",
+                "privacy": "গোপনীয়তা নীতি",
+                "disclaimer": "ডিসক্লেইমাৰ",
+                "accessibility": "অভিগম্যতা বিবৃতি",
+                "websitePolicy": "ৱেবছাইট নীতি",
+                "copyright": "কপিৰাইট নীতি"
+            },
+            "bottom": {
+                "copyright": "সুবিধা হেকাথন 2026, C-DAC আৰু MeitY, ভাৰত চৰকাৰ।",
+                "terms": "শর্তাবলী",
+                "privacy": "গোপনীয়তা",
+                "disclaimer": "ডিসক্লেইমাৰ",
+                "visitors": "দৰ্শক",
+                "lastUpdated": "সৰ্বশেষ আপডেট"
+            }
+        }
+    }
+}

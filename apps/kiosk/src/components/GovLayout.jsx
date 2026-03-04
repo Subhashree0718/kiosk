@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useKioskStore } from '../store/index.js';
-import { useT } from '../hooks/useT.js';
+import { useTranslation } from '../hooks/useTranslation.js';
+import { HEADER_LANGUAGES } from '../config/languages.js';
 
 /* ── Icon helper ─────────────────────────────────────────────────── */
 const Icon = ({ name, size = 18, color = 'currentColor', style = {} }) => (
@@ -12,13 +13,13 @@ const Icon = ({ name, size = 18, color = 'currentColor', style = {} }) => (
 
 /* ── Nav items ───────────────────────────────────────────────────── */
 const NAV_DEFS = [
-    { en: 'HOME', hi: 'होम', path: '/dashboard', icon: 'home' },
-    { en: 'SERVICES', hi: 'सेवाएं', path: '/departments', icon: 'widgets' },
-    { en: 'DEPARTMENTS', hi: 'विभाग', path: '/departments', icon: 'business' },
-    { en: 'TRACK STATUS', hi: 'स्थिति ट्रैक करें', path: '/status', icon: 'track_changes' },
-    { en: 'GRIEVANCES', hi: 'शिकायतें', path: '/complaint', icon: 'campaign' },
-    { en: 'PROFILE', hi: 'प्रोफ़ाइल', path: '/profile', icon: 'account_circle' },
-    { en: 'CONTACT US', hi: 'संपर्क करें', path: '/contact', icon: 'support_agent' },
+    { key: 'home', path: '/dashboard', icon: 'home' },
+    { key: 'services', path: '/departments', icon: 'widgets' },
+    { key: 'departments', path: '/departments', icon: 'business' },
+    { key: 'trackStatus', path: '/status', icon: 'track_changes' },
+    { key: 'grievances', path: '/complaint', icon: 'campaign' },
+    { key: 'profile', path: '/profile', icon: 'account_circle' },
+    { key: 'contactUs', path: '/contact', icon: 'support_agent' },
 ];
 
 const TICKER_TEXT =
@@ -34,7 +35,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
     const [fontSize, setFontSize] = useState(14);
     const storeLanguage = useKioskStore(s => s.language);
     const setStoreLanguage = useKioskStore(s => s.setLanguage);
-    const { t } = useT();
+    const { t } = useTranslation();
 
     useEffect(() => { document.body.style.fontSize = fontSize + 'px'; }, [fontSize]);
 
@@ -57,14 +58,18 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                     <button className="gov-font-btn" onClick={() => setFontSize(14)}>A</button>
                     <button className="gov-font-btn" onClick={() => setFontSize(f => Math.min(18, f + 1))}>A+</button>
                     <span className="gov-utility-bar__sep">|</span>
-                    <button className="gov-lang-btn"
-                        onClick={() => setStoreLanguage('hi')}
-                        style={storeLanguage === 'hi' ? { background: 'var(--gov-saffron)', color: '#fff', borderRadius: 2, padding: '2px 6px' } : {}}
-                    >हिन्दी</button>
-                    <button className="gov-lang-btn"
-                        onClick={() => setStoreLanguage('en')}
-                        style={storeLanguage === 'en' ? { background: 'var(--gov-saffron)', color: '#fff', borderRadius: 2, padding: '2px 6px' } : {}}
-                    >English</button>
+                    {HEADER_LANGUAGES.map(lang => (
+                        <button
+                            key={lang.code}
+                            className={
+                                'gov-lang-btn' +
+                                (storeLanguage === lang.code ? ' gov-lang-btn--active' : '')
+                            }
+                            onClick={() => setStoreLanguage(lang.code)}
+                        >
+                            {lang.headerLabel}
+                        </button>
+                    ))}
                 </div>
             </div>
 
@@ -77,9 +82,9 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                     onError={e => { e.target.style.display = 'none'; }}
                 />
                 <div className="kiosk-gov-title-group">
-                    <div className="kiosk-gov-text-hi">{t('SUVIDHA – Digital Helpdesk', 'सुविधा – डिजिटल सहायता डेस्क')}</div>
-                    <div className="kiosk-gov-text-en">{t('Smart Urban Virtual Interactive Digital Helpdesk Assistant', 'स्मार्ट नगर वर्चुअल इंटरैक्टिव डिजिटल सहायता')}</div>
-                    <div style={{ fontSize: 13, opacity: 0.7, marginTop: 4 }}>{t('Government of India', 'भारत सरकार')}</div>
+                    <div className="kiosk-gov-text-hi">{t('layout.header.suvidhaTitle')}</div>
+                    <div className="kiosk-gov-text-en">{t('layout.header.tagline')}</div>
+                    <div style={{ fontSize: 13, opacity: 0.7, marginTop: 4 }}>{t('layout.header.govOfIndia')}</div>
                 </div>
             </header>
 
@@ -112,10 +117,10 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
             <div className="gov-ticker">
                 <span className="gov-ticker__label" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                     <Icon name="campaign" size={14} color="#fff" />
-                    {t('NOTICE', 'सूचना')}
+                    {t('layout.ticker.label')}
                 </span>
                 <div style={{ overflow: 'hidden', flex: 1 }}>
-                    <span className="gov-ticker__content">{TICKER_TEXT}</span>
+                    <span className="gov-ticker__content">{t('layout.ticker.text')}</span>
                 </div>
             </div>
 
@@ -131,7 +136,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                                 onClick={() => navigate('/dashboard')}
                             >
                                 <Icon name="home" size={14} />
-                                Home
+                                {t('layout.breadcrumb.home')}
                             </button>
                             {breadcrumbs.map((crumb, i) => (
                                 <React.Fragment key={i}>
@@ -162,7 +167,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
 
                     {/* About */}
                     <div>
-                        <div className="gov-footer__heading">About SUVIDHA</div>
+                        <div className="gov-footer__heading">{t('layout.footer.aboutTitle')}</div>
                         <p style={{ fontSize: 12.5, lineHeight: 1.7, color: '#b0bec5' }}>
                             SUVIDHA (Smart Urban Virtual Interactive Digital Helpdesk Assistant) is a
                             citizen services kiosk initiative organized by C-DAC for the SUVIDHA Hackathon 2026 under the Ministry of Electronics &amp; Information Technology (MeitY),
@@ -184,17 +189,17 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
 
                     {/* Quick Links */}
                     <div>
-                        <div className="gov-footer__heading">Quick Links</div>
+                        <div className="gov-footer__heading">{t('layout.footer.quickLinksTitle')}</div>
                         <ul className="gov-footer__links">
                             {[
-                                ['Dashboard', '/dashboard'],
-                                ['Departments', '/departments'],
-                                ['Track Status', '/status'],
-                                ['Lodge Complaint', '/complaint'],
-                                ['Service Request', '/service-request'],
-                                ['Contact Us', '/contact'],
-                            ].map(([label, path]) => (
-                                <li key={label}>
+                                ['dashboard', '/dashboard'],
+                                ['departments', '/departments'],
+                                ['trackStatus', '/status'],
+                                ['lodgeComplaint', '/complaint'],
+                                ['serviceRequest', '/service-request'],
+                                ['contactUs', '/contact'],
+                            ].map(([key, path]) => (
+                            <li key={key}>
                                     <button
                                         onClick={() => navigate(path)}
                                         style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#b0bec5', fontSize: 12.5, padding: 0, fontFamily: 'var(--gov-font)', display: 'flex', alignItems: 'center', gap: 5 }}
@@ -202,7 +207,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                                         onMouseLeave={e => e.currentTarget.style.color = '#b0bec5'}
                                     >
                                         <Icon name="arrow_right" size={16} />
-                                        {label}
+                                        {t(`layout.footer.quickLinks.${key}`)}
                                     </button>
                                 </li>
                             ))}
@@ -211,13 +216,13 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
 
                     {/* Help */}
                     <div>
-                        <div className="gov-footer__heading">Policies</div>
+                        <div className="gov-footer__heading">{t('layout.footer.policiesTitle')}</div>
                         <ul className="gov-footer__links">
-                            {['Terms & Conditions', 'Privacy Policy', 'Disclaimer',
-                                'Accessibility Statement', 'Website Policy', 'Copyright Policy'].map(label => (
-                                    <li key={label}>
+                            {['terms', 'privacy', 'disclaimer',
+                                'accessibility', 'websitePolicy', 'copyright'].map(key => (
+                                    <li key={key}>
                                         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                                            <Icon name="arrow_right" size={16} />{label}
+                                            <Icon name="arrow_right" size={16} />{t(`layout.footer.policies.${key}`)}
                                         </a>
                                     </li>
                                 ))}
@@ -226,7 +231,7 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
 
                     {/* Contact */}
                     <div>
-                        <div className="gov-footer__heading">Contact Us</div>
+                        <div className="gov-footer__heading">{t('layout.footer.contactTitle')}</div>
                         <div style={{ fontSize: 12.5, color: '#b0bec5', lineHeight: 2 }}>
                             {[
                                 { icon: 'location_on', text: 'C-DAC Centers: Bangalore, Delhi, Hyderabad, and CINE' },
@@ -249,19 +254,19 @@ export default function GovLayout({ children, breadcrumbs = [], showSidebar = fa
                 {/* Bottom strip */}
                 <div className="gov-footer__bottom">
                     <div>
-                        &copy; {new Date().getFullYear()} SUVIDHA Hackathon 2026, C-DAC &amp; MeitY. Government of India.
-                        &nbsp;|&nbsp;<a href="/">Terms</a>
-                        &nbsp;|&nbsp;<a href="/">Privacy</a>
-                        &nbsp;|&nbsp;<a href="/">Disclaimer</a>
+                        &copy; {new Date().getFullYear()} {t('layout.footer.bottom.copyright')}
+                        &nbsp;|&nbsp;<a href="/">{t('layout.footer.bottom.terms')}</a>
+                        &nbsp;|&nbsp;<a href="/">{t('layout.footer.bottom.privacy')}</a>
+                        &nbsp;|&nbsp;<a href="/">{t('layout.footer.bottom.disclaimer')}</a>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11.5, color: '#78909c' }}>
                             <Icon name="visibility" size={14} />
-                            Visitors: <span style={{ background: '#0a2540', padding: '2px 8px', borderRadius: 3, color: '#4fc3f7', fontFamily: 'Courier New, monospace', fontWeight: 700 }}>1,24,839</span>
+                            {t('layout.footer.bottom.visitors')}: <span style={{ background: '#0a2540', padding: '2px 8px', borderRadius: 3, color: '#4fc3f7', fontFamily: 'Courier New, monospace', fontWeight: 700 }}>1,24,839</span>
                         </div>
                         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                             <Icon name="update" size={14} />
-                            Last Updated: {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+                            {t('layout.footer.bottom.lastUpdated')}: {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
                         </span>
                     </div>
                 </div>
