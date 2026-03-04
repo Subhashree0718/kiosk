@@ -2,14 +2,21 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
 import { useKioskStore } from '../store/index.js';
-import { LANGUAGES } from '../config/languages.js';
+
+const LANGUAGES = [
+    { code: 'en', script: 'A', name: 'English' },
+    { code: 'hi', script: 'अ', name: 'हिन्दी' },
+    { code: 'ta', script: 'அ', name: 'தமிழ்' },
+    { code: 'te', script: 'అ', name: 'తెలుగు' },
+];
 
 export default function LanguageSelect() {
     const navigate = useNavigate();
     const setLanguage = useKioskStore(s => s.setLanguage);
 
     function select(code) {
-        setLanguage(code);
+        localStorage.setItem('lang', code);
+        setLanguage(code);           // ← persist to store so useT() works everywhere
         navigate('/login');
     }
 
@@ -39,15 +46,15 @@ export default function LanguageSelect() {
                 {/* 2. GLASSMORPHISM LANGUAGE TILES */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
                     gap: 'var(--kiosk-gap)',
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
-                    maxWidth: 1000,
+                    maxWidth: 900,
                     margin: '0 auto'
                 }}>
-                    {LANGUAGES.map(lang => (
+                    {LANGUAGES.slice(0, 2).map(lang => (
                         <div
                             key={lang.code}
                             className="kiosk-glass"
@@ -93,10 +100,10 @@ export default function LanguageSelect() {
                             </div>
                             <div style={{ textAlign: 'left', flex: 1 }}>
                                 <div style={{ fontSize: 32, fontWeight: 900, color: 'var(--gov-navy)', lineHeight: 1.1 }}>
-                                    {lang.nativeName}
+                                    {lang.name}
                                 </div>
                                 <div style={{ fontSize: 16, fontWeight: 700, color: '#64748b', marginTop: 10, textTransform: 'uppercase', letterSpacing: 1 }}>
-                                    {lang.name}
+                                    {lang.name === 'हिन्दी' ? 'Hindi Language' : 'English Language'}
                                 </div>
                             </div>
                             <div className="desktop-only" style={{ marginLeft: 10 }}>

@@ -16,23 +16,7 @@
         "send_otp": "Send OTP",
         "verify_otp": "Verify OTP",
         "otp_sent": "OTP sent to your mobile number",
-        "resend_otp": "Resend OTP",
-        "secure_auth": "Secure Authentication",
-        "portal_access": "SUVIDHA Portal Access",
-        "enter_mobile_title": "Enter Mobile Number",
-        "verify_identity_title": "Verify Identity",
-        "invalid_mobile_error": "Please enter a valid 10-digit Indian mobile number.",
-        "otp_hint": "We will send an OTP for verification.",
-        "sending": "SENDING...",
-        "enter_otp": "Enter OTP",
-        "sent_to": "Sent to",
-        "back": "BACK",
-        "verifying": "VERIFYING...",
-        "login": "LOGIN",
-        "otp_length_error": "OTP must be 6 digits.",
-        "protected_encryption": "Protected with 256-bit encryption.",
-        "send_otp_failed": "Failed to send OTP. Please try again.",
-        "invalid_otp": "Invalid or expired OTP."
+        "resend_otp": "Resend OTP"
     },
     "dashboard": {
         "welcome": "Welcome, Citizen",
@@ -73,58 +57,5 @@
     "session": {
         "timeout_warning": "Your session will expire in 60 seconds",
         "timeout_message": "Session expired. Please login again."
-    },
-    "layout": {
-        "header": {
-            "suvidhaTitle": "SUVIDHA \u2013 Digital Helpdesk",
-            "tagline": "Smart Urban Virtual Interactive Digital Helpdesk Assistant",
-            "govOfIndia": "Government of India"
-        },
-        "nav": {
-            "home": "Home",
-            "services": "Services",
-            "departments": "Departments",
-            "trackStatus": "Track Status",
-            "grievances": "Grievances",
-            "profile": "Profile",
-            "contactUs": "Contact Us"
-        },
-        "ticker": {
-            "label": "NOTICE",
-            "text": "SUVIDHA Kiosk \u2014 Citizen Services Portal. e-Shram Registration now available at all kiosk locations. New: Gas subsidy transfer online \u2014 apply via Gas Service department. Property Tax dues can be paid at this kiosk. For grievance status, use Track Status with your Ticket ID."
-        },
-        "breadcrumb": {
-            "home": "Home"
-        },
-        "footer": {
-            "aboutTitle": "About SUVIDHA",
-            "quickLinksTitle": "Quick Links",
-            "policiesTitle": "Policies",
-            "contactTitle": "Contact Us",
-            "quickLinks": {
-                "dashboard": "Dashboard",
-                "departments": "Departments",
-                "trackStatus": "Track Status",
-                "lodgeComplaint": "Lodge Complaint",
-                "serviceRequest": "Service Request",
-                "contactUs": "Contact Us"
-            },
-            "policies": {
-                "terms": "Terms & Conditions",
-                "privacy": "Privacy Policy",
-                "disclaimer": "Disclaimer",
-                "accessibility": "Accessibility Statement",
-                "websitePolicy": "Website Policy",
-                "copyright": "Copyright Policy"
-            },
-            "bottom": {
-                "copyright": "SUVIDHA Hackathon 2026, C-DAC & MeitY. Government of India.",
-                "terms": "Terms",
-                "privacy": "Privacy",
-                "disclaimer": "Disclaimer",
-                "visitors": "Visitors",
-                "lastUpdated": "Last Updated"
-            }
-        }
     }
 }

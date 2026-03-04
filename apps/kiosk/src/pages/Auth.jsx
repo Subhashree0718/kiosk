@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import GovLayout from '../components/GovLayout.jsx';
 import api from '../services/api.js';
 import { useKioskStore } from '../store/index.js';
-import { useTranslation } from '../hooks/useTranslation.js';
+import { useT } from '../hooks/useT.js';
 
 const NUM_PAD = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'CLR', '0', 'DEL'];
 
@@ -11,7 +11,7 @@ export default function Auth() {
     const navigate = useNavigate();
     const setAuth = useKioskStore(s => s.setAuth);
     const setSessionMobile = useKioskStore(s => s.setSessionMobile);
-    const { t } = useTranslation();
+    const { t } = useT();
     const [step, setStep] = useState(1);
     const [mobile, setMobile] = useState('');
     const [otp, setOtp] = useState('');
@@ -22,22 +22,22 @@ export default function Auth() {
     async function sendOtp(e) {
         if (e) e.preventDefault();
         if (!/^[6-9]\d{9}$/.test(mobile)) {
-            setError(t('auth.invalid_mobile_error'));
+            setError(t('Please enter a valid 10-digit Indian mobile number.', 'कृपया वैध 10-अंक भारतीय मोबाइल नंबर दर्ज करें।'));
             return;
         }
         setError(''); setLoading(true);
         try {
             await api.post('/auth/send-otp', { mobile });
-            setInfo(t('auth.otp_sent', { mobile }));
+            setInfo('OTP sent to ' + mobile);
             setStep(2);
         } catch (err) {
-            setError(err.response?.data?.message || t('auth.send_otp_failed'));
+            setError(err.response?.data?.message || 'Failed to send OTP. Please try again.');
         } finally { setLoading(false); }
     }
 
     async function verifyOtp(e) {
         if (e) e.preventDefault();
-        if (!/^\d{6}$/.test(otp)) { setError(t('auth.otp_length_error')); return; }
+        if (!/^\d{6}$/.test(otp)) { setError('OTP must be 6 digits.'); return; }
         setError(''); setLoading(true);
         try {
             const { data } = await api.post('/auth/verify-otp', { mobile, code: otp });
@@ -45,7 +45,7 @@ export default function Auth() {
             setSessionMobile(mobile); // Store verified mobile globally for all departments
             navigate('/dashboard');
         } catch (err) {
-            setError(err.response?.data?.message || t('auth.invalid_otp'));
+            setError(err.response?.data?.message || 'Invalid or expired OTP.');
         } finally { setLoading(false); }
     }
 
@@ -69,12 +69,12 @@ export default function Auth() {
                     <div style={{ background: '#fff', padding: '15px 30px', borderRadius: 20, display: 'inline-flex', alignItems: 'center', gap: 15, boxShadow: '0 10px 30px rgba(0,0,0,0.05)', marginBottom: 20 }}>
                         <span className="material-icons" style={{ fontSize: 32, color: 'var(--gov-navy)' }}>lock</span>
                         <div style={{ textAlign: 'left' }}>
-                            <div style={{ fontSize: 13, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>{t('auth.secure_auth')}</div>
-                            <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--gov-navy)' }}>{t('auth.portal_access')}</div>
+                            <div style={{ fontSize: 13, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>{t('Secure Authentication', 'सुरक्षित प्रमाणीकरण')}</div>
+                            <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--gov-navy)' }}>{t('SUVIDHA Portal Access', 'सुविधा पोर्टल एक्सेस')}</div>
                         </div>
                     </div>
                     <h1 className="kiosk-text-display" style={{ fontSize: 42, color: 'var(--gov-navy)', margin: 0 }}>
-                        {step === 1 ? t('auth.enter_mobile_title') : t('auth.verify_identity_title')}
+                        {step === 1 ? t('Enter Mobile Number', 'मोबाइल नंबर दर्ज करें') : t('Verify Identity', 'पहचान सत्यापित करें')}
                     </h1>
                 </div>
 
@@ -92,7 +92,7 @@ export default function Auth() {
 
                         {step === 1 ? (
                             <div>
-                                <label style={{ fontSize: 16, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 10 }}>{t('auth.mobile_label')}</label>
+                                <label style={{ fontSize: 16, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 10 }}>{t('Enter Mobile Number', 'मोबाइल नंबर दर्ज करें')}</label>
                                 <div style={{ display: 'flex', gap: 10, background: '#fff', padding: 10, borderRadius: 16, border: '2px solid var(--gov-navy)', alignItems: 'center', marginBottom: 15 }}>
                                     <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--gov-navy)', paddingRight: 10, borderRight: '2px solid #e2e8f0' }}>+91</div>
                                     <input
@@ -101,16 +101,16 @@ export default function Auth() {
                                         value={mobile} readOnly placeholder="00000 00000"
                                     />
                                 </div>
-                                <p style={{ fontSize: 14, color: '#64748b', fontWeight: 600 }}>{t('auth.otp_hint')}</p>
+                                <p style={{ fontSize: 14, color: '#64748b', fontWeight: 600 }}>{t('We will send an OTP for verification.', 'हम सत्यापन के लिए एक ओटीपी भेजेंगे।')}</p>
 
                                 <button className="kiosk-btn-premium" style={{ width: '100%', background: 'var(--gov-navy)', color: '#fff', marginTop: 25, height: 'var(--kiosk-btn-h)' }} onClick={sendOtp} disabled={loading || mobile.length < 10}>
-                                    {loading ? t('auth.sending') : t('auth.send_otp')}
+                                    {loading ? t('SENDING...', 'भेज रहे हैं...') : t('SEND OTP', 'ओटीपी भेजें')}
                                     <span className="material-icons" style={{ fontSize: 24 }}>arrow_forward</span>
                                 </button>
                             </div>
                         ) : (
                             <div>
-                                <label style={{ fontSize: 16, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 10 }}>{t('auth.otp_label')}</label>
+                                <label style={{ fontSize: 16, color: '#64748b', fontWeight: 800, display: 'block', marginBottom: 10 }}>{t('Enter OTP', 'ओटीपी दर्ज करें')}</label>
                                 <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 25 }}>
                                     {[0, 1, 2, 3, 4, 5].map(i => (
                                         <div key={i} style={{
@@ -123,14 +123,14 @@ export default function Auth() {
                                         </div>
                                     ))}
                                 </div>
-                                <p style={{ textAlign: 'center', fontSize: 14, color: '#64748b' }}>{t('auth.sent_to')} <strong>+91-XX{mobile.slice(-4)}</strong></p>
+                                <p style={{ textAlign: 'center', fontSize: 14, color: '#64748b' }}>{t('Sent to', 'भेजा गया')} <strong>+91-XX{mobile.slice(-4)}</strong></p>
 
                                 <div style={{ display: 'flex', gap: 15, marginTop: 30 }}>
                                     <button className="kiosk-btn-premium" style={{ flex: 1, background: '#f1f5f9', color: 'var(--gov-navy)', height: 'var(--kiosk-btn-h)' }} onClick={() => { setStep(1); setOtp(''); }}>
-                                        {t('auth.back')}
+                                        {t('BACK', 'वापस')}
                                     </button>
                                     <button className="kiosk-btn-premium" style={{ flex: 2, background: 'var(--gov-saffron)', color: '#fff', height: 'var(--kiosk-btn-h)' }} onClick={verifyOtp} disabled={loading || otp.length < 6}>
-                                        {loading ? t('auth.verifying') : t('auth.login')}
+                                        {loading ? t('VERIFYING...', 'सत्यापित कर रहे हैं...') : t('LOGIN', 'लॉगिन')}
                                     </button>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@ export default function Auth() {
 
                         <div style={{ marginTop: 30, padding: '15px', background: 'rgba(0,0,0,0.03)', borderRadius: 15, display: 'flex', gap: 10, alignItems: 'center' }}>
                             <span className="material-icons" style={{ color: '#16a34a', fontSize: 18 }}>privacy_tip</span>
-                            <div style={{ fontSize: 11, color: '#64748b', fontWeight: 600 }}>{t('auth.protected_encryption')}</div>
+                            <div style={{ fontSize: 11, color: '#64748b', fontWeight: 600 }}>{t('Protected with 256-bit encryption.', '256-बिट एन्क्रिप्शन के साथ सुरक्षित।')}</div>
                         </div>
                     </div>
 
